@@ -5,6 +5,10 @@
 .Ruserdata
 *.knit.md
 
+# bookdown
+_bookdown_files/
+*.rds
+
 # Sistema
 .DS_Store
 Thumbs.db
