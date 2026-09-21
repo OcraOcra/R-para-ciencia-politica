@@ -1,0 +1,59 @@
+---
+title: "Estadistica aplicada para la ciencia politica"
+author: "Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [packages.bib, bibliography.bib]
+link-citations: true
+description: |
+  Una introduccion a la estadistica aplicada con enfasis en el comportamiento
+  politico, usando la encuesta del CIEP-UCR (noviembre 2020).
+---
+
+# Sobre este libro {.unnumbered}
+
+Este texto es el recurso principal para un curso de introduccion al analisis
+de datos en ciencia politica. En lugar de exigir un manual de estadistica
+aparte, reune en un solo documento los tres elementos que necesitas: una
+introduccion a la estadistica, una introduccion al comportamiento politico y
+una guia para interpretar la salida de los programas estadisticos.
+
+El curso busca familiarizarte con las tecnicas estadisticas basicas que usan
+las y los cientistas sociales, en particular un modelo estadistico conocido
+como **regresion lineal**. Cada capitulo cubre aproximadamente una o dos
+semanas de materia. La idea es que uses este texto mientras trabajas con los
+datos que analizaras en tus tareas.
+
+## Los datos de este curso {.unnumbered}
+
+Todos los ejemplos, tablas y figuras de este libro se construyen con la
+encuesta **CIEP-UCR de noviembre de 2020**, un estudio de opinion publica
+realizado en Costa Rica (n = 969 personas). El archivo de datos
+`data/CIEPnoviembre2020.dta` se lee en R con la funcion `read_dta()` del
+paquete **haven**. Al final del libro encontraras un **codebook** con el
+significado de cada variable.
+
+## Creditos y licencia {.unnumbered}
+
+Este libro es una **traduccion y adaptacion** de la obra *Applied Statistics
+for Political Science*, escrita por **J. K. Corder** (Western Michigan
+University) y publicada originalmente en
+<https://jkcorder.github.io/>. La version original se distribuye bajo la
+licencia Creative Commons **Atribucion-NoComercial-CompartirIgual 4.0
+Internacional (CC BY-NC-SA 4.0)**.
+
+Esta adaptacion mantiene la misma licencia
+(<http://creativecommons.org/licenses/by-nc-sa/4.0/>): puedes copiarla,
+compartirla y adaptarla, siempre que **cites** la obra original, **no la uses
+con fines comerciales** y distribuyas las obras derivadas bajo la misma
+licencia.
+
+La traduccion, la seleccion de los ejemplos con datos del CIEP y los
+ejercicios de practica son aportes originales de la adaptacion.
+
+```{r include=FALSE}
+# Crea automaticamente la bibliografia de los paquetes de R usados
+knitr::write_bib(c(
+  .packages(), "bookdown", "knitr", "rmarkdown"
+), "packages.bib")
+```

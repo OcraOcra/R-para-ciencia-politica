@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capitulo 2 Estadistica descriptiva | Estadistica aplicada para la ciencia politica</title>
+<meta name="author" content="Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder">
+<meta name="description" content="Antes de aprender sobre pruebas estadisticas o modelos estadisticos, cubriremos algunas medidas basicas que se usan para describir datos. Las medidas basicas se dividen en dos categorias: medidas...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Capitulo 2 Estadistica descriptiva | Estadistica aplicada para la ciencia politica">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Antes de aprender sobre pruebas estadisticas o modelos estadisticos, cubriremos algunas medidas basicas que se usan para describir datos. Las medidas basicas se dividen en dos categorias: medidas...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capitulo 2 Estadistica descriptiva | Estadistica aplicada para la ciencia politica">
+<meta name="twitter:description" content="Antes de aprender sobre pruebas estadisticas o modelos estadisticos, cubriremos algunas medidas basicas que se usan para describir datos. Las medidas basicas se dividen en dos categorias: medidas...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 0em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Estadistica aplicada para la ciencia politica</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Sobre este libro</a></li>
+<li><a class="" href="ciencia-de-datos-ciencia-politica-y-politicas-publicas.html"><span class="header-section-number">1</span> Ciencia de datos, ciencia politica y politicas publicas</a></li>
+<li><a class="active" href="estadistica-descriptiva.html"><span class="header-section-number">2</span> Estadistica descriptiva</a></li>
+<li><a class="" href="introduccion-a-las-medidas-de-asociacion-la-correlacion.html"><span class="header-section-number">3</span> Introduccion a las medidas de asociacion: la correlacion</a></li>
+<li><a class="" href="medidas-de-asociacion-la-prueba-t.html"><span class="header-section-number">4</span> Medidas de asociacion: la prueba t</a></li>
+<li><a class="" href="medidas-de-asociacion-el-chi-cuadrado.html"><span class="header-section-number">5</span> Medidas de asociacion: el chi-cuadrado</a></li>
+<li><a class="" href="regresion.html"><span class="header-section-number">6</span> Regresion</a></li>
+<li><a class="" href="modelos-estadisticos-con-muchos-predictores.html"><span class="header-section-number">7</span> Modelos estadisticos con muchos predictores</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+<li><a class="" href="sobre-el-autor-original.html">Sobre el autor original</a></li>
+<li><a class="" href="sobre-esta-adaptacion.html">Sobre esta adaptacion</a></li>
+<li><a class="" href="codebook-encuesta-ciep-ucr-noviembre-2020.html"><span class="header-section-number">8</span> Codebook: encuesta CIEP-UCR, noviembre 2020</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="estadistica-descriptiva" class="section level1" number="2">
+<h1>
+<span class="header-section-number">Capitulo 2</span> Estadistica descriptiva<a class="anchor" aria-label="anchor" href="#estadistica-descriptiva"><i class="fas fa-link"></i></a>
+</h1>
+<p>Antes de aprender sobre pruebas estadisticas o modelos estadisticos, cubriremos
+algunas medidas basicas que se usan para describir datos. Las medidas basicas se
+dividen en dos categorias: medidas de <strong>tendencia central</strong> y medidas de
+<strong>dispersion</strong>. ¿Cual es el valor tipico de alguna variable? ¿Como se reparten o
+dispersan las observaciones alrededor de ese valor? Este capitulo tambien te
+introduce a la medicion del apoyo al sistema politico. La parte final se centra
+en interpretar y explicar la salida estadistica que describe la distribucion del
+apoyo al sistema en el electorado. Para una introduccion al significado e
+importancia de la identificacion partidaria, revisa “Americans Hate to Love
+Their Party, but They Do!” (<a href="#ref-ucw2">Kaufmann, Petrocik, and Shaw 2008a</a>).</p>
+<div id="medidas-de-tendencia-central" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> Medidas de tendencia central<a class="anchor" aria-label="anchor" href="#medidas-de-tendencia-central"><i class="fas fa-link"></i></a>
+</h2>
+<p>Una de las cosas comunes para las que usamos datos es hacernos una idea del valor
+tipico de alguna variable de interes. ¿Que porcentaje del estudiantado se gradua
+dentro de los cuatro anos posteriores a su primera matricula? ¿Que proporcion del
+electorado aprueba al presidente? ¿Que proporcion del electorado voto “si” en
+determinada propuesta? ¿Cual es el salario promedio de una persona egresada a
+mitad de carrera? ¿Estan mejor, en promedio, las personas que reciben un
+tratamiento medico que quienes no lo reciben? ¿Un programa de gobierno mejora a
+quienes participan?</p>
+<div id="media" class="section level3" number="2.1.1">
+<h3>
+<span class="header-section-number">2.1.1</span> Media<a class="anchor" aria-label="anchor" href="#media"><i class="fas fa-link"></i></a>
+</h3>
+<p>Casi todos aprendemos algo sobre el “promedio” muy temprano en la vida y asumo
+que te sientes comodo con el concepto e incluso con los calculos detras de un
+promedio. En estadistica, el promedio se denomina <strong>media</strong>.</p>
+<p>Hay unos pocos simbolos matematicos que usaremos durante el curso. La formula de
+la media introduce dos de ellos: <span class="math inline">\(\mu\)</span> (la letra griega con la que designaremos
+la media) y <span class="math inline">\(\sum\)</span>, la suma, que se usa de forma mas formal para especificar la
+suma desde la primera observacion hasta la n-esima:</p>
+<p><span class="math display">\[\sum_{i=1}^n\]</span></p>
+<p>Para calcular la media, simplemente sumas todos los valores de una variable para
+las observaciones de tu conjunto de datos y divides entre el numero total de
+observaciones. En simbolos, para cualquier variable X:</p>
+<p><span class="math display">\[\mu=(\sum_{i=1}^nX_i) / n \]</span></p>
+</div>
+<div id="mediana" class="section level3" number="2.1.2">
+<h3>
+<span class="header-section-number">2.1.2</span> Mediana<a class="anchor" aria-label="anchor" href="#mediana"><i class="fas fa-link"></i></a>
+</h3>
+<p>Una medida alternativa de tendencia central es la <strong>mediana</strong>. Todos conocen el
+percentil asociado a una calificacion. Si sacas el percentil 98, estas en el 2 %
+superior. La mediana es simplemente el <strong>percentil 50</strong>: tantos por encima como
+por debajo. La mediana no es necesariamente el punto medio de la escala; es el
+percentil 50 de las personas que observas. Podrias tener una escala de 1 a 7
+donde las respuestas se agrupan por igual: un tercio en “1”, un tercio en “2” y
+un tercio en “3”. La mediana seria claramente “2”, aunque el punto medio de la
+escala 1-7 sea “4”.</p>
+<p>Si una distribucion es <strong>sesgada</strong> (a la izquierda o a la derecha), suele usarse
+la mediana como medida de tendencia central en lugar de la media. Usamos la
+mediana, por ejemplo, para describir la tendencia central del ingreso de los
+hogares. Si tuvieras un barrio de 100 hogares, todos con ingresos cercanos a
+$50.000, el ingreso promedio seria $50.000 y la mediana tambien. Si se mudara un
+hogar de altos ingresos ($1,5 millones al ano), el promedio subiria $15.000,
+pero la mediana seguiria casi igual, un poco por encima de $50.000.</p>
+</div>
+<div id="moda" class="section level3" number="2.1.3">
+<h3>
+<span class="header-section-number">2.1.3</span> Moda<a class="anchor" aria-label="anchor" href="#moda"><i class="fas fa-link"></i></a>
+</h3>
+<p>Una tercera medida de tendencia central es la <strong>moda</strong>. La moda es simplemente
+la respuesta mas frecuente. Esta medida es obviamente mas util cuando una sola
+respuesta describe a un gran numero de observaciones.</p>
+</div>
+<div id="la-distribucion-normal-es-un-caso-especial" class="section level3" number="2.1.4">
+<h3>
+<span class="header-section-number">2.1.4</span> La distribucion normal es un caso especial<a class="anchor" aria-label="anchor" href="#la-distribucion-normal-es-un-caso-especial"><i class="fas fa-link"></i></a>
+</h3>
+<p>En el caso especial de una <strong>distribucion normal</strong> (o curva en forma de campana),
+la media, la mediana y la moda son el mismo numero. La Figura <a href="estadistica-descriptiva.html#fig:figure21">2.1</a>
+reproduce una distribucion normal. Las respuestas son simetricas: tantas por
+encima como por debajo del promedio, y con mas respuestas justo en el promedio.
+Esta distribucion no describe a todas las variables que observamos, por lo que
+tambien tiene sentido pensar que medida de tendencia central puede ser util para
+datos con otras distribuciones.</p>
+<p><strong>Figura <a href="estadistica-descriptiva.html#fig:figure21">2.1</a> La distribucion normal</strong></p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:figure21"></span>
+<img src="02-desc_stats_files/figure-html/figure21-1.png" alt="La distribucion normal" width="95%"><p class="caption">
+Figura 2.1. La distribucion normal
+</p>
+</div>
+<p>La Figura <a href="estadistica-descriptiva.html#fig:figure22">2.2</a> reproduce una distribucion <strong>sesgada</strong> hacia la
+derecha, es decir, hacia el pequeno numero de valores muy altos. En este caso, la
+media seria mayor que la moda o la mediana, porque unos pocos valores muy grandes
+inflan la media. Si quisieras reportar un valor tipico, la mediana seria un
+numero mas preciso.</p>
+<p><strong>Figura <a href="estadistica-descriptiva.html#fig:figure22">2.2</a> Una distribucion sesgada</strong></p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:figure22"></span>
+<img src="02-desc_stats_files/figure-html/figure22-1.png" alt="Una distribucion sesgada" width="95%"><p class="caption">
+Figura 2.2. Una distribucion sesgada
+</p>
+</div>
+</div>
+</div>
+<div id="medidas-de-dispersion" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> Medidas de dispersion<a class="anchor" aria-label="anchor" href="#medidas-de-dispersion"><i class="fas fa-link"></i></a>
+</h2>
+<p>Ademas de entender cual puede ser un valor tipico, tambien queremos saber si
+muchas observaciones se agrupan alrededor de un conjunto de numeros o si estan
+repartidas o <strong>dispersas</strong> en muchas respuestas distintas. Para hacernos una idea,
+usamos medidas de dispersion.</p>
+<div id="varianza" class="section level3" number="2.2.1">
+<h3>
+<span class="header-section-number">2.2.1</span> Varianza<a class="anchor" aria-label="anchor" href="#varianza"><i class="fas fa-link"></i></a>
+</h3>
+<p>La forma mas comun de describir la dispersion es la <strong>varianza</strong>. Para cualquier
+variable X, la varianza (designada <span class="math inline">\(\sigma^2\)</span>) se calcula una vez que conocemos
+la media.</p>
+<p><span class="math display">\[\sigma^2 = \frac{n}{n-1}\left( \frac{\sum_{i=1}^n (x_i - \mu)^2}{n}\right)\]</span></p>
+<p>La varianza es, en palabras, el promedio de las distancias al cuadrado entre cada
+valor observado y la media muestral, ajustado por el tamano de la muestra. El
+segundo termino (<span class="math inline">\(n/n-1\)</span>) implica que la varianza se infla en muestras pequenas
+(se ajusta por 5/4 con 5 observaciones), pero casi nada en muestras grandes (se
+ajusta por 1000/999 con 1.000 observaciones).</p>
+<p>Esto se simplifica a:</p>
+<p><span class="math display">\[\sigma^2 = \frac{\sum_{i=1}^n (x_i - \mu)^2}{n-1}\]</span></p>
+<p>Lo primero que hay que notar es que, si todas las personas fueran identicas, la
+varianza seria cero, porque el valor individual de X de cada quien seria igual a
+la media. Si miraras la distribucion de edad en un aula y todas las personas
+tuvieran la misma edad, la varianza seria cero.</p>
+<blockquote>
+<p>Punto clave: el tamano de la varianza (cero o grande) no dice nada sobre el
+<em>nivel</em> de X. Puedes tener varianza cero en un grupo de personas mayores (edad
+promedio alta) o de personas jovenes (edad promedio baja). Al comparar dos
+grupos, el grupo con mayor varianza esta mas repartido entre las respuestas
+posibles, y el de menor varianza esta mas concentrado en unas pocas categorias
+cerca de la media.</p>
+</blockquote>
+</div>
+<div id="desviacion-estandar" class="section level3" number="2.2.2">
+<h3>
+<span class="header-section-number">2.2.2</span> Desviacion estandar<a class="anchor" aria-label="anchor" href="#desviacion-estandar"><i class="fas fa-link"></i></a>
+</h3>
+<p>Por lo general no reportamos la varianza, sino que usamos la <strong>desviacion
+estandar</strong>. La desviacion estandar (<span class="math inline">\(\sigma\)</span>) es simplemente la raiz cuadrada de
+la varianza. Varianza = 4 significa desviacion estandar = 2.</p>
+<p>¿Por que no reportar y usar la varianza? La desviacion estandar es preferible
+porque su unidad de medida es la misma que la de la media. Si reportas que la
+edad media de un grupo de estudiantes es 22 anos, es util reportar una medida de
+dispersion tambien medida en anos y no en anos al cuadrado. Como elevamos al
+cuadrado la diferencia de cada observacion, la metrica de la varianza siempre es
+X<sup>2</sup>, que no es tan facil de explicar como algo escalado igual que X.</p>
+</div>
+</div>
+<div id="cuando-son-utiles-las-estadisticas-descriptivas" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> ¿Cuando son utiles las estadisticas descriptivas?<a class="anchor" aria-label="anchor" href="#cuando-son-utiles-las-estadisticas-descriptivas"><i class="fas fa-link"></i></a>
+</h2>
+<div id="variables-de-intervalo-muy-utiles" class="section level3" number="2.3.1">
+<h3>
+<span class="header-section-number">2.3.1</span> Variables de intervalo (muy utiles)<a class="anchor" aria-label="anchor" href="#variables-de-intervalo-muy-utiles"><i class="fas fa-link"></i></a>
+</h3>
+<p>Hay muchos tipos de variables: una encuesta puede registrar tu edad, raza, nivel
+educativo o genero. La edad es una escala en anos y la diferencia entre una
+persona de 25 y una de 30 (5 anos) es la misma que entre una de 55 y una de 60 (5
+anos). Esto se conoce como <strong>variable de intervalo</strong>. Otros ejemplos incluyen el
+tiempo, la distancia, el peso, la temperatura o la presion.</p>
+</div>
+<div id="variables-ordinales-utiles" class="section level3" number="2.3.2">
+<h3>
+<span class="header-section-number">2.3.2</span> Variables ordinales (utiles)<a class="anchor" aria-label="anchor" href="#variables-ordinales-utiles"><i class="fas fa-link"></i></a>
+</h3>
+<p>Algunas variables tienen un orden significativo, pero son una serie de categorias
+que indican mas o menos. El nivel educativo es un buen ejemplo: hay un orden y
+los valores mas altos indican mas educacion. En la encuesta del CIEP el nivel
+educativo se codifica en tres categorias: 1 = primaria o menos, 2 = secundaria y
+3 = universitaria. Sabemos que un numero mas alto significa mas educacion, pero
+no podemos decir que la diferencia entre 1 y 2 sea igual a la diferencia entre 2
+y 3. En general, las variables con orden significativo pero intervalos no
+uniformes se conocen como <strong>variables ordinales</strong>.</p>
+<p><strong>Tabla <a href="estadistica-descriptiva.html#tab:table21">2.1</a> Categorias de nivel educativo en el CIEP</strong></p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:table21">Tabla 2.1. </span>Fuente: encuesta CIEP-UCR, noviembre 2020.</caption>
+<thead><tr class="header">
+<th align="left">Significado</th>
+<th align="center">Numero</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Primaria o menos</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="left">Secundaria</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Universitaria</td>
+<td align="center">3</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="variables-categoricas-no-utiles-del-todo" class="section level3" number="2.3.3">
+<h3>
+<span class="header-section-number">2.3.3</span> Variables categoricas (no utiles del todo)<a class="anchor" aria-label="anchor" href="#variables-categoricas-no-utiles-del-todo"><i class="fas fa-link"></i></a>
+</h3>
+<p>El tercer tipo de variable solo asigna numeros a categorias, como la provincia o
+el sexo (el orden de las categorias es arbitrario). Se conocen como <strong>variables
+categoricas</strong>. Las estadisticas descriptivas no son utiles para variables
+categoricas, porque no tiene sentido tomar la media de ese tipo de variable:
+mayor o menor es solo un artefacto del numero que asignamos a cada categoria.
+Podrias usar la moda, pero no la mediana ni la media.</p>
+<p>Las estadisticas descriptivas son mas utiles para variables de intervalo como la
+edad. Pueden ser utiles para variables ordinales, donde las categorias tienen un
+orden significativo (como estar muy de acuerdo o en desacuerdo con alguna
+afirmacion, o una escala de 1 a 7). Muchas de las medidas que usamos en ciencias
+sociales son ordinales: el orden importa, pero se vuelve difuso despues. Por eso
+aplicamos las herramientas de la estadistica sabiendo que nuestras medidas son de
+segunda mejor. Este es uno de los muchos retos de medicion que enfrentamos.</p>
+</div>
+</div>
+<div id="un-punto-de-partida-el-apoyo-al-sistema-politico" class="section level2" number="2.4">
+<h2>
+<span class="header-section-number">2.4</span> Un punto de partida: el apoyo al sistema politico<a class="anchor" aria-label="anchor" href="#un-punto-de-partida-el-apoyo-al-sistema-politico"><i class="fas fa-link"></i></a>
+</h2>
+<p>Todas las tareas y trabajos que prepares para este curso se basan en datos de la
+encuesta del <strong>CIEP-UCR de noviembre de 2020</strong>, un estudio de opinion publica con
+969 personas. La encuesta informa el trabajo sobre comportamiento politico,
+apoyo al sistema y evaluacion de instituciones. La base de datos es de acceso
+publico y la usaremos durante todo el curso.</p>
+<p>Si quieres ver el texto exacto de las preguntas u otros detalles, revisa el libro
+de codigos. Algunas variables pueden incluir respuestas como “No sabe” o “No
+responde”. El libro de codigos puede indicar que esas respuestas estan asociadas
+a un numero, pero las tratamos como valores faltantes.</p>
+<p>El apoyo al sistema politico se mide con una pregunta que pide a las personas
+ubicarse en una escala de <strong>1 a 7</strong>, donde 1 significa “Nada” y 7 “Mucho”, al
+responder si apoyan el sistema politico costarricense (variable <code>b6</code>).</p>
+<div id="el-apoyo-al-sistema-en-2020" class="section level3" number="2.4.1">
+<h3>
+<span class="header-section-number">2.4.1</span> El apoyo al sistema en 2020<a class="anchor" aria-label="anchor" href="#el-apoyo-al-sistema-en-2020"><i class="fas fa-link"></i></a>
+</h3>
+<p>Las respuestas individuales de la encuesta se resumen en la Tabla
+<a href="estadistica-descriptiva.html#tab:table22">2.2</a>. Observa que la tabla excluye los valores faltantes, es decir,
+las personas que no respondieron la pregunta.</p>
+<p><strong>Tabla <a href="estadistica-descriptiva.html#tab:table22">2.2</a> Tabla de frecuencias del apoyo al sistema, 2020</strong></p>
+<div class="inline-table"><table class="table table-sm">
+<caption><span id="tab:table22">Tabla 2.2. </span></caption>
+<thead><tr class="header">
+<th align="left">Respuesta</th>
+<th align="center">n</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="center">72</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="center">43</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="center">77</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="center">114</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="center">194</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="center">157</td>
+</tr>
+<tr class="odd">
+<td align="left">7</td>
+<td align="center">274</td>
+</tr>
+</tbody>
+</table></div>
+<p>La tabla de frecuencias anterior solo da el numero de personas en cada categoria,
+pero normalmente nos interesa mas el porcentaje. La tabla siguiente mejora la
+anterior de dos maneras. Ademas de calcular el porcentaje, etiqueta las
+respuestas (asi puedes ver, por ejemplo, que “1” es “Nada” y “7” es “Mucho”).
+Esta es nuestra mejor estimacion de la distribucion del apoyo al sistema en la
+poblacion adulta de Costa Rica.</p>
+<p><strong>Tabla <a href="estadistica-descriptiva.html#tab:table23">2.3</a> Apoyo al sistema politico en 2020</strong></p>
+<div class="inline-table"><table class="table table-sm">
+<caption><span id="tab:table23">Tabla 2.3. </span></caption>
+<thead><tr class="header">
+<th align="left">Apoyo al sistema</th>
+<th align="center">Porcentaje</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="center">7.7</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="center">4.6</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="center">8.3</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="center">12.2</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="center">20.8</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="center">16.9</td>
+</tr>
+<tr class="odd">
+<td align="left">7</td>
+<td align="center">29.4</td>
+</tr>
+</tbody>
+</table></div>
+<p>Tambien podriamos resumir estos numeros con un grafico de barras. El grafico
+destaca el hecho (sorprendente para algunos) de que la respuesta mas frecuente es
+el valor mas alto de la escala, 7 (“Mucho apoyo”). La tabla confirma que hay
+bastante mas apoyo en el extremo alto que en el extremo bajo de la escala.</p>
+<p><strong>Figura <a href="estadistica-descriptiva.html#fig:figure23">2.3</a> Apoyo al sistema politico, 2020</strong></p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:figure23"></span>
+<img src="02-desc_stats_files/figure-html/figure23-1.png" alt="Apoyo al sistema politico costarricense, 2020" width="95%"><p class="caption">
+Figura 2.3. Apoyo al sistema politico costarricense, 2020
+</p>
+</div>
+<p>Es claro que la moda es 7, y que el electorado en su conjunto se inclina hacia el
+extremo de mayor apoyo al sistema: la mayoria de las respuestas se concentran en
+los valores 5, 6 y 7. Esta es una buena forma de ver la distribucion y de
+comunicar la idea de que el electorado apoya, en terminos generales, al sistema
+politico. Pero necesitamos una forma mas precisa de describir esta distribucion y
+de comparar las distribuciones que observemos en dos grupos distintos.</p>
+</div>
+<div id="como-ha-cambiado-esta-distribucion-en-el-tiempo" class="section level3" number="2.4.2">
+<h3>
+<span class="header-section-number">2.4.2</span> ¿Como ha cambiado esta distribucion en el tiempo?<a class="anchor" aria-label="anchor" href="#como-ha-cambiado-esta-distribucion-en-el-tiempo"><i class="fas fa-link"></i></a>
+</h3>
+<p>Podrias tener curiosidad por la proporcion del electorado que apoya al sistema
+politico hoy, comparada con lo que se observaba en el pasado. Para responder eso
+necesitariamos encuestas comparables a lo largo de varios anos, como las que
+hace el proyecto ANES en Estados Unidos o el propio CIEP en Costa Rica. Como este
+curso se centra en una sola encuesta, dejamos esa comparacion historica como una
+extension y trabajamos con el corte transversal de 2020. Si te interesa la
+comparacion en el tiempo, revisa las series del CIEP y del <em>Latin American
+Public Opinion Project</em> (LAPOP).</p>
+</div>
+</div>
+<div id="como-podemos-usar-las-estadisticas-descriptivas" class="section level2" number="2.5">
+<h2>
+<span class="header-section-number">2.5</span> ¿Como podemos usar las estadisticas descriptivas?<a class="anchor" aria-label="anchor" href="#como-podemos-usar-las-estadisticas-descriptivas"><i class="fas fa-link"></i></a>
+</h2>
+<p>La salida que usaras en los trabajos incluye, ademas del grafico de barras, dos
+tablas:</p>
+<ul>
+<li>la distribucion de frecuencias, el porcentaje de personas en cada categoria; y</li>
+<li>las estadisticas descriptivas.</li>
+</ul>
+<p>La Tabla <a href="estadistica-descriptiva.html#tab:table24">2.4</a> reproduce las estadisticas descriptivas que resumen
+el apoyo al sistema politico en el electorado de 2020.</p>
+<p><strong>Tabla <a href="estadistica-descriptiva.html#tab:table24">2.4</a> Estadisticas descriptivas del apoyo al sistema, 2020</strong></p>
+<div class="inline-table"><table class="table table-sm">
+<caption><span id="tab:table24">Tabla 2.4. </span></caption>
+<tbody>
+<tr class="odd">
+<td align="left">Media</td>
+<td align="right">5.02</td>
+</tr>
+<tr class="even">
+<td align="left">Mediana</td>
+<td align="right">5.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Moda</td>
+<td align="right">7.00</td>
+</tr>
+<tr class="even">
+<td align="left">Varianza</td>
+<td align="right">3.46</td>
+</tr>
+<tr class="odd">
+<td align="left">Desviacion estandar</td>
+<td align="right">1.86</td>
+</tr>
+</tbody>
+</table></div>
+<p>Estos numeros nos dicen varias cosas interesantes sobre el apoyo al sistema.</p>
+<p>Primero, observa la moda (moda = 7). La respuesta mas frecuente es el maximo
+apoyo al sistema, como se ve tambien en el grafico de barras.</p>
+<p>Segundo, el punto medio de la escala es 4. Como la media de la muestra es 5,02,
+el electorado se ubica claramente <strong>por encima</strong> del punto medio: en promedio,
+apoya al sistema politico.</p>
+<p>Finalmente, la mediana es 5, lo que significa que el percentil 50 esta en la
+categoria 5. Los porcentajes lo confirman: mas de la mitad de las respuestas
+estan en las categorias 5, 6 y 7.</p>
+<p>La desviacion estandar del electorado completo es 1,86. Esto no dice mucho por si
+solo, pero podemos usar este numero como <strong>referencia</strong> para comparar grupos. Si
+observas un grupo con una desviacion estandar mayor que 1,86, ese grupo esta mas
+repartido (mas polarizado) que el electorado en su conjunto. Si observas una
+desviacion estandar menor, el grupo esta mas concentrado en unas pocas
+categorias.</p>
+</div>
+<div id="comparar-dos-grupos" class="section level2" number="2.6">
+<h2>
+<span class="header-section-number">2.6</span> Comparar dos grupos<a class="anchor" aria-label="anchor" href="#comparar-dos-grupos"><i class="fas fa-link"></i></a>
+</h2>
+<p>En muchos casos nos interesa menos el electorado en su conjunto y mas la
+distribucion de alguna variable en un grupo particular. Para aislar y examinar un
+grupo seleccionamos un subconjunto de casos. A continuacion comparamos el apoyo al
+sistema politico de dos grupos: mujeres y hombres. La expectativa de los medios
+suele sugerir que mujeres y hombres tienen preferencias politicas distintas.
+Veamos exactamente que tan diferentes son.</p>
+<p>La salida reproduce las frecuencias y las estadisticas descriptivas para mujeres
+y hombres. El grafico y la primera tabla contienen exactamente la misma
+informacion, presentada de dos maneras. Deberias usar tanto los porcentajes como
+las estadisticas en tus trabajos.</p>
+<div id="mujeres-encuesta-ciep-2020" class="section level3" number="2.6.1">
+<h3>
+<span class="header-section-number">2.6.1</span> <strong>Mujeres, encuesta CIEP 2020</strong><a class="anchor" aria-label="anchor" href="#mujeres-encuesta-ciep-2020"><i class="fas fa-link"></i></a>
+</h3>
+<div class="inline-figure"><img src="02-desc_stats_files/figure-html/women-1.png" alt="" width="95%" style="display: block; margin: auto;"></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">Apoyo al sistema</th>
+<th align="center">Frecuencia (porcentaje)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="center">7.88</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="center">3.53</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="center">7.47</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="center">12.03</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="center">21.58</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="center">17.84</td>
+</tr>
+<tr class="odd">
+<td align="left">7</td>
+<td align="center">29.67</td>
+</tr>
+</tbody>
+</table></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left"></th>
+<th align="center">Estadisticas descriptivas</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Media</td>
+<td align="center">5.08</td>
+</tr>
+<tr class="even">
+<td align="left">Mediana</td>
+<td align="center">5.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Moda</td>
+<td align="center">7.00</td>
+</tr>
+<tr class="even">
+<td align="left">Varianza</td>
+<td align="center">3.36</td>
+</tr>
+<tr class="odd">
+<td align="left">Desviacion estandar</td>
+<td align="center">1.83</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="hombres-encuesta-ciep-2020" class="section level3" number="2.6.2">
+<h3>
+<span class="header-section-number">2.6.2</span> <strong>Hombres, encuesta CIEP 2020</strong><a class="anchor" aria-label="anchor" href="#hombres-encuesta-ciep-2020"><i class="fas fa-link"></i></a>
+</h3>
+<div class="inline-figure"><img src="02-desc_stats_files/figure-html/men-1.png" alt="" width="95%" style="display: block; margin: auto;"></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">Apoyo al sistema</th>
+<th align="center">Frecuencia (porcentaje)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="center">7.62</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="center">5.83</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="center">9.19</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="center">12.33</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="center">20.18</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="center">15.92</td>
+</tr>
+<tr class="odd">
+<td align="left">7</td>
+<td align="center">28.92</td>
+</tr>
+</tbody>
+</table></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left"></th>
+<th align="center">Estadisticas descriptivas</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Media</td>
+<td align="center">4.95</td>
+</tr>
+<tr class="even">
+<td align="left">Mediana</td>
+<td align="center">5.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Moda</td>
+<td align="center">7.00</td>
+</tr>
+<tr class="even">
+<td align="left">Varianza</td>
+<td align="center">3.56</td>
+</tr>
+<tr class="odd">
+<td align="left">Desviacion estandar</td>
+<td align="center">1.89</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="interpretar-las-estadisticas-descriptivas" class="section level3" number="2.6.3">
+<h3>
+<span class="header-section-number">2.6.3</span> <strong>Interpretar las estadisticas descriptivas</strong><a class="anchor" aria-label="anchor" href="#interpretar-las-estadisticas-descriptivas"><i class="fas fa-link"></i></a>
+</h3>
+<div id="media-1" class="section level4" number="2.6.3.1">
+<h4>
+<span class="header-section-number">2.6.3.1</span> Media<a class="anchor" aria-label="anchor" href="#media-1"><i class="fas fa-link"></i></a>
+</h4>
+<p>Observa que, aunque la media de ambos grupos esta alrededor de 5, esas respuestas
+no son tipicas: las respuestas mas frecuentes son 7 (y, en segundo lugar, 5). Asi
+que “promedio” no significa “tipico” cuando miras una distribucion que se
+concentra en los extremos. Las medias son cercanas: 5,08 para mujeres y 4,95 para
+hombres. Esto sugiere de inmediato que cualquier expectativa de que mujeres y
+hombres son mundos aparte en su apoyo al sistema esta muy lejos de la realidad.</p>
+</div>
+<div id="moda-y-mediana" class="section level4" number="2.6.3.2">
+<h4>
+<span class="header-section-number">2.6.3.2</span> Moda y mediana<a class="anchor" aria-label="anchor" href="#moda-y-mediana"><i class="fas fa-link"></i></a>
+</h4>
+<p>Las estadisticas si revelan algunas diferencias: ambos grupos comparten la misma
+moda (7, “mucho apoyo”) y la misma mediana (5). Las diferencias son pequenas.</p>
+</div>
+<div id="desviacion-estandar-1" class="section level4" number="2.6.3.3">
+<h4>
+<span class="header-section-number">2.6.3.3</span> Desviacion estandar<a class="anchor" aria-label="anchor" href="#desviacion-estandar-1"><i class="fas fa-link"></i></a>
+</h4>
+<p>Ambos grupos se reparten a lo largo de las siete categorias, en lugar de
+concentrarse en unas pocas cerca de la media. La desviacion estandar es
+ligeramente menor en mujeres (1,83) que en hombres (1,89), lo que sugiere que las
+mujeres estan un poco mas concentradas en las categorias mas altas.</p>
+</div>
+</div>
+<div id="poniendolo-todo-junto" class="section level3" number="2.6.4">
+<h3>
+<span class="header-section-number">2.6.4</span> Poniendolo todo junto<a class="anchor" aria-label="anchor" href="#poniendolo-todo-junto"><i class="fas fa-link"></i></a>
+</h3>
+<p>Las mujeres apoyan ligeramente mas al sistema politico que los hombres: la media
+para mujeres es 5,08 mientras que para hombres es 4,95. La mediana es 5 en ambos
+grupos. La desviacion estandar de ambos grupos es muy parecida (cerca de 1,8),
+asi que la dispersion es similar. Para describir por completo el apoyo al sistema
+de cada grupo usamos las estadisticas descriptivas <em>y</em> los porcentajes. Podemos
+ser mucho mas precisos en nuestras comparaciones con estos numeros, en lugar de
+describir solo si una distribucion es sesgada o si un grupo tiene mas apoyo que
+otro.</p>
+</div>
+</div>
+<div id="que-sigue-1" class="section level2" number="2.7">
+<h2>
+<span class="header-section-number">2.7</span> ¿Que sigue?<a class="anchor" aria-label="anchor" href="#que-sigue-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>La forma en que abordamos las diferencias de grupo en este capitulo fue
+deliberada y sistematica: planteamos expectativas o hipotesis que contrastar.
+Basados en la cobertura de los medios, esperabamos que mujeres y hombres tuvieran
+apoyos muy distintos al sistema. Resulto que no. Cuando se trata del
+comportamiento humano basico, seria dificil sostener que mujeres y hombres son
+fundamentalmente diferentes, al menos en formas politicamente relevantes.</p>
+<p>Un segundo reto del enfoque de este capitulo es que solo describimos diferencias
+en la muestra del CIEP. ¿Como sabemos si estas diferencias, que son bastante
+pequenas, dicen algo sobre la poblacion mas amplia de mujeres y hombres en Costa
+Rica? Necesitamos formas de contrastar si las diferencias de grupo que observamos
+permiten hacer una <strong>inferencia</strong> sobre las diferencias de grupo en la poblacion.
+Ese es el foco de los siguientes capitulos.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="ciencia-de-datos-ciencia-politica-y-politicas-publicas.html"><span class="header-section-number">1</span> Ciencia de datos, ciencia politica y politicas publicas</a></div>
+<div class="next"><a href="introduccion-a-las-medidas-de-asociacion-la-correlacion.html"><span class="header-section-number">3</span> Introduccion a las medidas de asociacion: la correlacion</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#estadistica-descriptiva"><span class="header-section-number">2</span> Estadistica descriptiva</a></li>
+<li>
+<a class="nav-link" href="#medidas-de-tendencia-central"><span class="header-section-number">2.1</span> Medidas de tendencia central</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#media"><span class="header-section-number">2.1.1</span> Media</a></li>
+<li><a class="nav-link" href="#mediana"><span class="header-section-number">2.1.2</span> Mediana</a></li>
+<li><a class="nav-link" href="#moda"><span class="header-section-number">2.1.3</span> Moda</a></li>
+<li><a class="nav-link" href="#la-distribucion-normal-es-un-caso-especial"><span class="header-section-number">2.1.4</span> La distribucion normal es un caso especial</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#medidas-de-dispersion"><span class="header-section-number">2.2</span> Medidas de dispersion</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#varianza"><span class="header-section-number">2.2.1</span> Varianza</a></li>
+<li><a class="nav-link" href="#desviacion-estandar"><span class="header-section-number">2.2.2</span> Desviacion estandar</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#cuando-son-utiles-las-estadisticas-descriptivas"><span class="header-section-number">2.3</span> ¿Cuando son utiles las estadisticas descriptivas?</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#variables-de-intervalo-muy-utiles"><span class="header-section-number">2.3.1</span> Variables de intervalo (muy utiles)</a></li>
+<li><a class="nav-link" href="#variables-ordinales-utiles"><span class="header-section-number">2.3.2</span> Variables ordinales (utiles)</a></li>
+<li><a class="nav-link" href="#variables-categoricas-no-utiles-del-todo"><span class="header-section-number">2.3.3</span> Variables categoricas (no utiles del todo)</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#un-punto-de-partida-el-apoyo-al-sistema-politico"><span class="header-section-number">2.4</span> Un punto de partida: el apoyo al sistema politico</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#el-apoyo-al-sistema-en-2020"><span class="header-section-number">2.4.1</span> El apoyo al sistema en 2020</a></li>
+<li><a class="nav-link" href="#como-ha-cambiado-esta-distribucion-en-el-tiempo"><span class="header-section-number">2.4.2</span> ¿Como ha cambiado esta distribucion en el tiempo?</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#como-podemos-usar-las-estadisticas-descriptivas"><span class="header-section-number">2.5</span> ¿Como podemos usar las estadisticas descriptivas?</a></li>
+<li>
+<a class="nav-link" href="#comparar-dos-grupos"><span class="header-section-number">2.6</span> Comparar dos grupos</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#mujeres-encuesta-ciep-2020"><span class="header-section-number">2.6.1</span> Mujeres, encuesta CIEP 2020</a></li>
+<li><a class="nav-link" href="#hombres-encuesta-ciep-2020"><span class="header-section-number">2.6.2</span> Hombres, encuesta CIEP 2020</a></li>
+<li><a class="nav-link" href="#interpretar-las-estadisticas-descriptivas"><span class="header-section-number">2.6.3</span> Interpretar las estadisticas descriptivas</a></li>
+<li><a class="nav-link" href="#poniendolo-todo-junto"><span class="header-section-number">2.6.4</span> Poniendolo todo junto</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#que-sigue-1"><span class="header-section-number">2.7</span> ¿Que sigue?</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Estadistica aplicada para la ciencia politica</strong>" was written by Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+---
+title: "Practica 6: regresion"
+author: "Nombre: ____________________"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+**Objetivo:** estimar e interpretar un modelo de regresion lineal simple.
+
+## 1. Regresion: nota al gobierno segun apoyo al sistema
+
+```{r}
+modelo1 <- lm(as.numeric(nota_gob) ~ as.numeric(b6), data = ciep)
+summary(modelo1)
+```
+
+- ¿Cual es el intercepto y cual es la pendiente?
+- Interpreta la pendiente en una frase.
+- ¿El coeficiente es estadisticamente significativo? ¿Por que?
+
+## 2. Prediccion
+
+Usa los coeficientes para calcular la nota prevista para una persona con
+`b6 = 7` (maximo apoyo).
+
+```{r}
+b0 <- coef(modelo1)[1]
+b1 <- coef(modelo1)[2]
+pred <- ___ + ___ * 7
+pred
+```
+
+## 3. Variable dummy
+
+```{r}
+ciep$voto_pac <- as.numeric(ciep$votopac)
+modelo2 <- lm(as.numeric(nota_gob) ~ voto_pac, data = ciep)
+summary(modelo2)
+```
+
+- ¿Cuanto cambia la nota prevista entre quien no voto por el PAC y quien si
+  voto?
+- ¿Es significativo el efecto?
+
+## 4. Bondad de ajuste
+
+- Reporta la R cuadrada de cada modelo. ¿Cual modelo se ajusta mejor? ¿Por que?
+
+## 5. Interpretacion general
+
+Escribe un parrafo resumiendo direccion, tamano y significancia del efecto del
+apoyo al sistema sobre la nota al gobierno.

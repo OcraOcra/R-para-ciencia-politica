@@ -1,0 +1,78 @@
+---
+title: "Solucion 4: prueba t e inferencia"
+author: "Instructor"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+## 1. Margen de error de la edad
+
+```{r}
+n <- ciep %>% filter(!is.na(edad)) %>% nrow()
+desv <- ciep %>% filter(!is.na(edad)) %>% summarise(sd(edad)) %>% pull()
+media <- ciep %>% filter(!is.na(edad)) %>% summarise(mean(edad)) %>% pull()
+
+ee <- desv / sqrt(n)
+me <- 1.96 * ee
+c(Media = media, Error_estandar = ee, Margen_de_error = me)
+```
+
+**Interpretacion:** con 95 % de confianza, la edad promedio de la poblacion esta
+entre 40,47 - 0,97 y 40,47 + 0,97 anos, es decir, aproximadamente entre 39,5 y
+41,4 anos. El margen de error es menor a un ano.
+
+## 2. Prueba t: nota al gobierno segun voto por el PAC
+
+```{r}
+test <- ciep %>%
+  filter(!is.na(nota_gob), !is.na(votopac)) %>%
+  mutate(
+    nota_gob = as.numeric(nota_gob),
+    Voto = factor(votopac, levels = c(0, 1), labels = c("No voto PAC", "Voto PAC"))
+  )
+
+t.test(nota_gob ~ Voto, data = test)
+```
+
+**Interpretacion:** la media de quienes no votaron por el PAC es 3,44 y la de
+quienes si votaron es 4,69. El valor de t es 6,55 y el valor p es menor que 0,001.
+Como p < 0,05, la diferencia es **estadisticamente significativa**: quienes
+votaron por el PAC evaluan mejor al gobierno, y este resultado es generalizable a
+la poblacion. El tamano del efecto es de mas de un punto en la escala de 0 a 10.
+
+## 3. Prueba t: nota a los partidos segun sexo
+
+```{r}
+test2 <- ciep %>%
+  filter(!is.na(nota_pp), !is.na(sexo)) %>%
+  mutate(
+    nota_pp = as.numeric(nota_pp),
+    Sexo = factor(sexo, levels = c(0, 1), labels = c("Mujer", "Hombre"))
+  )
+
+t.test(nota_pp ~ Sexo, data = test2)
+```
+
+**Interpretacion:** la media de las mujeres es 3,43 y la de los hombres 3,50. El
+valor p es 0,722, muy por encima de 0,05, asi que la diferencia **no** es
+estadisticamente significativa. No hay evidencia de un efecto del genero sobre la
+evaluacion de los partidos.
+
+## 4. Conclusion
+
+En el primer caso, el voto por el PAC es un buen predictor de la evaluacion del
+gobierno: efecto positivo, relativamente grande y significativo. En el segundo, el
+genero no tiene un efecto detectable: la diferencia es minuscula y no
+significativa. Cuando un resultado no es significativo, no interpretamos el tamano
+ni la direccion: simplemente no hay evidencia de un vinculo.

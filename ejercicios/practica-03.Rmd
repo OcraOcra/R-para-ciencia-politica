@@ -1,0 +1,64 @@
+---
+title: "Practica 3: correlacion"
+author: "Nombre: ____________________"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+**Objetivo:** calcular e interpretar correlaciones entre variables de escala.
+
+## 1. Correlacion entre dos notas
+
+Calcula la correlacion entre la nota al gobierno (`nota_gob`) y la nota a los
+partidos (`nota_pp`). Recuerda convertir a numerico con `as.numeric()`.
+
+```{r}
+df <- ciep %>%
+  select(nota_gob, nota_pp) %>%
+  mutate(across(everything(), as.numeric)) %>%
+  drop_na()
+
+round(cor(df), 3)
+```
+
+- ¿La correlacion es positiva o negativa? ¿Es fuerte o debil?
+
+## 2. Matriz de correlacion
+
+```{r}
+df2 <- ciep %>%
+  transmute(
+    Apoyo_al_sistema = as.numeric(b6),
+    Nota_al_gobierno = as.numeric(nota_gob),
+    Nota_a_partidos  = as.numeric(nota_pp),
+    Nota_a_la_UCR    = as.numeric(nota_ucr),
+    Educacion        = as.numeric(educarec),
+    Edad             = as.numeric(edad)
+  ) %>%
+  drop_na()
+
+round(___(df2), 3)
+```
+
+## 3. Interpretacion
+
+- ¿Cual es el par de variables con la correlacion **mas fuerte** (mas lejos de
+  cero)? ¿Y el mas debil?
+- ¿La educacion predice la nota a la UCR? ¿Que signo tiene?
+- ¿La edad se relaciona con la nota a los partidos? ¿Como?
+
+## 4. Concepto
+
+¿Por que **no** deberiamos usar la correlacion para medir la relacion entre el
+voto por el PAC (0/1) y el sexo (mujer/hombre)? Explica.

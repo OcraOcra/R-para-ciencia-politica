@@ -1,0 +1,67 @@
+---
+title: "Solucion 3: correlacion"
+author: "Instructor"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+## 1. Correlacion entre dos notas
+
+```{r}
+df <- ciep %>%
+  select(nota_gob, nota_pp) %>%
+  mutate(across(everything(), as.numeric)) %>%
+  drop_na()
+
+round(cor(df), 3)
+```
+
+**Interpretacion:** la correlacion es 0,522. Es **positiva** (quienes mejor
+califican al gobierno tienden a calificar mejor a los partidos) y de magnitud
+moderada.
+
+## 2. Matriz de correlacion
+
+```{r}
+df2 <- ciep %>%
+  transmute(
+    Apoyo_al_sistema = as.numeric(b6),
+    Nota_al_gobierno = as.numeric(nota_gob),
+    Nota_a_partidos  = as.numeric(nota_pp),
+    Nota_a_la_UCR    = as.numeric(nota_ucr),
+    Educacion        = as.numeric(educarec),
+    Edad             = as.numeric(edad)
+  ) %>%
+  drop_na()
+
+round(cor(df2), 3)
+```
+
+## 3. Interpretacion
+
+**Interpretacion:**
+
+- El par mas fuerte es **nota al gobierno y nota a los partidos** (0,529). El mas
+  debil es **educacion y nota a la UCR** (-0,044), practicamente cero.
+- La educacion **no** predice la nota a la UCR (correlacion casi nula). El signo
+  es negativo pero tan pequeno que es irrelevante.
+- La edad tiene una correlacion negativa debil con la nota a los partidos
+  (-0,217): a mayor edad, ligera tendencia a calificar peor a los partidos.
+
+## 4. Concepto
+
+No deberiamos usar correlacion porque el **sexo es una variable categorica con
+categorias arbitrarias** (mujer/hombre). La correlacion supone que las variables
+son escalas y que la relacion es lineal; asignar numeros a categorias no tiene
+sentido de distancia. Para dos variables categoricas se usa **chi-cuadrado**.

@@ -1,0 +1,12 @@
+book_filename: "R-para-ciencia-politica"
+new_session: true
+before_chapter_script: _common.R
+delete_merged_file: true
+language:
+  label:
+    fig: !expr function(x) sprintf("Figura %s. ", x)
+    tab: !expr function(x) sprintf("Tabla %s. ", x)
+  ui:
+    edit: "Editar"
+    chapter_name: "Capitulo "
+output_dir: "docs"

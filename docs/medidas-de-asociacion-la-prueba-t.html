@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capitulo 4 Medidas de asociacion: la prueba t | Estadistica aplicada para la ciencia politica</title>
+<meta name="author" content="Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder">
+<meta name="description" content="4.1 ¿Que es la prueba t? En muchas situaciones de investigacion la variable \(Y\) es algun tipo de escala, ya sea de intervalo u ordinal. Esto incluye medidas concretas como el ingreso, los anos...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Capitulo 4 Medidas de asociacion: la prueba t | Estadistica aplicada para la ciencia politica">
+<meta property="og:type" content="book">
+<meta property="og:description" content="4.1 ¿Que es la prueba t? En muchas situaciones de investigacion la variable \(Y\) es algun tipo de escala, ya sea de intervalo u ordinal. Esto incluye medidas concretas como el ingreso, los anos...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capitulo 4 Medidas de asociacion: la prueba t | Estadistica aplicada para la ciencia politica">
+<meta name="twitter:description" content="4.1 ¿Que es la prueba t? En muchas situaciones de investigacion la variable \(Y\) es algun tipo de escala, ya sea de intervalo u ordinal. Esto incluye medidas concretas como el ingreso, los anos...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 0em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Estadistica aplicada para la ciencia politica</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Sobre este libro</a></li>
+<li><a class="" href="ciencia-de-datos-ciencia-politica-y-politicas-publicas.html"><span class="header-section-number">1</span> Ciencia de datos, ciencia politica y politicas publicas</a></li>
+<li><a class="" href="estadistica-descriptiva.html"><span class="header-section-number">2</span> Estadistica descriptiva</a></li>
+<li><a class="" href="introduccion-a-las-medidas-de-asociacion-la-correlacion.html"><span class="header-section-number">3</span> Introduccion a las medidas de asociacion: la correlacion</a></li>
+<li><a class="active" href="medidas-de-asociacion-la-prueba-t.html"><span class="header-section-number">4</span> Medidas de asociacion: la prueba t</a></li>
+<li><a class="" href="medidas-de-asociacion-el-chi-cuadrado.html"><span class="header-section-number">5</span> Medidas de asociacion: el chi-cuadrado</a></li>
+<li><a class="" href="regresion.html"><span class="header-section-number">6</span> Regresion</a></li>
+<li><a class="" href="modelos-estadisticos-con-muchos-predictores.html"><span class="header-section-number">7</span> Modelos estadisticos con muchos predictores</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+<li><a class="" href="sobre-el-autor-original.html">Sobre el autor original</a></li>
+<li><a class="" href="sobre-esta-adaptacion.html">Sobre esta adaptacion</a></li>
+<li><a class="" href="codebook-encuesta-ciep-ucr-noviembre-2020.html"><span class="header-section-number">8</span> Codebook: encuesta CIEP-UCR, noviembre 2020</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="medidas-de-asociacion-la-prueba-t" class="section level1" number="4">
+<h1>
+<span class="header-section-number">Capitulo 4</span> Medidas de asociacion: la prueba t<a class="anchor" aria-label="anchor" href="#medidas-de-asociacion-la-prueba-t"><i class="fas fa-link"></i></a>
+</h1>
+<div id="que-es-la-prueba-t" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> ¿Que es la prueba t?<a class="anchor" aria-label="anchor" href="#que-es-la-prueba-t"><i class="fas fa-link"></i></a>
+</h2>
+<p>En muchas situaciones de investigacion la variable <span class="math inline">\(Y\)</span> es algun tipo de escala, ya
+sea de intervalo u ordinal. Esto incluye medidas concretas como el ingreso, los
+anos de educacion o la edad, y conceptos que ordenamos de forma significativa,
+como la ideologia, el apoyo al sistema (de 1 a 7) o una nota (de 0 a 10). Pero la
+variable <span class="math inline">\(X\)</span> puede ser una categoria: provincia, estado civil, genero, situacion
+laboral. Si te interesa determinar la relacion entre dos variables cuando <span class="math inline">\(Y\)</span> es
+una escala y <span class="math inline">\(X\)</span> es una categoria, la <strong>prueba t</strong> es la medida de asociacion
+apropiada.</p>
+<p>Hemos usado estadisticos (media, mediana, desviacion estandar) para describir
+variables individuales. Usaremos un estadistico de prueba simple (la prueba t)
+para determinar si dos grupos de una muestra son diferentes. Las pruebas t son
+mas apropiadas e informativas cuando comparas dos grupos (mujer/hombre, con
+empleo/desempleado, provincia costera/central) en una escala continua.</p>
+<p>Recuerda que usamos medidas de asociacion para describir relaciones entre
+variables. Identificamos una variable dependiente (<span class="math inline">\(Y\)</span>), una variable
+independiente (<span class="math inline">\(X\)</span>) y tenemos una teoria sobre como <span class="math inline">\(X\)</span> influye en <span class="math inline">\(Y\)</span>. La medida
+de asociacion nos ayuda a ser precisos sobre tres cosas:</p>
+<ul>
+<li>la <strong>direccion</strong> de la relacion (¿pasar de una categoria de <span class="math inline">\(X\)</span> a otra aumenta
+(+) o disminuye (-) <span class="math inline">\(Y\)</span>?);</li>
+<li>el <strong>tamano</strong> del efecto (¿<span class="math inline">\(X\)</span> tiene un impacto grande o pequeno sobre <span class="math inline">\(Y\)</span>?);</li>
+<li>si los efectos en la muestra son <strong>estadisticamente significativos</strong> (¿podria el
+efecto observado deberse al azar o al error de muestreo?).</li>
+</ul>
+<p>Cubrimos tamano y direccion en el capitulo 3, asi que el foco de este capitulo es
+ampliar tu comprension de la <strong>significancia estadistica</strong>. Para ello hablamos de
+inferencia e introducimos el concepto de <strong>distribucion muestral</strong>. Al final del
+capitulo deberias tener una idea de que significa significancia estadistica.</p>
+</div>
+<div id="que-es-la-inferencia-y-que-tiene-que-ver-con-las-muestras-aleatorias" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> ¿Que es la inferencia? ¿Y que tiene que ver con las muestras aleatorias?<a class="anchor" aria-label="anchor" href="#que-es-la-inferencia-y-que-tiene-que-ver-con-las-muestras-aleatorias"><i class="fas fa-link"></i></a>
+</h2>
+<p>La inferencia es aprender sobre algo que no podemos observar a partir de algo que
+si podemos observar. Podemos observar muestras; no podemos observar y medir
+poblaciones. La inferencia es aprender sobre poblaciones a partir de muestras.
+Para hacer una inferencia insesgada sobre una poblacion a partir de una muestra
+pequena, el unico requisito es que la muestra sea <strong>aleatoria</strong>: cualquier persona
+de la poblacion debe tener la misma probabilidad de aparecer en la muestra.</p>
+<p>Las organizaciones de encuestas dedican mucho tiempo y energia a crear muestras
+aleatorias. Hoy pueden usar contactos presenciales, telefonicos o por internet;
+cada estrategia tiene sus retos. Todas introducen el llamado <strong>sesgo de no
+respuesta</strong>: las personas dispuestas a responder pueden ser distintas de quienes
+no responden. Hay soluciones tecnicas, pero garantizar que una muestra sea
+aleatoria sigue siendo un reto.</p>
+<p>Aun con una muestra aleatoria, sabemos que habra incertidumbre sobre cuanto se
+parece la muestra a la poblacion mas amplia: incluso si la muestra es
+completamente aleatoria, nunca representara perfectamente a la poblacion. A esto
+se le llama <strong>error de muestreo</strong>. Podriamos obtener una muestra que, por azar,
+tenga muchas personas que votaron por cierto partido, lo que daria una estimacion
+equivocada.</p>
+<p>Usamos muestreo aleatorio porque queremos hacer inferencias sobre la poblacion a
+partir de la muestra. Si las muestras son aleatorias, entonces los estadisticos
+descriptivos tambien tienen <strong>distribuciones muestrales</strong> con propiedades
+conocidas. Esta es una idea crucial que sustenta la forma en que usamos la
+estadistica para mejorar lo que podemos afirmar que sabemos a partir de una
+muestra. Exploramos la distribucion muestral de la media para que veas como
+funciona.</p>
+</div>
+<div id="la-distribucion-muestral-de-la-media" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> La distribucion muestral de la media<a class="anchor" aria-label="anchor" href="#la-distribucion-muestral-de-la-media"><i class="fas fa-link"></i></a>
+</h2>
+<p>La media tiene una distribucion muestral. Considera un experimento: si tomaramos
+1.000 muestras aleatorias (o cualquier numero realmente grande) de una poblacion,
+resulta que las medias de esas 1.000 muestras se distribuyen de forma normal, con
+algunas propiedades que entendemos.</p>
+<ul>
+<li>La media de las medias muestrales es igual a la media poblacional (la media
+muestral es una estimacion insesgada de la media poblacional).</li>
+<li>La desviacion estandar de la distribucion muestral es igual a la desviacion
+estandar de la variable en la poblacion (aproximada con la de la muestra)
+dividida entre la raiz cuadrada del tamano de la muestra:</li>
+</ul>
+<p><span class="math display">\[ \sigma_{M} = \frac{\sigma}{\sqrt{n}} \]</span></p>
+<p>A medida que el tamano de la muestra crece, el ancho de la distribucion muestral
+disminuye. Con muestras muy pequenas, podrias obtener medias muy distintas de la
+verdadera media poblacional.</p>
+<p>Como conocemos la media y la desviacion estandar de esta distribucion normal,
+podemos aprovechar lo que sabemos sobre la distribucion normal. La Figura
+<a href="medidas-de-asociacion-la-prueba-t.html#fig:figure1">4.1</a> muestra una distribucion normal estandar (media 0 y desviacion
+estandar 1). Sabemos que el 95 % del area bajo esta distribucion esta entre -2 y
++2 desviaciones estandar de la media.</p>
+<p><strong>Figura <a href="medidas-de-asociacion-la-prueba-t.html#fig:figure1">4.1</a> La distribucion normal estandar</strong></p>
+<div class="figure">
+<span style="display:block;" id="fig:figure1"></span>
+<img src="04-ttest_files/figure-html/figure1-1.png" alt="La distribucion normal estandar" width="672"><p class="caption">
+Figura 4.1. La distribucion normal estandar
+</p>
+</div>
+<div id="calcular-el-margen-de-error" class="section level3" number="4.3.1">
+<h3>
+<span class="header-section-number">4.3.1</span> Calcular el margen de error<a class="anchor" aria-label="anchor" href="#calcular-el-margen-de-error"><i class="fas fa-link"></i></a>
+</h3>
+<p>Sabemos que el 95 % de los valores reportados de un gran numero de muestras
+repetidas estaran dentro de aproximadamente 2,0 desviaciones estandar (tecnicamente
+1,96) de la media poblacional. El margen de error asociado a cualquier muestra
+aleatoria es:</p>
+<p><span class="math display">\[ME = 2*\sigma_{M} = 2*\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>Si tienes datos de una sola muestra aleatoria, puedes usar el software para
+calcular la media y la desviacion estandar y, conociendo el tamano de la muestra,
+reportar una estimacion de la media poblacional +/- el margen de error. La Tabla
+4.1 reporta las estadisticas descriptivas de la edad en la encuesta
+del CIEP. La persona encuestada promedio de la muestra tiene 40,5 anos. ¿Que nos
+dice eso sobre la poblacion?</p>
+<p><strong>Tabla 4.1 Estadisticas descriptivas de la edad, encuesta CIEP 2020</strong></p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left"></th>
+<th align="center">Estadisticas descriptivas</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">N</td>
+<td align="center">954</td>
+</tr>
+<tr class="even">
+<td align="left">Media</td>
+<td align="center">40.47</td>
+</tr>
+<tr class="odd">
+<td align="left">Mediana</td>
+<td align="center">38</td>
+</tr>
+<tr class="even">
+<td align="left">Varianza</td>
+<td align="center">234.54</td>
+</tr>
+<tr class="odd">
+<td align="left">Desviacion estandar</td>
+<td align="center">15.31</td>
+</tr>
+</tbody>
+</table></div>
+<p>Usando la formula anterior, el error estandar de la media seria:</p>
+<p><span class="math display">\[ \sigma_M = 15,31 / \sqrt{954} = 0,50 \]</span>
+<span class="math display">\[ ME = 2 * 0,50 = 0,99 \]</span></p>
+<p>Sabemos (con 95 % de certeza) que la media poblacional esta a +/- 2 errores
+estandar de la media de la muestra. El <strong>intervalo de confianza del 95 %</strong> es
+40,47 +/- 0,99 anos, es decir, aproximadamente entre 39,5 y 41,5 anos. Esto es
+notable: podemos estar bastante seguros de la edad promedio real de la poblacion
+adulta de Costa Rica con un margen menor a un ano.</p>
+<blockquote>
+<p>La leccion clave: el “margen de error” asociado a la respuesta de la encuesta
+es 2 veces el error estandar de la media.</p>
+</blockquote>
+</div>
+<div id="margen-de-error-y-tamano-de-la-muestra" class="section level3" number="4.3.2">
+<h3>
+<span class="header-section-number">4.3.2</span> Margen de error y tamano de la muestra<a class="anchor" aria-label="anchor" href="#margen-de-error-y-tamano-de-la-muestra"><i class="fas fa-link"></i></a>
+</h3>
+<p>Para una pregunta con respuesta Si/No (1/0), la desviacion estandar no puede ser
+mayor que aproximadamente 0,5 en muestras grandes. La desviacion estandar mas alta
+seria un 50 % de “si” y un 50 % de “no”, es decir, media 0,5.</p>
+<p>Asi, para una muestra de 1.000 votantes, el error estandar de la media seria:</p>
+<p><span class="math display">\[\sigma_M = 0,5 / \sqrt{n} = 0,50 / \sqrt{1000} = 0,016\]</span></p>
+<p>Podriamos estar seguros de que la media poblacional estaria dentro de +/- 2 veces
+el error estandar = 0,032, o 3,2 % de la media muestral del 50 %. Como ves en las
+noticias, si preguntas a 1.000 personas si estan a favor o en contra de una
+propuesta, el margen de error es de aproximadamente +/- 3 %.</p>
+<p>Una implicacion: cada observacion nueva mejora las estimaciones, porque el error
+estandar baja al crecer el tamano de la muestra (dividimos entre la raiz cuadrada
+del numero de observaciones). La figura siguiente muestra esta mejora.</p>
+<p><strong>Figura <a href="introduccion-a-las-medidas-de-asociacion-la-correlacion.html#fig:figure2">3.1</a> Margen de error si la desviacion estandar muestral es ~ 0,5, para muestras de 100 a 2500</strong></p>
+<div class="figure">
+<span style="display:block;" id="fig:figure2"></span>
+<img src="04-ttest_files/figure-html/figure2-1.png" alt="Margen de error segun el tamano de la muestra" width="672"><p class="caption">
+Figura 3.1. Margen de error segun el tamano de la muestra
+</p>
+</div>
+<p>Puedes ver que hay una mejora grande al pasar de 500 a 1.000 observaciones, pero
+mucho menor al pasar de 1.000 a 1.500. En la practica podrias ver muestras mucho
+mas grandes por dos razones. Primero, a veces necesitamos estimaciones muy
+precisas (no querrias estimar el desempleo con +/- 2 %). Segundo, podrias estar
+interesado en subconjuntos de la poblacion: para tener un buen margen de error
+para un subgrupo, necesitas una muestra total muy grande.</p>
+</div>
+</div>
+<div id="prueba-t-comparar-las-medias-de-dos-grupos" class="section level2" number="4.4">
+<h2>
+<span class="header-section-number">4.4</span> Prueba t: comparar las medias de dos grupos<a class="anchor" aria-label="anchor" href="#prueba-t-comparar-las-medias-de-dos-grupos"><i class="fas fa-link"></i></a>
+</h2>
+<p>Si tenemos la media muestral de una variable para algun grupo, podemos usar esa
+informacion, junto con el numero de personas en cada grupo y la desviacion
+estandar de cada grupo, para hacer una inferencia sobre la media de ese grupo en
+la poblacion. La prueba t extiende esta idea para comparar muestras de dos grupos:
+tratamos los dos grupos como dos muestras independientes de la misma poblacion. Si
+fueran en realidad identicos, deberian tener la misma media muestral. Si las
+medias son distintas, quizas los grupos sean diferentes en la poblacion.</p>
+<p>La prueba t de dos muestras permite contrastar la diferencia de medias entre dos
+categorias (dos muestras). La salida revela la <strong>direccion</strong>, el <strong>tamano</strong> y la
+<strong>significancia</strong> del efecto.</p>
+<p>La distribucion muestral de las diferencias de dos medias tiene la
+<strong>distribucion t</strong>. Usamos la distribucion t para evaluar nuestra t observada y
+determinar si las diferencias observadas son estadisticamente significativas.</p>
+<p>El calculo no es dificil. Recuerda que <span class="math inline">\(\mu\)</span> designa la media, <span class="math inline">\(\sigma\)</span> la
+desviacion estandar y <span class="math inline">\(n\)</span> el tamano de la muestra:</p>
+<p><span class="math display">\[t=\frac{(\mu_1-\mu_2)} {\sqrt{(\sigma_1^2/n_1)+(\sigma_2^2/n_2)}}\]</span></p>
+<blockquote>
+<p>Nota: si las medias muestrales son identicas, el valor de t es cero. A medida
+que las medias se separan, el valor de t aumenta.</p>
+</blockquote>
+<div id="la-distribucion-t" class="section level3" number="4.4.1">
+<h3>
+<span class="header-section-number">4.4.1</span> La distribucion t<a class="anchor" aria-label="anchor" href="#la-distribucion-t"><i class="fas fa-link"></i></a>
+</h3>
+<p>¿Por que la distribucion “t”? La diferencia de dos medias es normal en muestras
+grandes. La distribucion t aproxima esa normal en muestras grandes. En muestras
+pequenas, la distribucion de las diferencias no es del todo normal. Esta
+discrepancia la noto un cervecero experimental de Guinness (W. S. Gossett). Como
+el control de calidad podia implicar solo muestras pequenas de ingredientes, se
+necesitaba un estadistico que funcionara bien en muestras pequenas. Gossett y
+Pearson trabajaron juntos un tiempo y publicaron sus hallazgos en 1896
+(correlacion), 1900 (chi-cuadrado) y 1908 (distribucion t). Para detalles, ver
+<span class="citation">Porter (<a href="referencias.html#ref-porter1986">1986</a>)</span> o <span class="citation">Ziliak (<a href="referencias.html#ref-ziliak2008">2008</a>)</span>.</p>
+<p>El trabajo posterior (atribuido a Fisher) dio la regla practica: si el valor de t
+es mayor que +2 o menor que -2, la diferencia observada de medias es
+estadisticamente significativa.</p>
+</div>
+</div>
+<div id="una-aplicacion-la-evaluacion-de-los-partidos-politicos" class="section level2" number="4.5">
+<h2>
+<span class="header-section-number">4.5</span> Una aplicacion: la evaluacion de los partidos politicos<a class="anchor" aria-label="anchor" href="#una-aplicacion-la-evaluacion-de-los-partidos-politicos"><i class="fas fa-link"></i></a>
+</h2>
+<p>La encuesta del CIEP incluye una nota de 0 a 10 para los partidos politicos
+(<code>nota_pp</code>). Un “0” indica que no te gustan; un “10”, que te gustan mucho. La
+Figura <a href="medidas-de-asociacion-la-prueba-t.html#fig:figure">4.2</a> resume la distribucion de la nota a los partidos. Puedes
+ver que muchas personas dan notas bajas, con una concentracion en los valores
+bajos y algunos valores altos.</p>
+<p><strong>Figura <a href="medidas-de-asociacion-la-prueba-t.html#fig:figure">4.2</a> Evaluacion de los partidos politicos</strong></p>
+<div class="figure">
+<span style="display:block;" id="fig:figure"></span>
+<img src="04-ttest_files/figure-html/figure-1.png" alt="Distribucion de la nota a los partidos politicos" width="672"><p class="caption">
+Figura 4.2. Distribucion de la nota a los partidos politicos
+</p>
+</div>
+<p><strong>Tabla 4.2 Estadisticas descriptivas. Nota a los partidos politicos</strong></p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left"></th>
+<th align="center">Estadisticas descriptivas</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">N</td>
+<td align="center">918</td>
+</tr>
+<tr class="even">
+<td align="left">Media</td>
+<td align="center">3.466</td>
+</tr>
+<tr class="odd">
+<td align="left">Mediana</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="left">Varianza</td>
+<td align="center">6.67</td>
+</tr>
+<tr class="odd">
+<td align="left">Desviacion estandar</td>
+<td align="center">2.583</td>
+</tr>
+</tbody>
+</table></div>
+<p>El intervalo de confianza del 95 % en este caso seria aproximadamente la media +/-
+2 errores estandar. No tienes que calcularlo a mano: la informacion aparece en la
+salida que usaras en las tareas.</p>
+<p>Podemos replicar este calculo para comparar muestras mas pequenas: mujeres frente
+a hombres, o quienes votaron por el PAC frente a quienes no. Si podemos estar 95 %
+seguros de que las medias de los grupos son distintas en la poblacion, entonces
+podemos hacer una inferencia sobre la poblacion a partir de la muestra.</p>
+<div id="genero-y-evaluacion-de-los-partidos" class="section level3" number="4.5.1">
+<h3>
+<span class="header-section-number">4.5.1</span> Genero y evaluacion de los partidos<a class="anchor" aria-label="anchor" href="#genero-y-evaluacion-de-los-partidos"><i class="fas fa-link"></i></a>
+</h3>
+<p>¿Tendran mujeres y hombres actitudes distintas hacia los partidos politicos?
+Podriamos esperar que las mujeres evaluen peor a los partidos, dada la persistente
+subrepresentacion femenina en la politica. Podemos contrastar esa expectativa con
+una prueba t.</p>
+<p><strong>Tabla 4.3 Genero y evaluacion de los partidos politicos</strong></p>
+<pre><code>Media para Mujeres = 3.43 
+ Media para Hombres = 3.5 
+ t = -0.36 
+ p = 0.722 </code></pre>
+<p>Solo necesitamos mirar tres numeros para entender esta salida: la media de las
+mujeres fue 3,43 y la de los hombres 3,50, una diferencia muy pequena. El valor
+de t es -0,36 y el valor p asociado es 0,722, muy por encima de 0,05. ¿Que
+significa esto?</p>
+<p>El valor p es la probabilidad de observar un estadistico de prueba de cierto valor
+en una muestra extraida de una poblacion donde el valor verdadero del estadistico
+es cero. Como p &gt; 0,05, <strong>no</strong> podemos afirmar que mujeres y hombres difieran en
+su evaluacion de los partidos en la poblacion. La diferencia observada en la
+muestra podria deberse al azar.</p>
+<blockquote>
+<p>Nota: si p &lt; 0,05, la diferencia observada entre los dos grupos es
+estadisticamente significativa. Es un estandar arbitrario, pero es una
+convencion en ciencias sociales. Recuerda la convencion: p debe ser menor que
+0,05.</p>
+</blockquote>
+<p>Este ejemplo ilustra una diferencia clave entre “estadisticamente significativo”
+y “relevante”. Aqui la diferencia no es significativa, asi que no hay evidencia
+de un efecto del genero sobre la evaluacion de los partidos.</p>
+<p>Recuerda que siempre reportamos tres cosas con una medida de asociacion: tamano,
+direccion y significancia. Si un resultado no es significativo, puedes ignorar el
+tamano y la direccion: no hay efecto, no hay vinculo entre <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span>.</p>
+</div>
+<div id="voto-por-el-pac-y-evaluacion-del-gobierno" class="section level3" number="4.5.2">
+<h3>
+<span class="header-section-number">4.5.2</span> Voto por el PAC y evaluacion del gobierno<a class="anchor" aria-label="anchor" href="#voto-por-el-pac-y-evaluacion-del-gobierno"><i class="fas fa-link"></i></a>
+</h3>
+<p>¿Tendran quienes votaron por el PAC una evaluacion distinta del gobierno (que el
+PAC encabezo desde 2018) que quienes no votaron por el PAC? Esperariamos que
+quienes votaron por el PAC evaluen mejor al gobierno. Los resultados se reproducen
+en la Tabla 4.4.</p>
+<p><strong>Tabla 4.4 Voto por el PAC y evaluacion del gobierno</strong></p>
+<pre><code>Media para 'No voto PAC' = 3.44 
+ Media para 'Voto PAC' = 4.69 
+ t = -6.55 
+ p = 0.000 </code></pre>
+<p>De nuevo, tres numeros cuentan la historia. La media de quienes votaron por el PAC
+fue 4,69 y la de quienes no votaron por el PAC fue 3,44: una diferencia de mas de
+un punto en la escala de 0 a 10. El valor de t es 6,55 y el valor p es menor que
+0,001. Podemos estar confiados de que, en la poblacion, quienes votaron por el PAC
+evaluen mejor al gobierno. Como la diferencia de medias es mucho mayor que en el
+caso del genero, sabemos que el voto es un predictor mucho mejor de la evaluacion
+del gobierno que el sexo.</p>
+</div>
+</div>
+<div id="la-prueba-t-y-kalamazoo-una-conexion-local" class="section level2" number="4.6">
+<h2>
+<span class="header-section-number">4.6</span> La prueba t y Kalamazoo: una conexion local<a class="anchor" aria-label="anchor" href="#la-prueba-t-y-kalamazoo-una-conexion-local"><i class="fas fa-link"></i></a>
+</h2>
+<p>Student (Gossett) uso varios conjuntos de datos publicados para demostrar la
+utilidad de la prueba t. Uno de ellos fue recolectado por un equipo de medicos del
+Hospital Psiquiatrico de Kalamazoo, comparando los efectos de tres compuestos
+quimicos sobre el sueno de pacientes (publicado por A. R. Cushny y A. R. Peebles
+en el <em>Journal of Physiology</em> en 1906). Al analizar los datos, Student demostro
+que las pequenas mejoras en el tiempo de sueno asociadas a un compuesto podian
+deberse al azar, pero las mejoras mayores asociadas a otros dos compuestos
+indicaban que los tratamientos eran eficaces. Las practicas de investigacion de
+esa publicacion de 1906 violan varios estandares que hoy consideramos rutinarios:
+el trabajo original fue financiado por el fabricante del medicamento (Merck), los
+pacientes no consintieron participar y no hubo cegamiento. Pero el ejemplo ha
+persistido en la literatura estadistica durante 100 anos. Para detalles, ver
+<span class="citation">Stigler (<a href="referencias.html#ref-stigler2019">2019</a>)</span>.</p>
+</div>
+<div id="conclusion-1" class="section level2" number="4.7">
+<h2>
+<span class="header-section-number">4.7</span> Conclusion<a class="anchor" aria-label="anchor" href="#conclusion-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>La prueba t es una forma simple de comparar dos grupos y verificar que las
+diferencias entre ellos no se deben simplemente al azar (error de muestreo). Si
+vemos una diferencia de medias lo bastante grande para ser estadisticamente
+significativa, podemos estar confiados de que muestras repetidas o mas grandes
+producirian el mismo resultado.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="introduccion-a-las-medidas-de-asociacion-la-correlacion.html"><span class="header-section-number">3</span> Introduccion a las medidas de asociacion: la correlacion</a></div>
+<div class="next"><a href="medidas-de-asociacion-el-chi-cuadrado.html"><span class="header-section-number">5</span> Medidas de asociacion: el chi-cuadrado</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#medidas-de-asociacion-la-prueba-t"><span class="header-section-number">4</span> Medidas de asociacion: la prueba t</a></li>
+<li><a class="nav-link" href="#que-es-la-prueba-t"><span class="header-section-number">4.1</span> ¿Que es la prueba t?</a></li>
+<li><a class="nav-link" href="#que-es-la-inferencia-y-que-tiene-que-ver-con-las-muestras-aleatorias"><span class="header-section-number">4.2</span> ¿Que es la inferencia? ¿Y que tiene que ver con las muestras aleatorias?</a></li>
+<li>
+<a class="nav-link" href="#la-distribucion-muestral-de-la-media"><span class="header-section-number">4.3</span> La distribucion muestral de la media</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#calcular-el-margen-de-error"><span class="header-section-number">4.3.1</span> Calcular el margen de error</a></li>
+<li><a class="nav-link" href="#margen-de-error-y-tamano-de-la-muestra"><span class="header-section-number">4.3.2</span> Margen de error y tamano de la muestra</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#prueba-t-comparar-las-medias-de-dos-grupos"><span class="header-section-number">4.4</span> Prueba t: comparar las medias de dos grupos</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#la-distribucion-t"><span class="header-section-number">4.4.1</span> La distribucion t</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#una-aplicacion-la-evaluacion-de-los-partidos-politicos"><span class="header-section-number">4.5</span> Una aplicacion: la evaluacion de los partidos politicos</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#genero-y-evaluacion-de-los-partidos"><span class="header-section-number">4.5.1</span> Genero y evaluacion de los partidos</a></li>
+<li><a class="nav-link" href="#voto-por-el-pac-y-evaluacion-del-gobierno"><span class="header-section-number">4.5.2</span> Voto por el PAC y evaluacion del gobierno</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#la-prueba-t-y-kalamazoo-una-conexion-local"><span class="header-section-number">4.6</span> La prueba t y Kalamazoo: una conexion local</a></li>
+<li><a class="nav-link" href="#conclusion-1"><span class="header-section-number">4.7</span> Conclusion</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Estadistica aplicada para la ciencia politica</strong>" was written by Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

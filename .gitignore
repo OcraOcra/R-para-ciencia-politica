@@ -1,0 +1,10 @@
+# R / RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.knit.md
+
+# Sistema
+.DS_Store
+Thumbs.db

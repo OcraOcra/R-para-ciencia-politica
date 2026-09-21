@@ -1,0 +1,60 @@
+---
+title: "Solucion 5: chi-cuadrado"
+author: "Instructor"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+## 1. Tabla de contingencia
+
+```{r}
+sexo <- factor(ciep$sexo, levels = c(0, 1), labels = c("Mujer", "Hombre"))
+educ <- factor(ciep$educarec, levels = c(1, 2, 3),
+               labels = c("Primaria o menos", "Secundaria", "Universitaria"))
+
+tabla <- round(100 * prop.table(table(sexo, educ), margin = 1), 1)
+tabla
+```
+
+## 2. Prueba de chi-cuadrado
+
+```{r}
+test <- chisq.test(table(sexo, educ))
+test
+```
+
+**Interpretacion:** chi-cuadrado = 6,05, gl = 2, valor p = 0,049.
+
+## 3. Interpretacion
+
+**Interpretacion:**
+
+- El valor p (0,049) es menor que 0,05, apenas. Rechazamos la hipotesis nula:
+  existe una asociacion estadisticamente significativa entre sexo y nivel
+  educativo.
+- La asociacion es **debil**: las distribuciones son bastante parecidas. La
+  diferencia principal es que hay mas hombres con educacion universitaria
+  (39,6 %) que mujeres (32,2 %). Como el valor p esta justo en el limite, el
+  resultado es fragil: un cambio pequeno en la muestra podria volverlo no
+  significativo.
+
+## 4. Reflexion
+
+- **Error de Tipo I:** rechazar la hipotesis nula cuando es verdadera. Ejemplo:
+  concluir que un programa de empleo funciona cuando en realidad no tiene efecto,
+  y asignarle recursos publicos.
+- **Error de Tipo II:** aceptar la hipotesis nula cuando es falsa. Ejemplo:
+  concluir que un programa de salud no funciona cuando en realidad si funciona, y
+  no implementarlo, perdiendo beneficios para la poblacion. Muestras mas grandes
+  reducen este error.

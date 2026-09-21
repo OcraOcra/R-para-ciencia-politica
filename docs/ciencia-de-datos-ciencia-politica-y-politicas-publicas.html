@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capitulo 1 Ciencia de datos, ciencia politica y politicas publicas | Estadistica aplicada para la ciencia politica</title>
+<meta name="author" content="Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder">
+<meta name="description" content="Este curso conecta la practica de las ciencias sociales con la formacion de pregrado de dos maneras: mostrando como las y los cientistas sociales usan herramientas de analisis de datos para...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Capitulo 1 Ciencia de datos, ciencia politica y politicas publicas | Estadistica aplicada para la ciencia politica">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Este curso conecta la practica de las ciencias sociales con la formacion de pregrado de dos maneras: mostrando como las y los cientistas sociales usan herramientas de analisis de datos para...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capitulo 1 Ciencia de datos, ciencia politica y politicas publicas | Estadistica aplicada para la ciencia politica">
+<meta name="twitter:description" content="Este curso conecta la practica de las ciencias sociales con la formacion de pregrado de dos maneras: mostrando como las y los cientistas sociales usan herramientas de analisis de datos para...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 0em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Estadistica aplicada para la ciencia politica</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Sobre este libro</a></li>
+<li><a class="active" href="ciencia-de-datos-ciencia-politica-y-politicas-publicas.html"><span class="header-section-number">1</span> Ciencia de datos, ciencia politica y politicas publicas</a></li>
+<li><a class="" href="estadistica-descriptiva.html"><span class="header-section-number">2</span> Estadistica descriptiva</a></li>
+<li><a class="" href="introduccion-a-las-medidas-de-asociacion-la-correlacion.html"><span class="header-section-number">3</span> Introduccion a las medidas de asociacion: la correlacion</a></li>
+<li><a class="" href="medidas-de-asociacion-la-prueba-t.html"><span class="header-section-number">4</span> Medidas de asociacion: la prueba t</a></li>
+<li><a class="" href="medidas-de-asociacion-el-chi-cuadrado.html"><span class="header-section-number">5</span> Medidas de asociacion: el chi-cuadrado</a></li>
+<li><a class="" href="regresion.html"><span class="header-section-number">6</span> Regresion</a></li>
+<li><a class="" href="modelos-estadisticos-con-muchos-predictores.html"><span class="header-section-number">7</span> Modelos estadisticos con muchos predictores</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+<li><a class="" href="sobre-el-autor-original.html">Sobre el autor original</a></li>
+<li><a class="" href="sobre-esta-adaptacion.html">Sobre esta adaptacion</a></li>
+<li><a class="" href="codebook-encuesta-ciep-ucr-noviembre-2020.html"><span class="header-section-number">8</span> Codebook: encuesta CIEP-UCR, noviembre 2020</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ciencia-de-datos-ciencia-politica-y-politicas-publicas" class="section level1" number="1">
+<h1>
+<span class="header-section-number">Capitulo 1</span> Ciencia de datos, ciencia politica y politicas publicas<a class="anchor" aria-label="anchor" href="#ciencia-de-datos-ciencia-politica-y-politicas-publicas"><i class="fas fa-link"></i></a>
+</h1>
+<p>Este curso conecta la practica de las ciencias sociales con la formacion de
+pregrado de dos maneras: mostrando como las y los cientistas sociales usan
+herramientas de analisis de datos para estudiar la politica, y mostrando como
+esas herramientas se usan para mejorar la evaluacion de programas y el analisis
+de politicas publicas.</p>
+<p>¿Que herramientas usan las y los cientistas sociales para llegar a las
+conclusiones que aparecen en un manual introductorio? Si abrieras un texto
+basico sobre gobierno y politica, encontrarias una variedad de hallazgos sobre
+el comportamiento del electorado, las decisiones de las cortes y las acciones
+de quienes legislan. Esos hallazgos son <strong>empiricos</strong> (se basan en la
+observacion) y muchos implican encuestas y analisis estadistico. Quizas no veas
+el trabajo estadistico en el texto, pero los hallazgos suelen basarse en
+investigaciones publicadas en articulos de revistas especializadas, como la
+<em>American Political Science Review</em> o el <em>American Journal of Political
+Science</em>. Revisa un numero reciente de esas revistas y veras cuanto se han
+multiplicado los metodos estadisticos en la ciencia politica.</p>
+<p>¿Como usamos las herramientas del analisis de datos para mejorar las politicas
+publicas? ¿Viste la pelicula <em>Moneyball</em>? La idea del film (¡con Brad Pitt!) es
+que una franquicia de beisbol con pocos recursos usa modelos estadisticos para
+identificar jugadores con buen rendimiento que aun no tienen contratos
+lucrativos. El gerente arma un equipo con talento barato y pasado por alto que
+se vuelve muy competitivo. Quienes hacen ciencia de datos (estadisticos) emiten
+juicios sobre el potencial de los jugadores superiores a la intuicion de
+buscadores y entrenadores experimentados. Este enfoque hoy se usa en toda las
+Grandes Ligas y se extendio a otros deportes profesionales. Para un ejemplo de
+la NBA, ver Silver (<a href="#ref-silver_nba">2019</a>). Altos cargos federales han
+promovido que un enfoque similar guie la asignacion del gasto publico. En el
+libro <em>Moneyball for Government</em>, Jim Nussle y Peter Orzag sostienen que las
+agencias federales deberian invertir recursos sustanciales en la evaluacion de
+programas, para asegurar que los escasos recursos fiscales se usen de la forma
+mas eficaz. Las herramientas de la ciencia de datos y de las ciencias sociales
+pueden usarse para identificar programas que ofrezcan soluciones eficaces a
+problemas urgentes (<a href="referencias.html#ref-nussle">Nussle and Orzag 2014</a>).</p>
+<p>Estos tipos de hallazgos (a partir de datos y modelos) tambien se estan
+filtrando en el periodismo, sobre todo en la cobertura de campanas y
+elecciones. Hace unos quince anos, un grupo de cientistas politicos que
+estudiaba el comportamiento electoral dedico un libro entero, <em>Unconventional
+Wisdom</em>, a senalar las discrepancias entre la forma en que el periodismo cubre
+las campanas y la forma en que la ciencia politica entiende como funcionan
+(<a href="#ref-ucw1">Kaufmann, Petrocik, and Shaw 2008b</a>). Pero esto esta cambiando.
+En 2014, Ezra Klein publico un breve articulo sobre como la ciencia politica ha
+influido en el periodismo politico: “How political science conquered
+Washington” (<a href="#ref-klein">Klein 2014</a>). Algunas de las lecciones mas duraderas
+de la politica estadounidense hoy se integran al periodismo politico. El
+<em>Washington Post</em> incluso albergo un blog, <em>The Monkey Cage</em>, que publicaba
+resumenes legibles de investigaciones a menudo complejas. Una de mis entradas
+favoritas es “Was women’s suffrage a failure? What new evidence tells us about
+the first women voters” (<a href="#ref-corder_mc">Corder and Wolbrecht 2016</a>).</p>
+<div id="el-papel-de-la-teoria-y-el-papel-de-la-observacion" class="section level2" number="1.1">
+<h2>
+<span class="header-section-number">1.1</span> El papel de la teoria y el papel de la observacion<a class="anchor" aria-label="anchor" href="#el-papel-de-la-teoria-y-el-papel-de-la-observacion"><i class="fas fa-link"></i></a>
+</h2>
+<p>¿Como hacemos “ciencia”? ¿Y es la ciencia social realmente una ciencia?</p>
+<p><strong>La ciencia es contrastacion de hipotesis.</strong> Es importante distinguir entre
+afirmaciones empiricas (correlacion) y afirmaciones teoricas (causalidad).
+Todas las personas tenemos ideas sobre por que la gente actua de cierta manera:
+por que algunas deciden ir a la universidad, por que eligen ciertas profesiones,
+por que viven en una ciudad o barrio particular, o como escogen entre un amplio
+grupo de posibles candidatos presidenciales. Todas esas ideas son <strong>teorias</strong>, y
+una teoria tipica contiene expectativas empiricas concretas. Esas expectativas
+(a menudo llamadas formalmente “hipotesis”) pueden contrastarse observando las
+acciones y decisiones de las personas.</p>
+<p><strong>La ciencia es falsable.</strong> Otra caracteristica de la ciencia: deberias poder
+refutar una teoria (falsarla) observando algo en el mundo. Esto es distinto de
+decir o afirmar que hemos probado algo. Si no refutas tu teoria, aprendiste algo
+y otros pueden construir sobre ello. Un experimento o una observacion no prueban
+que tienes razon, solo que no estas equivocado. Hay una diferencia sutil.</p>
+<p><strong>La ciencia puede replicarse.</strong> Tambien deberias poder reproducir un hallazgo
+empirico, lo que implica que pensamos la ciencia tambien como un procedimiento.</p>
+<p>La ciencia social atiende a todo esto: teoria, contrastacion de hipotesis con
+datos y replicacion.</p>
+<div id="un-ejemplo-de-contrastacion-de-teoria-influye-tu-situacion-economica-personal-en-tu-voto" class="section level3" number="1.1.1">
+<h3>
+<span class="header-section-number">1.1.1</span> Un ejemplo de contrastacion de teoria: ¿influye tu situacion economica personal en tu voto?<a class="anchor" aria-label="anchor" href="#un-ejemplo-de-contrastacion-de-teoria-influye-tu-situacion-economica-personal-en-tu-voto"><i class="fas fa-link"></i></a>
+</h3>
+<p>Considera la decision de elegir a un candidato presidencial. ¿Cual es el vinculo
+entre tus finanzas personales y tu eleccion en una eleccion presidencial? Podrias
+esperar que el electorado evalue a los candidatos segun el efecto probable que
+tendran sobre su economia personal. Parece razonable querer un candidato que te
+deje mejor y no peor. Podria haber otras razones para apoyar a un candidato, e
+incluso podrias ser puramente altruista, apoyando a quien mejore la situacion de
+los demas. Pero una teoria que sugiere que el electorado presta atencion a las
+finanzas personales plantea una implicacion empirica muy concreta. Dicho simple:
+quienes tienen mas ingresos deberian apoyar a candidatos que actuen o prometan
+bajar la carga tributaria futura. Una persona de bajos ingresos no tendria el
+mismo incentivo y podria preferir a quien suba los impuestos a los ricos para
+financiar servicios dirigidos a los pobres.</p>
+<p>En Costa Rica, un razonamiento parecido se aplica al <strong>Partido Accion Ciudadana
+(PAC)</strong>, un partido de centroizquierda que llego al gobierno en 2018 con un
+discurso de ampliacion de derechos y proteccion social. Si el apoyo al PAC
+proviene principalmente de los sectores con menos recursos, deberiamos observar
+mas voto por el PAC entre quienes tienen <strong>menor nivel educativo</strong>. Veamos que
+dicen los datos.</p>
+<p>La encuesta del CIEP de noviembre de 2020 pregunto a las personas por su nivel
+educativo y por su voto en las elecciones de 2018. El nivel educativo no es una
+medida perfecta de los ingresos, pero es un buen indicador de los recursos
+socioeconomicos de una persona. Dividimos la muestra en tres grupos: primaria o
+menos, secundaria y universitaria. Con una tabla sencilla podemos comparar el
+voto de los grupos con mas y menos educacion.</p>
+<p><strong>Tabla <a href="ciencia-de-datos-ciencia-politica-y-politicas-publicas.html#tab:table11">1.1</a> Porcentaje de voto por el PAC, segun nivel educativo</strong></p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tabla11</span> <span class="op">&lt;-</span> <span class="va">ciep</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">votopac</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">educ_f</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span>`Nivel educativo` <span class="op">=</span> <span class="va">educ_f</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>`% voto PAC` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">100</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">votopac</span><span class="op">)</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">tabla11</span>,</span>
+<span>      caption <span class="op">=</span> <span class="st">"Fuente: encuesta CIEP-UCR, noviembre 2020."</span>,</span>
+<span>      align <span class="op">=</span> <span class="st">"lc"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:table11">Tabla 1.1. </span>Fuente: encuesta CIEP-UCR, noviembre 2020.</caption>
+<thead><tr class="header">
+<th align="left">Nivel educativo</th>
+<th align="center">% voto PAC</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Primaria o menos</td>
+<td align="center">28.1</td>
+</tr>
+<tr class="even">
+<td align="left">Secundaria</td>
+<td align="center">36.1</td>
+</tr>
+<tr class="odd">
+<td align="left">Universitaria</td>
+<td align="center">67.2</td>
+</tr>
+</tbody>
+</table></div>
+<p>Los resultados de la Tabla <a href="ciencia-de-datos-ciencia-politica-y-politicas-publicas.html#tab:table11">1.1</a> no respaldan en absoluto la idea
+de que el PAC recibe mas apoyo entre quienes tienen menos educacion. Al
+contrario: el apoyo al PAC <strong>aumenta</strong> con el nivel educativo. Solo el 28,1 %
+de las personas con primaria o menos voto por el PAC, frente al 36,1 % de
+quienes tienen secundaria y al 67,2 % de quienes tienen formacion universitaria.
+El grupo con mas recursos es, con diferencia, el mas propenso a votar por el PAC.
+Este resultado simplemente no respalda la expectativa de que el voto por el PAC
+provenga de los sectores con menos educacion.</p>
+</div>
+</div>
+<div id="los-macrodatos-en-los-negocios-y-en-las-ciencias-sociales" class="section level2" number="1.2">
+<h2>
+<span class="header-section-number">1.2</span> Los macrodatos en los negocios y en las ciencias sociales<a class="anchor" aria-label="anchor" href="#los-macrodatos-en-los-negocios-y-en-las-ciencias-sociales"><i class="fas fa-link"></i></a>
+</h2>
+<p>En un sentido importante, la proliferacion de modelos estadisticos y el
+surgimiento de la ciencia de datos son muy recientes. La teoria estadistica que
+necesitamos para explotar los datos existe desde hace decadas. La capacidad de
+computo que necesitamos para resolver muchos problemas tambien esta disponible
+en el escritorio desde hace mas de treinta anos. Lo nuevo es la capacidad de
+reunir y almacenar enormes cantidades de informacion de forma facil y barata.</p>
+<p>¿Donde encontramos datos? Las encuestas son una herramienta comun de observacion
+de individuos y la unica forma de datos que analizamos en este curso. El conjunto
+de datos que usamos es una encuesta de opinion publica relativamente grande
+(969 personas en el caso del CIEP de noviembre de 2020). Las encuestas de este
+tipo, grandes y a menudo cara a cara, pueden ser muy costosas: millones de
+dolares para administrar, organizar y publicar. Una encuesta menos ambiciosa
+puede ser bastante economica. Si una encuesta no es viable (por costos o por
+acceso a las personas), podemos aprovechar datos de fuentes oficiales: registros
+tributarios, resultados electorales o, en especial para la investigacion de
+politicas publicas, datos administrativos (¿cual es la multa promedio que impone
+cierta entidad? ¿cuantas personas fueron auditadas por la administracion
+tributaria? ¿que distritos escolares tienen alta tasa de graduacion?).</p>
+<p>Internet y los medios electronicos (y la recuperacion automatizada de datos) han
+hecho que el acceso a datos sea muy economico. Los scripts automatizados pueden
+extraer datos de cualquier sitio web de acceso publico. El monitoreo y la
+recoleccion de datos por parte de empresas (comercio y redes sociales) han
+generado enormes cantidades de informacion sobre consumidores y votantes: estos
+“macrodatos” son una fuente mas rica que las encuestas pequenas. Las ciencias
+sociales estan adoptando tambien estas herramientas.</p>
+<p>¿Te interesan los detalles? Busca el libro <em>Super Crunchers</em> (2007), del
+economista y profesor de derecho Ian Ayres. Leeremos un capitulo cuando
+aprendamos sobre modelos estadisticos (<a href="#ref-ayres">Ayres 2007</a>).</p>
+</div>
+<div id="que-es-la-regresion-y-por-que-necesito-entenderla" class="section level2" number="1.3">
+<h2>
+<span class="header-section-number">1.3</span> ¿Que es la regresion y por que necesito entenderla?<a class="anchor" aria-label="anchor" href="#que-es-la-regresion-y-por-que-necesito-entenderla"><i class="fas fa-link"></i></a>
+</h2>
+<p>El curso esta disenado para que te sientas comodo con un enfoque de modelado
+estadistico llamado <strong>regresion</strong> o <strong>regresion por minimos cuadrados
+ordinarios</strong> (a veces abreviada MCO u OLS, por sus siglas en ingles). La idea es
+que identificamos algo que nos interesa comprender, quizas por que algunas
+personas votan o no, por que eligen cierto candidato, si compran un producto o
+si son diagnosticadas con cancer de pulmon. Luego seleccionamos un conjunto de
+cosas que creemos podrian predecir esos resultados (una teoria guia esas
+decisiones). Para la participacion electoral: ¿es la persona partidaria?, ¿es
+instruida? Para un diagnostico de cancer de pulmon: ¿fuma?, ¿es mayor o menor?
+Despues usamos los datos para contrastar el vinculo entre los factores que
+creemos importantes (los predictores) y el resultado de interes. MCO es la
+tecnica que usamos para determinar que factores importan y cuales no.</p>
+<p>¿Por que necesitas entenderlo? La regresion se usa ampliamente en muchos
+contextos: desde la evaluacion de programas hasta el marketing y las campanas.
+Si trabajas en una organizacion que recolecta y analiza datos de forma rutinaria,
+alguien usara modelos estadisticos para interpretarlos. Al terminar este curso,
+entenderas mejor que hacen y como lo hacen.</p>
+</div>
+<div id="tenemos-datos.-por-que-aprender-estadistica" class="section level2" number="1.4">
+<h2>
+<span class="header-section-number">1.4</span> Tenemos datos. ¿Por que aprender estadistica?<a class="anchor" aria-label="anchor" href="#tenemos-datos.-por-que-aprender-estadistica"><i class="fas fa-link"></i></a>
+</h2>
+<div id="inferencia" class="section level3" number="1.4.1">
+<h3>
+<span class="header-section-number">1.4.1</span> Inferencia<a class="anchor" aria-label="anchor" href="#inferencia"><i class="fas fa-link"></i></a>
+</h3>
+<p>Las encuestas suelen ser muestras de una poblacion mas amplia: aprender sobre
+poblaciones a partir de muestras se llama <strong>inferencia</strong>, y es la razon principal
+por la que usamos estadistica en ciencia politica. Queremos ser precisos y
+cuidadosos sobre lo que podemos inferir de esas muestras limitadas.</p>
+</div>
+<div id="reporte-y-precision" class="section level3" number="1.4.2">
+<h3>
+<span class="header-section-number">1.4.2</span> Reporte y precision<a class="anchor" aria-label="anchor" href="#reporte-y-precision"><i class="fas fa-link"></i></a>
+</h3>
+<p>Una segunda razon es que necesitamos resumir grandes cantidades de datos (cientos
+o miles de respuestas) con uno o unos pocos numeros. Las figuras pueden hacer lo
+mismo (y a menudo son mejores), pero las descripciones estadisticas tambien
+pueden ser breves y faciles de entender. Si quieres conocer la edad de las
+personas inscritas en un programa, puedes comunicar esa informacion con un solo
+numero: la edad promedio de las personas participantes fue 22.</p>
+</div>
+</div>
+<div id="dos-advertencias-los-datos-no-son-perfectos-y-nada-es-determinista" class="section level2" number="1.5">
+<h2>
+<span class="header-section-number">1.5</span> Dos advertencias: los datos no son perfectos y nada es determinista<a class="anchor" aria-label="anchor" href="#dos-advertencias-los-datos-no-son-perfectos-y-nada-es-determinista"><i class="fas fa-link"></i></a>
+</h2>
+<div id="los-datos-no-son-perfectos" class="section level3" number="1.5.1">
+<h3>
+<span class="header-section-number">1.5.1</span> Los datos no son perfectos<a class="anchor" aria-label="anchor" href="#los-datos-no-son-perfectos"><i class="fas fa-link"></i></a>
+</h3>
+<p>Recolectar datos puede ser caro y dificil. Hay muchos lugares donde es probable
+encontrar datos de alta calidad. Las franquicias deportivas e incluso las
+universidades invierten un enorme esfuerzo en recolectar datos individuales de
+rendimiento de atletas. Una universidad podria invertir el mismo tipo de
+recursos en recolectar datos de rendimiento individual del profesorado. Las
+empresas pueden ser igual de metricas y guiadas por datos, y el gobierno avanza
+en la misma direccion. Pero se necesitan recursos, tiempo y dinero para
+recolectar, organizar, reportar y explotar datos de forma sistematica. Las
+organizaciones inteligentes capturan datos (enormes cantidades) como parte
+rutinaria del negocio (Facebook, por ejemplo). Las organizaciones menos agiles
+tienen datos almacenados en sistemas separados, dependen de la digitacion y son
+menos capaces de capturarlos. O, como ocurre en la investigacion academica,
+quien investiga debe inventar y desplegar disenos de encuesta o experimentales
+costosos, limitados por un presupuesto bastante acotado.</p>
+<p>Las ciencias sociales suelen tener recursos limitados y esas limitaciones,
+junto con razonables preocupaciones de privacidad, implican que dependemos de
+muestras relativamente pequenas y de informacion autoinformada (en lugar de una
+vigilancia o monitoreo extensos).</p>
+<p>Ademas de la simple falta de recursos, hay otras razones que complican la
+recoleccion de datos sociales. Primero, las estrategias de muestreo simples se
+han vuelto dificiles por los telefonos celulares y la fatiga de encuestas. Los
+celulares facilitan bloquear llamadas y reducen la probabilidad de participar.
+Hay tantos grupos haciendo encuestas que, durante una eleccion renhida, las
+personas pueden dejar de participar. Para una revision de estos temas tecnicos,
+ver Zukin (<a href="#ref-zukin">2015</a>).</p>
+<p>El resultado final es que las muestras pueden ser pequenas y no representativas,
+y que las personas pueden responder de forma descuidada. Encima de esto,
+nuestras herramientas para registrar respuestas pueden ser toscas: unas pocas
+categorias de edad o de ingreso, o unas pocas categorias para capturar tu
+identificacion partidaria o clase social. En resumen, la medicion suele ser
+imprecisa y entendemos que el error de medicion puede ser un problema. La
+alternativa a depender de datos pobres o escasos es simplemente adivinar. Y eso
+rara vez es la mejor opcion.</p>
+</div>
+<div id="las-relaciones-observadas-no-son-deterministas" class="section level3" number="1.5.2">
+<h3>
+<span class="header-section-number">1.5.2</span> Las relaciones observadas no son deterministas<a class="anchor" aria-label="anchor" href="#las-relaciones-observadas-no-son-deterministas"><i class="fas fa-link"></i></a>
+</h3>
+<p>Una reaccion instintiva ante los modelos estadisticos del comportamiento humano
+es afirmar que reducir a una persona a una serie de numeros o a un pequeno
+conjunto de atributos es tosco, denigrante y contraproducente. No es una
+critica del todo ingenua: el comportamiento humano es complejo. Pero las
+ciencias sociales no pensamos el mundo como determinista: pensamos y describimos
+los hallazgos de forma probabilistica. Podemos afirmar con confianza que el 85 %
+de un grupo deberia votar. Eso implica que la probabilidad de que cualquier
+persona del grupo vote es del 85 %. Pero no nos sorprendera que algunas personas
+(el 15 %) no voten.</p>
+</div>
+</div>
+<div id="hablar-el-lenguaje-de-las-ciencias-sociales" class="section level2" number="1.6">
+<h2>
+<span class="header-section-number">1.6</span> Hablar el lenguaje de las ciencias sociales<a class="anchor" aria-label="anchor" href="#hablar-el-lenguaje-de-las-ciencias-sociales"><i class="fas fa-link"></i></a>
+</h2>
+<p>Hablar de datos exige entender algunos terminos basicos: conjuntos de datos,
+observaciones, variables y libros de codigos (codebooks).</p>
+<div id="conjunto-de-datos" class="section level3" number="1.6.1">
+<h3>
+<span class="header-section-number">1.6.1</span> Conjunto de datos<a class="anchor" aria-label="anchor" href="#conjunto-de-datos"><i class="fas fa-link"></i></a>
+</h3>
+<p>Un <em>conjunto de datos</em> (dataset) es un archivo electronico organizado en filas y
+columnas de numeros (ocasionalmente con texto), analogo a una gran hoja de
+calculo.</p>
+</div>
+<div id="observacion" class="section level3" number="1.6.2">
+<h3>
+<span class="header-section-number">1.6.2</span> Observacion<a class="anchor" aria-label="anchor" href="#observacion"><i class="fas fa-link"></i></a>
+</h3>
+<p>Cada <strong>fila</strong> del conjunto de datos describe una sola observacion: una persona,
+familia, senador, juez, estado o pais, segun el “nivel de analisis”. Una <em>n</em>
+minuscula suele referirse al numero de observaciones (n = 969 designa 969
+observaciones).</p>
+</div>
+<div id="variable" class="section level3" number="1.6.3">
+<h3>
+<span class="header-section-number">1.6.3</span> Variable<a class="anchor" aria-label="anchor" href="#variable"><i class="fas fa-link"></i></a>
+</h3>
+<p>Cada <strong>columna</strong> del conjunto de datos describe una caracteristica de todas las
+observaciones. Una columna puede registrar edad, ingresos o la eleccion de voto.</p>
+</div>
+<div id="libro-de-codigos-codebook" class="section level3" number="1.6.4">
+<h3>
+<span class="header-section-number">1.6.4</span> Libro de codigos (codebook)<a class="anchor" aria-label="anchor" href="#libro-de-codigos-codebook"><i class="fas fa-link"></i></a>
+</h3>
+<p>Un <em>libro de codigos</em> es un documento que explica, con palabras, el significado
+de los numeros del conjunto de datos. Por ejemplo, 7 = “Extremadamente
+conservador” en una escala de opinion.</p>
+</div>
+</div>
+<div id="una-nota-sobre-el-software-estadistico" class="section level2" number="1.7">
+<h2>
+<span class="header-section-number">1.7</span> Una nota sobre el software estadistico<a class="anchor" aria-label="anchor" href="#una-nota-sobre-el-software-estadistico"><i class="fas fa-link"></i></a>
+</h2>
+<p>Para este texto elegi centrarme en la estadistica y la interpretacion de la
+salida, mas que en aprender un programa estadistico particular.</p>
+<p>¿Que es el software estadistico? Hay varios paquetes estadisticos (programas
+para analizar datos) disponibles en el mercado y usados por las ciencias
+sociales. SPSS, STATA, R y SAS son los mas comunes. Puedes hacer trabajo
+estadistico en EXCEL, pero no esta disenado para el analisis estadistico y ni
+siquiera puedes estimar los modelos complejos que usaremos al final del curso.
+Cada programa tiene su nicho: SPSS es muy elemental y esta respaldado por IBM,
+pero no hay mucho detalle sobre los algoritmos subyacentes. SAS se usa mucho en
+la industria y admite un entorno de produccion (generar los mismos informes a
+partir de datos cambiantes). SAS exige habilidades de programacion y es caro.</p>
+<p><strong>R es gratuito</strong> pero, como SAS, exige aprender un lenguaje de programacion
+para ejecutar scripts o ingresar comandos linea por linea. A muchas personas de
+las ciencias sociales les gusta que R sea de codigo abierto y que dependa de la
+comunidad para producir software especializado gratuito (paquetes) que resuelve
+problemas estadisticos complejos.</p>
+<p><strong>STATA</strong> se usa mucho en ciencias sociales y de la vida. Aunque algo caro,
+admite tanto linea de comandos como scripts y genera graficos muy buenos.</p>
+<p>Este documento y toda la salida que produzcas en el curso se generan con <strong>R</strong> y
+<strong>RMarkdown</strong>. Si quieres conseguir un empleo en ciencia de datos, tendras que
+llevar cursos que ensenen a usar uno o varios programas estadisticos. Este curso
+te introduce a R y a un entorno grafico basado en la nube para R, RStudio
+(alojado por Posit).</p>
+</div>
+<div id="que-sigue" class="section level2" number="1.8">
+<h2>
+<span class="header-section-number">1.8</span> ¿Que sigue?<a class="anchor" aria-label="anchor" href="#que-sigue"><i class="fas fa-link"></i></a>
+</h2>
+<p>El siguiente capitulo te presenta algunos numeros basicos que usamos para
+describir la distribucion de las variables de un conjunto de datos. El foco
+sustantivo es como las personas se identifican con los principales partidos
+politicos y, sobre todo, como evaluan y apoyan el sistema politico. ¿Que es la
+identificacion partidaria? ¿Quien apoya al sistema politico costarricense? ¿Hay
+diferencias entre mujeres y hombres? Usaremos la encuesta del CIEP de noviembre
+de 2020 para responder estas preguntas y aprender a interpretar la salida
+estadistica para comunicar lo que sabemos.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html">Sobre este libro</a></div>
+<div class="next"><a href="estadistica-descriptiva.html"><span class="header-section-number">2</span> Estadistica descriptiva</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ciencia-de-datos-ciencia-politica-y-politicas-publicas"><span class="header-section-number">1</span> Ciencia de datos, ciencia politica y politicas publicas</a></li>
+<li>
+<a class="nav-link" href="#el-papel-de-la-teoria-y-el-papel-de-la-observacion"><span class="header-section-number">1.1</span> El papel de la teoria y el papel de la observacion</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#un-ejemplo-de-contrastacion-de-teoria-influye-tu-situacion-economica-personal-en-tu-voto"><span class="header-section-number">1.1.1</span> Un ejemplo de contrastacion de teoria: ¿influye tu situacion economica personal en tu voto?</a></li></ul>
+</li>
+<li><a class="nav-link" href="#los-macrodatos-en-los-negocios-y-en-las-ciencias-sociales"><span class="header-section-number">1.2</span> Los macrodatos en los negocios y en las ciencias sociales</a></li>
+<li><a class="nav-link" href="#que-es-la-regresion-y-por-que-necesito-entenderla"><span class="header-section-number">1.3</span> ¿Que es la regresion y por que necesito entenderla?</a></li>
+<li>
+<a class="nav-link" href="#tenemos-datos.-por-que-aprender-estadistica"><span class="header-section-number">1.4</span> Tenemos datos. ¿Por que aprender estadistica?</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#inferencia"><span class="header-section-number">1.4.1</span> Inferencia</a></li>
+<li><a class="nav-link" href="#reporte-y-precision"><span class="header-section-number">1.4.2</span> Reporte y precision</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#dos-advertencias-los-datos-no-son-perfectos-y-nada-es-determinista"><span class="header-section-number">1.5</span> Dos advertencias: los datos no son perfectos y nada es determinista</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#los-datos-no-son-perfectos"><span class="header-section-number">1.5.1</span> Los datos no son perfectos</a></li>
+<li><a class="nav-link" href="#las-relaciones-observadas-no-son-deterministas"><span class="header-section-number">1.5.2</span> Las relaciones observadas no son deterministas</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#hablar-el-lenguaje-de-las-ciencias-sociales"><span class="header-section-number">1.6</span> Hablar el lenguaje de las ciencias sociales</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#conjunto-de-datos"><span class="header-section-number">1.6.1</span> Conjunto de datos</a></li>
+<li><a class="nav-link" href="#observacion"><span class="header-section-number">1.6.2</span> Observacion</a></li>
+<li><a class="nav-link" href="#variable"><span class="header-section-number">1.6.3</span> Variable</a></li>
+<li><a class="nav-link" href="#libro-de-codigos-codebook"><span class="header-section-number">1.6.4</span> Libro de codigos (codebook)</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#una-nota-sobre-el-software-estadistico"><span class="header-section-number">1.7</span> Una nota sobre el software estadistico</a></li>
+<li><a class="nav-link" href="#que-sigue"><span class="header-section-number">1.8</span> ¿Que sigue?</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Estadistica aplicada para la ciencia politica</strong>" was written by Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

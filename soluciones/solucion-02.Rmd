@@ -1,0 +1,85 @@
+---
+title: "Solucion 2: estadistica descriptiva"
+author: "Instructor"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+## 1. Distribucion de frecuencias
+
+```{r}
+tabla_freq <- ciep %>%
+  filter(!is.na(b6)) %>%
+  count(b6) %>%
+  mutate(Porcentaje = round(100 * n / sum(n), 1))
+
+tabla_freq
+```
+
+**Interpretacion:** la moda es 7 (la respuesta mas frecuente): 274 personas, un
+29,4 % de la muestra, expresan el maximo apoyo al sistema.
+
+## 2. Medidas de tendencia central y dispersion
+
+```{r}
+stats <- ciep %>%
+  filter(!is.na(b6)) %>%
+  summarise(
+    Media = mean(b6),
+    Mediana = median(b6),
+    Varianza = var(b6),
+    `Desviacion estandar` = sd(b6)
+  )
+
+stats
+```
+
+**Interpretacion:** la media es 5,02 y la mediana 5. Como la media es mayor que
+el punto medio de la escala (4), el electorado se inclina al apoyo. La
+desviacion estandar (1,86) indica una dispersion moderada.
+
+## 3. Grafico de barras
+
+```{r}
+ciep %>%
+  filter(!is.na(b6)) %>%
+  ggplot(aes(x = factor(b6))) +
+  geom_bar(stat = "count", fill = "#3182bd", color = "black") +
+  ylab("Frecuencia") +
+  xlab("Apoyo al sistema (1 a 7)")
+```
+
+## 4. Comparar mujeres y hombres
+
+```{r}
+ciep %>%
+  filter(!is.na(b6), !is.na(sexo)) %>%
+  group_by(Sexo = factor(sexo, levels = c(0, 1), labels = c("Mujer", "Hombre"))) %>%
+  summarise(
+    Media = round(mean(b6), 2),
+    `Desviacion estandar` = round(sd(b6), 2),
+    n = n()
+  )
+```
+
+**Interpretacion:** las mujeres tienen una media ligeramente mayor (5,08) que
+los hombres (4,95), pero la diferencia es muy pequena. La desviacion estandar es
+similar en ambos grupos.
+
+## 5. Interpretacion general
+
+- La media del apoyo al sistema (5,02) es mayor que el punto medio (4).
+- La distribucion no es simetrica: se concentra en los valores altos (5, 6 y 7).
+- Mujeres y hombres son muy parecidos; la diferencia de medias es de apenas 0,13
+  puntos. No parece haber un patron claro de genero.

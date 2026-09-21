@@ -1,0 +1,81 @@
+---
+title: "Solucion 7: modelos con muchos predictores"
+author: "Instructor"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+## 1. Modelo bivariado (referencia)
+
+```{r}
+modelo_bi <- lm(as.numeric(nota_gob) ~ as.numeric(b6), data = ciep)
+summary(modelo_bi)$coefficients
+```
+
+## 2. Modelo multivariado
+
+```{r}
+modelo_multi <- lm(
+  as.numeric(nota_gob) ~ as.numeric(b6) + as.numeric(sit_economica) +
+    as.numeric(votopac) + as.numeric(educarec) + as.numeric(sexo) +
+    as.numeric(edad),
+  data = ciep
+)
+summary(modelo_multi)$coefficients
+```
+
+**Interpretacion:** son estadisticamente significativos el apoyo al sistema, la
+percepcion economica y el voto por el PAC. No lo son la educacion, el sexo ni la
+edad. El coeficiente del apoyo al sistema pasa de 0,576 (bivariado) a 0,475
+(multivariado): cambia poco, asi que su efecto es robusto (en gran medida
+aditivo).
+
+## 3. Coeficientes estandarizados
+
+```{r}
+b <- coef(modelo_multi)[-1]
+sy <- sd(modelo_multi$model[[1]])
+std <- b * sapply(modelo_multi$model[-1], sd) / sy
+round(std, 3)
+```
+
+**Interpretacion:** el mayor efecto estandarizado corresponde al apoyo al sistema
+(0,33), seguido de la percepcion economica (0,24) y del voto por el PAC (0,17).
+
+## 4. Comparacion controlada
+
+```{r}
+ciep %>%
+  filter(!is.na(votopac), !is.na(provinciarec), !is.na(educarec)) %>%
+  group_by(Educacion = factor(educarec, levels = c(1, 2, 3),
+                              labels = c("Primaria", "Secundaria", "Universitaria")),
+           Provincia = factor(provinciarec, levels = c(0, 1),
+                              labels = c("Costera", "Central"))) %>%
+  summarise(`% voto PAC` = round(100 * mean(as.numeric(votopac)), 1), .groups = "drop")
+```
+
+**Interpretacion:** la diferencia entre provincias se mantiene (e incluso crece)
+al controlar por educacion. Entre quienes tienen secundaria, el voto por el PAC es
+22,4 % en la costa y 43,4 % en el centro; entre universitarias, 50,8 % y 71,3 %.
+No es un efecto espurio: es un efecto **aditivo/interactivo**. La provincia importa
+por si misma, y su efecto es mayor entre quienes tienen mas educacion.
+
+## 5. Conclusion
+
+La evaluacion del gobierno depende principalmente del apoyo al sistema y de la
+percepcion de la economia. El voto por el PAC tambien importa, pero con un efecto
+menor una vez que se controla por las actitudes politicas. La educacion, el genero
+y la edad no tienen efecto propio una vez incluidos los demas controles. En
+conjunto, el modelo explica alrededor del 25 % de la variacion en la nota al
+gobierno.

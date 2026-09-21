@@ -1,0 +1,53 @@
+---
+title: "Practica 5: chi-cuadrado"
+author: "Nombre: ____________________"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+**Objetivo:** usar el chi-cuadrado para contrastar la asociacion entre dos
+variables categoricas.
+
+## 1. Tabla de contingencia
+
+Construye la tabla de porcentajes de **sexo** por **nivel educativo** (porcentajes
+por fila).
+
+```{r}
+sexo <- factor(ciep$sexo, levels = c(0, 1), labels = c("Mujer", "Hombre"))
+educ <- factor(ciep$educarec, levels = c(1, 2, 3),
+               labels = c("Primaria o menos", "Secundaria", "Universitaria"))
+
+tabla <- round(100 * prop.table(table(sexo, educ), margin = ___ ), 1)
+tabla
+```
+
+## 2. Prueba de chi-cuadrado
+
+```{r}
+test <- chisq.test(table(sexo, educ))
+test
+```
+
+- Reporta el estadistico chi-cuadrado, los grados de libertad y el valor p.
+
+## 3. Interpretacion
+
+- ¿El valor p es menor que 0,05? ¿Que concluyes sobre la hipotesis nula?
+- ¿La asociacion es fuerte o debil? ¿Por que?
+
+## 4. Reflexion
+
+Explica la diferencia entre un **error de Tipo I** y un **error de Tipo II**. Da
+un ejemplo de cada uno en el contexto de una politica publica.

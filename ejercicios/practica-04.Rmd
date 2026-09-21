@@ -1,0 +1,72 @@
+---
+title: "Practica 4: prueba t e inferencia"
+author: "Nombre: ____________________"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+**Objetivo:** calcular el margen de error de una media y comparar dos grupos con
+una prueba t.
+
+## 1. Margen de error de la edad
+
+```{r}
+n <- ciep %>% filter(!is.na(edad)) %>% nrow()
+desv <- ciep %>% filter(!is.na(edad)) %>% summarise(sd(edad)) %>% pull()
+media <- ciep %>% filter(!is.na(edad)) %>% summarise(mean(edad)) %>% pull()
+
+ee <- desv / sqrt(n)          # error estandar
+me <- 1.96 * ee               # margen de error al 95%
+c(Media = media, Error_estandar = ee, Margen_de_error = me)
+```
+
+- Interpreta el margen de error en una frase.
+
+## 2. Prueba t: nota al gobierno segun voto por el PAC
+
+Completa la prueba.
+
+```{r}
+test <- ciep %>%
+  filter(!is.na(nota_gob), !is.na(votopac)) %>%
+  mutate(
+    nota_gob = as.numeric(nota_gob),
+    Voto = factor(votopac, levels = c(0, 1), labels = c("No voto PAC", "Voto PAC"))
+  )
+
+t.test(nota_gob ~ ___, data = test)
+```
+
+- ¿Cual es la media de cada grupo?
+- ¿El valor p es menor que 0,05? ¿Que concluyes?
+
+## 3. Prueba t: nota a los partidos segun sexo
+
+```{r}
+test2 <- ciep %>%
+  filter(!is.na(nota_pp), !is.na(sexo)) %>%
+  mutate(
+    nota_pp = as.numeric(nota_pp),
+    Sexo = factor(sexo, levels = c(0, 1), labels = c("Mujer", "Hombre"))
+  )
+
+t.test(nota_pp ~ ___, data = test2)
+```
+
+- ¿La diferencia entre grupos es estadisticamente significativa?
+
+## 4. Conclusion
+
+Escribe una conclusion comparando los dos casos anteriores. Recuerda reportar
+**direccion, tamano y significancia**.

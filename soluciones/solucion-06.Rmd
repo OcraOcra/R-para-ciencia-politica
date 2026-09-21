@@ -1,0 +1,68 @@
+---
+title: "Solucion 6: regresion"
+author: "Instructor"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+## 1. Regresion: nota al gobierno segun apoyo al sistema
+
+```{r}
+modelo1 <- lm(as.numeric(nota_gob) ~ as.numeric(b6), data = ciep)
+summary(modelo1)
+```
+
+**Interpretacion:** el intercepto es 1,200 y la pendiente es 0,576. Por cada
+unidad de aumento en el apoyo al sistema, la nota al gobierno sube 0,58 puntos.
+El coeficiente es estadisticamente significativo (p < 0,001), asi que el vinculo
+se generaliza a la poblacion.
+
+## 2. Prediccion
+
+```{r}
+b0 <- coef(modelo1)[1]
+b1 <- coef(modelo1)[2]
+pred <- b0 + b1 * 7
+pred
+```
+
+**Interpretacion:** una persona con maximo apoyo al sistema (b6 = 7) tiene una
+nota prevista al gobierno de aproximadamente 5,23.
+
+## 3. Variable dummy
+
+```{r}
+ciep$voto_pac <- as.numeric(ciep$votopac)
+modelo2 <- lm(as.numeric(nota_gob) ~ voto_pac, data = ciep)
+summary(modelo2)
+```
+
+**Interpretacion:** el intercepto es 3,44 (quienes no votaron por el PAC) y el
+coeficiente de la dummy es 1,25. Quienes si votaron por el PAC tienen una nota
+prevista 1,25 puntos mayor (4,69). El efecto es estadisticamente significativo
+(p < 0,001).
+
+## 4. Bondad de ajuste
+
+La R cuadrada del modelo 1 es 0,153 (explica cerca del 15 % de la variacion en la
+nota al gobierno). La R cuadrada del modelo 2 es 0,050 (5 %). El modelo con el
+apoyo al sistema se ajusta mejor, porque la escala de 1 a 7 recoge mas variacion
+que una dummy de dos valores.
+
+## 5. Interpretacion general
+
+El apoyo al sistema tiene un efecto **positivo** (a mayor apoyo, mejor nota al
+gobierno), de tamano moderado (0,58 puntos por unidad, unos 3,45 puntos entre el
+minimo y el maximo) y **estadisticamente significativo**. La evaluacion del
+gobierno esta claramente asociada con el apoyo mas amplio al sistema politico.

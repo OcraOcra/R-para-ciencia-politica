@@ -1,0 +1,49 @@
+# Codebook: encuesta CIEP-UCR, noviembre 2020
+
+Este apendice describe las variables de la base de datos
+`data/CIEPnoviembre2020.dta`, leida en R con `haven::read_dta()`. El libro de
+codigos se genera automaticamente a partir de las etiquetas del archivo.
+
+## Listado de variables
+
+```{r codebook, echo=FALSE}
+raw <- read_dta("data/CIEPnoviembre2020.dta")
+
+etiqueta_de <- function(x) {
+  lab <- attr(x, "label")
+  if (is.null(lab)) "" else as.character(lab)
+}
+
+valores_de <- function(x) {
+  lab <- attr(x, "labels")
+  if (is.null(lab)) "" else paste0(names(lab), " = ", unname(lab), collapse = "; ")
+}
+
+faltantes_de <- function(x) sum(is.na(x))
+
+codebook <- data.frame(
+  Variable = names(raw),
+  Etiqueta = vapply(raw, etiqueta_de, character(1)),
+  `Valores (etiqueta = codigo)` = vapply(raw, valores_de, character(1)),
+  `Faltantes` = vapply(raw, faltantes_de, integer(1)),
+  check.names = FALSE,
+  row.names = NULL
+)
+
+kable(codebook, caption = "Fuente: encuesta CIEP-UCR, noviembre 2020.")
+```
+
+## Descripcion de los bloques de variables
+
+- **Sociodemograficas:** `sexo`, `edad`, `educarec`, `provinciarec`,
+  `desempleado`.
+- **Evaluacion de instituciones (nota de 0 a 10):** `nota_al` (Asamblea
+  Legislativa), `nota_dh` (Defensoria de los Habitantes), `nota_gob` (gobierno),
+  `nota_oij` (Organismo de Investigacion Judicial), `nota_pp` (partidos
+  politicos), `nota_pj` (Poder Judicial), `nota_siv` (Sala Constitucional),
+  `nota_ucr` (Universidad de Costa Rica), `nota_uni_pub` (otras universidades
+  publicas).
+- **Actitudes politicas:** `sit_economica` (percepcion de la situacion economica
+  del pais), `gestionrec` (valoracion de la gestion del gobierno), `b1` a `b6`
+  (escalas de apoyo al sistema, de 1 a 7).
+- **Comportamiento electoral:** `votopac` (voto por el PAC en 2018).

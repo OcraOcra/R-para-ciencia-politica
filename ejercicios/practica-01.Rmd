@@ -1,0 +1,69 @@
+---
+title: "Practica 1: ciencia de datos y teoria"
+author: "Nombre: ____________________"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+**Objetivo:** cargar datos, describir un conjunto de datos y contrastar una
+expectativa teorica sencilla con una tabla.
+
+## 1. Cargar y explorar
+
+Completa el codigo para cargar la base y ver cuantas observaciones y variables
+tiene.
+
+```{r}
+# Pista: la base ya esta cargada como 'ciep' en el chunk de arriba.
+# Reporta el numero de filas (observaciones) y columnas (variables).
+
+n_filas <- ___(ciep)
+n_columnas <- ___(ciep)
+c(n_filas, n_columnas)
+```
+
+## 2. Voto por el PAC segun nivel educativo
+
+Completa la tabla que muestra el porcentaje de personas que votaron por el PAC
+en cada nivel educativo. La variable de educacion es `educarec`
+(1 = primaria o menos, 2 = secundaria, 3 = universitaria) y el voto es `votopac`
+(0 = no, 1 = si).
+
+```{r}
+tabla <- ciep %>%
+  filter(!is.na(votopac), !is.na(educarec)) %>%
+  group_by(Nivel = factor(educarec, levels = c(1, 2, 3),
+                          labels = c("Primaria o menos", "Secundaria", "Universitaria"))) %>%
+  summarise(`% voto PAC` = round(100 * ___(as.numeric(votopac)), 1))
+
+tabla
+```
+
+## 3. Interpretacion
+
+Responde en tus propias palabras (escribe aqui o como comentario en el chunk):
+
+- ¿Que grupo voto mas por el PAC? ¿Que grupo voto menos?
+- ¿La relacion es positiva o negativa?
+- ¿Se cumple la expectativa de que el PAC recibe mas apoyo entre quienes tienen
+  menos educacion? Explica.
+
+## 4. Conceptos
+
+Define con tus palabras:
+
+- **Conjunto de datos:**
+- **Observacion:**
+- **Variable:**
+- **Hipotesis:**

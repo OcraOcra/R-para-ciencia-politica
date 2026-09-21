@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capitulo 7 Modelos estadisticos con muchos predictores | Estadistica aplicada para la ciencia politica</title>
+<meta name="author" content="Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder">
+<meta name="description" content="Este capitulo introduce el modelo estadistico mas usado en las ciencias sociales y el bloque de construccion de modelos mas complejos que han surgido para enfrentar retos de investigacion...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Capitulo 7 Modelos estadisticos con muchos predictores | Estadistica aplicada para la ciencia politica">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Este capitulo introduce el modelo estadistico mas usado en las ciencias sociales y el bloque de construccion de modelos mas complejos que han surgido para enfrentar retos de investigacion...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capitulo 7 Modelos estadisticos con muchos predictores | Estadistica aplicada para la ciencia politica">
+<meta name="twitter:description" content="Este capitulo introduce el modelo estadistico mas usado en las ciencias sociales y el bloque de construccion de modelos mas complejos que han surgido para enfrentar retos de investigacion...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 0em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Estadistica aplicada para la ciencia politica</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Sobre este libro</a></li>
+<li><a class="" href="ciencia-de-datos-ciencia-politica-y-politicas-publicas.html"><span class="header-section-number">1</span> Ciencia de datos, ciencia politica y politicas publicas</a></li>
+<li><a class="" href="estadistica-descriptiva.html"><span class="header-section-number">2</span> Estadistica descriptiva</a></li>
+<li><a class="" href="introduccion-a-las-medidas-de-asociacion-la-correlacion.html"><span class="header-section-number">3</span> Introduccion a las medidas de asociacion: la correlacion</a></li>
+<li><a class="" href="medidas-de-asociacion-la-prueba-t.html"><span class="header-section-number">4</span> Medidas de asociacion: la prueba t</a></li>
+<li><a class="" href="medidas-de-asociacion-el-chi-cuadrado.html"><span class="header-section-number">5</span> Medidas de asociacion: el chi-cuadrado</a></li>
+<li><a class="" href="regresion.html"><span class="header-section-number">6</span> Regresion</a></li>
+<li><a class="active" href="modelos-estadisticos-con-muchos-predictores.html"><span class="header-section-number">7</span> Modelos estadisticos con muchos predictores</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+<li><a class="" href="sobre-el-autor-original.html">Sobre el autor original</a></li>
+<li><a class="" href="sobre-esta-adaptacion.html">Sobre esta adaptacion</a></li>
+<li><a class="" href="codebook-encuesta-ciep-ucr-noviembre-2020.html"><span class="header-section-number">8</span> Codebook: encuesta CIEP-UCR, noviembre 2020</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="modelos-estadisticos-con-muchos-predictores" class="section level1" number="7">
+<h1>
+<span class="header-section-number">Capitulo 7</span> Modelos estadisticos con muchos predictores<a class="anchor" aria-label="anchor" href="#modelos-estadisticos-con-muchos-predictores"><i class="fas fa-link"></i></a>
+</h1>
+<p>Este capitulo introduce el modelo estadistico mas usado en las ciencias sociales
+y el bloque de construccion de modelos mas complejos que han surgido para
+enfrentar retos de investigacion especificos.</p>
+<p>El modelo lineal simple con mas de un predictor se conoce como <strong>modelo
+multivariado</strong> o <strong>regresion multiple</strong>. Las ciencias sociales usan este enfoque
+para estudiar comportamiento, evaluar politicas publicas o pronosticar eventos.
+Tambien es la base de modelos mas complejos en campos que van de la salud publica
+a las ciencias ambientales. Nos interesa el modelo multivariado porque ofrece una
+forma flexible de evaluar simultaneamente los efectos de muchos predictores en un
+mismo conjunto de pruebas. Podemos aislar el efecto de un factor “controlando” por
+una variedad de otros factores.</p>
+<div id="que-es-la-comparacion-controlada" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> ¿Que es la comparacion controlada?<a class="anchor" aria-label="anchor" href="#que-es-la-comparacion-controlada"><i class="fas fa-link"></i></a>
+</h2>
+<p>Recuerda la distincion entre investigacion experimental y observacional. La
+investigacion experimental en ciencias sociales aparece tanto en el trabajo de
+politicas publicas (las personas usuarias se asignan al azar a control o
+intervencion) como en encuestas o experimentos de laboratorio (los sujetos se
+exponen a informacion o situaciones distintas). En este curso dependemos de un
+enfoque observacional, usando una muestra de potenciales votantes. El reto es que
+podriamos querer comparar dos grupos (por ejemplo, personas jovenes y mayores),
+pero no podemos aislar el efecto solo de la edad. Las personas mayores tienen, en
+promedio, mas problemas de salud, menor nivel educativo y viven en lugares
+distintos. Para aislar el efecto de la edad (o de cualquier <span class="math inline">\(X\)</span> que nos importe)
+debemos “controlar” por otras diferencias entre los grupos.</p>
+<p>La suposicion basica del modelo lineal simple es que el predictor principal que
+nos interesa (<span class="math inline">\(X\)</span>) tiene un vinculo con el comportamiento o actitud que
+investigamos (<span class="math inline">\(Y\)</span>). La <strong>comparacion controlada</strong> consiste en considerar una
+tercera variable, <span class="math inline">\(Z\)</span>, relacionada tanto con <span class="math inline">\(X\)</span> como con <span class="math inline">\(Y\)</span>. La pregunta es:
+¿se mantiene el vinculo entre <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> si lo examinas en distintos niveles de
+<span class="math inline">\(Z\)</span>?</p>
+<p>Podemos ampliar la investigacion para incluir varias variables de control. Esta es
+la logica de la comparacion controlada. Por ejemplo, si nos interesa como el nivel
+educativo (<span class="math inline">\(X\)</span>) influye en el voto por el PAC (<span class="math inline">\(Y\)</span>), quizas queramos controlar por
+la provincia (<span class="math inline">\(Z\)</span>). Sabemos que la provincia esta vinculada con el voto y con la
+educacion, asi que nuestra comprension del vinculo podria estar distorsionada.</p>
+<p>Considera lo que podria ocurrir al contrastar el vinculo entre <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> en
+distintos niveles de <span class="math inline">\(Z\)</span>:</p>
+<ul>
+<li>Podrias no ver cambios respecto a la investigacion original: <span class="math inline">\(X\)</span> afecta a <span class="math inline">\(Y\)</span>
+de la misma manera en todos los niveles de <span class="math inline">\(Z\)</span>. Esto se llama efecto
+<strong>aditivo</strong>.</li>
+<li>Podrias descubrir que un vinculo entre <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> que parecia importante se
+reduce a cero al controlar por <span class="math inline">\(Z\)</span>. En ese caso el resultado original se llama
+<strong>espurio</strong>.</li>
+<li>Podria ser que no encuentres vinculo entre <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span>, pero que el vinculo emerja
+al hacer una comparacion controlada. Esto seria un ejemplo de <strong>confusion</strong>
+(confounding).</li>
+<li>Finalmente, podrias encontrar que el vinculo entre <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> es distinto segun
+los niveles de <span class="math inline">\(Z\)</span> (positivo en unos subgrupos y negativo en otros). Esto se
+conoce como efecto <strong>interactivo</strong>.</li>
+</ul>
+<p>En los capitulos anteriores describimos tres formas de usar tablas y figuras para
+mostrar el vinculo entre dos variables: tablas de contingencia, graficos de barras
+y graficos de lineas. Podemos usar las mismas estrategias para implementar una
+comparacion controlada.</p>
+<div id="provincia-y-voto-tabulacion-cruzada-con-una-variable-de-control" class="section level3" number="7.1.1">
+<h3>
+<span class="header-section-number">7.1.1</span> Provincia y voto: tabulacion cruzada con una variable de control<a class="anchor" aria-label="anchor" href="#provincia-y-voto-tabulacion-cruzada-con-una-variable-de-control"><i class="fas fa-link"></i></a>
+</h3>
+<p>A veces se afirma que ciertas regiones de un pais son politicamente distintivas.
+En Costa Rica, la provincia central concentra la capital y el mayor desarrollo
+economico, mientras que las provincias costeras son mas rurales. ¿Vota distinto la
+provincia central? ¿Se debe esa diferencia a la composicion educativa de cada
+region, o se mantiene al controlar por educacion?</p>
+<p>La Tabla <a href="modelos-estadisticos-con-muchos-predictores.html#tab:table71">7.1</a> muestra el porcentaje de voto por el PAC segun la
+provincia.</p>
+<p><strong>Tabla <a href="modelos-estadisticos-con-muchos-predictores.html#tab:table71">7.1</a> Voto por el PAC, por provincia, 2020</strong></p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:table71">Tabla 7.1. </span>Fuente: encuesta CIEP-UCR, noviembre 2020.</caption>
+<thead><tr class="header">
+<th align="left">Provincia</th>
+<th align="right">Porcentaje voto PAC</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Provincia costera</td>
+<td align="right">31.2</td>
+</tr>
+<tr class="even">
+<td align="left">Provincia central</td>
+<td align="right">52.0</td>
+</tr>
+</tbody>
+</table></div>
+<p>Hay una diferencia considerable: el PAC obtuvo alrededor del 52 % en la provincia
+central frente a poco mas del 31 % en las provincias costeras. ¿Que podria estar
+distorsionando esta relacion? Una caracteristica que distingue a las regiones es
+el nivel educativo: la provincia central concentra la mayor proporcion de personas
+con educacion universitaria, y ya vimos que la educacion se asocia con el voto por
+el PAC. Entonces necesitamos <strong>controlar por educacion</strong> para aclarar el vinculo
+entre provincia y voto. La Tabla <a href="modelos-estadisticos-con-muchos-predictores.html#tab:table72">7.2</a> reporta la comparacion
+controlada.</p>
+<p><strong>Tabla <a href="modelos-estadisticos-con-muchos-predictores.html#tab:table72">7.2</a> Voto por el PAC en la provincia central y costera, por nivel educativo, 2020</strong></p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:table72">Tabla 7.2. </span>Fuente: encuesta CIEP-UCR, noviembre 2020.</caption>
+<thead><tr class="header">
+<th align="left">Nivel educativo</th>
+<th align="left">Provincia</th>
+<th align="right">Porcentaje</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Primaria o menos</td>
+<td align="left">Provincia costera</td>
+<td align="right">27.3</td>
+</tr>
+<tr class="even">
+<td align="left">Primaria o menos</td>
+<td align="left">Provincia central</td>
+<td align="right">28.5</td>
+</tr>
+<tr class="odd">
+<td align="left">Secundaria</td>
+<td align="left">Provincia costera</td>
+<td align="right">22.4</td>
+</tr>
+<tr class="even">
+<td align="left">Secundaria</td>
+<td align="left">Provincia central</td>
+<td align="right">43.4</td>
+</tr>
+<tr class="odd">
+<td align="left">Universitaria</td>
+<td align="left">Provincia costera</td>
+<td align="right">50.8</td>
+</tr>
+<tr class="even">
+<td align="left">Universitaria</td>
+<td align="left">Provincia central</td>
+<td align="right">71.3</td>
+</tr>
+</tbody>
+</table></div>
+<p>Las diferencias regionales siguen presentes, e incluso se agrandan, cuando
+controlamos por educacion. Entre quienes tienen secundaria, el voto por el PAC es
+22 % en la costa y 43 % en el centro; entre quienes tienen educacion universitaria,
+51 % en la costa y 71 % en el centro. La composicion educativa de cada region
+<strong>confundia</strong> en parte nuestra comprension: la diferencia regional no desaparece,
+se mantiene (e incluso crece) dentro de cada nivel educativo. Esto es un ejemplo
+de efecto <strong>aditivo/interactivo</strong>: la provincia importa, y su efecto es mayor entre
+quienes tienen mas educacion.</p>
+</div>
+<div id="evaluacion-del-gobierno-y-provincia-graficos-de-barras-con-control" class="section level3" number="7.1.2">
+<h3>
+<span class="header-section-number">7.1.2</span> Evaluacion del gobierno y provincia: graficos de barras con control<a class="anchor" aria-label="anchor" href="#evaluacion-del-gobierno-y-provincia-graficos-de-barras-con-control"><i class="fas fa-link"></i></a>
+</h3>
+<p>Tambien podemos ilustrar la comparacion controlada con la evaluacion del gobierno.
+La Figura <a href="modelos-estadisticos-con-muchos-predictores.html#fig:figure71">7.1</a> resume la proporcion de personas que evaluan
+positivamente la gestion del gobierno segun la provincia.</p>
+<p><strong>Figura <a href="modelos-estadisticos-con-muchos-predictores.html#fig:figure71">7.1</a> Evaluacion positiva de la gestion, por provincia, 2020</strong></p>
+<div class="figure">
+<span style="display:block;" id="fig:figure71"></span>
+<img src="07-models_files/figure-html/figure71-1.png" alt="Evaluacion positiva de la gestion del gobierno por provincia" width="672"><p class="caption">
+Figura 7.1. Evaluacion positiva de la gestion del gobierno por provincia
+</p>
+</div>
+<p>La Figura <a href="modelos-estadisticos-con-muchos-predictores.html#fig:figure72">7.2</a> desglosa el vinculo entre provincia y evaluacion del
+gobierno en los tres niveles educativos: una comparacion controlada. Ahora podemos
+entender el vinculo entre la evaluacion y la provincia para personas con niveles
+educativos similares.</p>
+<p><strong>Figura <a href="modelos-estadisticos-con-muchos-predictores.html#fig:figure72">7.2</a> Evaluacion de la gestion por provincia, controlando por educacion, 2020</strong></p>
+<div class="figure">
+<span style="display:block;" id="fig:figure72"></span>
+<img src="07-models_files/figure-html/figure72-1.png" alt="Evaluacion de la gestion por provincia, controlando por educacion" width="672"><p class="caption">
+Figura 7.2. Evaluacion de la gestion por provincia, controlando por educacion
+</p>
+</div>
+<p>Los datos sugieren que la provincia central evalua mejor la gestion en todos los
+niveles educativos. La educacion y la provincia parecen ejercer efectos
+independientes sobre la evaluacion del gobierno. Este es un buen ejemplo de
+efectos <strong>aditivos</strong>.</p>
+</div>
+</div>
+<div id="entonces-como-encaja-un-modelo-estadistico-en-todo-esto" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> Entonces, ¿como encaja un modelo estadistico en todo esto?<a class="anchor" aria-label="anchor" href="#entonces-como-encaja-un-modelo-estadistico-en-todo-esto"><i class="fas fa-link"></i></a>
+</h2>
+<p>Hay dos razones por las que no podemos usar tablas y figuras de forma fiable para
+estas comparaciones controladas. En algunos casos, <span class="math inline">\(Z\)</span> tiene muchas categorias, lo
+que implica demasiadas tablas o demasiadas barras. Ademas, en cuanto empiezas a
+pensar en varias variables de control, la estrategia se derrumba por completo. Por
+ejemplo, si quisieras revisar el vinculo entre <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> para cada combinacion
+posible de provincia (2), genero (2), educacion (3) y edad (varias), necesitarias
+decenas de tablas separadas, cada una con pocas personas.</p>
+<p>Como alternativa a mirar explicitamente el vinculo entre <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> para cada valor
+de <span class="math inline">\(Z\)</span>, podemos simplemente <strong>agregar la variable de control al modelo lineal</strong>.
+Ese paso resulta ser equivalente a mirar la pendiente para cada subgrupo posible y
+promediar entre todos esos grupos.</p>
+<p>Para el modelo lineal simple, recordamos que suponemos una forma funcional:</p>
+<p><span class="math display">\[Y=\beta_0+\beta_1X+\epsilon\]</span></p>
+<p>El modelo multivariado es conveniente porque es facil agregar multiples variables
+explicativas. Tus intuiciones sobre “que importa” y las expectativas teoricas
+deben guiar tu eleccion de variables. El proceso de decidir que variables incluir
+se llama <strong>especificacion del modelo</strong>. La forma general es:</p>
+<p><span class="math display">\[Y=\beta_0+\beta_1X_1+\beta_2X_2+\beta_3X_3+\epsilon\]</span></p>
+<p>Nos centramos en tres formas en que el modelo multivariado difiere del de dos
+variables:</p>
+<ul>
+<li>los coeficientes se interpretan de forma ligeramente distinta;</li>
+<li>usamos la R cuadrada <strong>ajustada</strong> (en lugar de la R cuadrada) para evaluar que
+modelos se ajustan mejor; y</li>
+<li>introducimos los <strong>coeficientes estandarizados</strong> para entender que variables
+importan mas.</li>
+</ul>
+</div>
+<div id="el-modelo-multivariado" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> El modelo multivariado<a class="anchor" aria-label="anchor" href="#el-modelo-multivariado"><i class="fas fa-link"></i></a>
+</h2>
+<div id="coeficientes-parciales-frente-a-coeficientes-completos" class="section level3" number="7.3.1">
+<h3>
+<span class="header-section-number">7.3.1</span> Coeficientes parciales frente a coeficientes completos<a class="anchor" aria-label="anchor" href="#coeficientes-parciales-frente-a-coeficientes-completos"><i class="fas fa-link"></i></a>
+</h3>
+<p>Para el modelo bivariado, el calculo de <span class="math inline">\(\beta_1\)</span> es simple. La interpretacion es
+facil: <span class="math inline">\(\beta_1\)</span> describe cuanto cambia <span class="math inline">\(Y\)</span> por un cambio de una unidad en <span class="math inline">\(X\)</span>.</p>
+<p>En el modelo multivariado la interpretacion es algo mas complicada. El coeficiente
+describe cuanto cambia <span class="math inline">\(Y\)</span> por un cambio de una unidad en X<sub>1</sub>, <strong>manteniendo
+constantes las demas X</strong>.</p>
+<p>El efecto de X<sub>1</sub> (<span class="math inline">\(\beta_1\)</span>) en el modelo multivariado es un efecto <strong>parcial</strong>
+(distinto del efecto <strong>completo</strong> que se observa en el modelo bivariado). La idea
+crucial es que la unica forma en que importa introducir una variable de control es
+si esa variable esta realmente relacionada con la variable que te interesa. Cuanto
+mayor sea la covarianza entre X<sub>1</sub> y X<sub>2</sub>, mayor sera la diferencia entre los
+coeficientes de los dos modelos.</p>
+<p>Una implicacion: siempre deberias entender la correlacion entre cada par de
+variables <span class="math inline">\(X\)</span> de un modelo.</p>
+</div>
+<div id="r-cuadrada-ajustada" class="section level3" number="7.3.2">
+<h3>
+<span class="header-section-number">7.3.2</span> R cuadrada ajustada<a class="anchor" aria-label="anchor" href="#r-cuadrada-ajustada"><i class="fas fa-link"></i></a>
+</h3>
+<p>La R cuadrada tiene limitaciones para comparar el rendimiento de dos modelos
+multivariados. Cada vez que agregas una variable <span class="math inline">\(X\)</span>, la R cuadrada aumenta. Dado
+esto, agregariamos TODAS las variables posibles para maximizar la R cuadrada. Pero
+tambien es bueno tener un modelo simple. Para “premiar” los modelos simples,
+usamos una medida alternativa de bondad de ajuste: la <strong>R cuadrada ajustada</strong>.</p>
+<p><span class="math display">\[R^2_{adj} = 1-\frac{(1-R^2)(n-1) } {n-k-1}\]</span></p>
+<p>La R cuadrada ajustada puede ser muy cercana a la R cuadrada si tienes una muestra
+muy grande y pocos predictores. En el ejemplo de abajo, los dos numeros son
+parecidos porque tenemos pocos predictores y cientos de observaciones. Pero con
+muestras mas pequenas es convencional usar la R cuadrada ajustada. Si dos modelos
+de la misma <span class="math inline">\(Y\)</span> tienen distinto numero de variables <span class="math inline">\(X\)</span>, deberias usar la R
+cuadrada ajustada para compararlos.</p>
+</div>
+<div id="como-determinamos-que-importa-de-verdad-los-coeficientes-estandarizados" class="section level3" number="7.3.3">
+<h3>
+<span class="header-section-number">7.3.3</span> ¿Como determinamos que importa de verdad? Los coeficientes estandarizados<a class="anchor" aria-label="anchor" href="#como-determinamos-que-importa-de-verdad-los-coeficientes-estandarizados"><i class="fas fa-link"></i></a>
+</h3>
+<p>En el modelo multivariado puedes usar dos piezas de informacion para determinar
+que <span class="math inline">\(X\)</span> es mas importante para predecir <span class="math inline">\(Y\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li>Determinar el rango de cada <span class="math inline">\(X\)</span> (<span class="math inline">\(\Delta X\)</span>) y multiplicarlo por su coeficiente,
+para comparar el tamano del efecto sobre <span class="math inline">\(Y\)</span>.</li>
+<li>Usar un <strong>coeficiente estandarizado</strong> (que se etiqueta <span class="math inline">\(\beta^*\)</span>). El calculo
+es:</li>
+</ol>
+<p><span class="math display">\[\beta_1^*=\beta_1 * \frac{\sigma_x}{\sigma_y}\]</span></p>
+<p>El coeficiente estandarizado con el mayor valor absoluto tiene el mayor efecto:
+dice cuanto cambia <span class="math inline">\(Y\)</span> (en desviaciones estandar) por cada aumento de una
+desviacion estandar en <span class="math inline">\(X\)</span>. Un vistazo rapido a los coeficientes estandarizados te
+permite ordenar el tamano de los efectos de mayor a menor, algo que no puedes
+hacer con los coeficientes sin estandarizar.</p>
+</div>
+</div>
+<div id="un-ejemplo-usar-el-modelo-multivariado-para-entender-la-evaluacion-del-gobierno" class="section level2" number="7.4">
+<h2>
+<span class="header-section-number">7.4</span> Un ejemplo: usar el modelo multivariado para entender la evaluacion del gobierno<a class="anchor" aria-label="anchor" href="#un-ejemplo-usar-el-modelo-multivariado-para-entender-la-evaluacion-del-gobierno"><i class="fas fa-link"></i></a>
+</h2>
+<p>El vinculo entre la evaluacion del gobierno y el apoyo al sistema nos ayudo a
+entender la correlacion y la regresion. Abajo consideramos si la nota al gobierno
+esta impulsada por el apoyo al sistema, por la percepcion de la economia o por
+ambos. Tambien consideramos un modelo mas amplio para ver como se usan los
+coeficientes estandarizados.</p>
+<p>Los modelos de una sola variable que predicen la nota al gobierno se reproducen en
+la Tabla 7.3. La primera columna reporta el vinculo con el apoyo al
+sistema; la segunda, el vinculo con el voto por el PAC.</p>
+<p><strong>Tabla 7.3 Dos modelos bivariados que predicen la nota al gobierno</strong></p>
+<div class="inline-table"><table style="text-align:center" class="table table-sm">
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+Nota al gobierno
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Apoyo al sistema
+</td>
+<td>
+0.576<sup>***</sup>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+p = 0.000
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Voto PAC
+</td>
+<td>
+</td>
+<td>
+1.248<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+p = 0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constante
+</td>
+<td>
+1.200<sup>***</sup>
+</td>
+<td>
+3.443<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+p = 0.00000
+</td>
+<td>
+p = 0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>N</em>
+</td>
+<td>
+923
+</td>
+<td>
+798
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.153
+</td>
+<td>
+0.050
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.152
+</td>
+<td>
+0.049
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+</table></div>
+<p>Observa que el coeficiente del apoyo al sistema es 0,58 y el del voto por el PAC es
+1,25. La R cuadrada es mayor en el modelo que usa el apoyo al sistema (0,153) que
+en el del voto (0,050). ¿Como puede ser que el efecto mas grande (el voto) tenga
+una R cuadrada menor? Porque el apoyo al sistema se distribuye en toda la escala
+de 1 a 7, mientras que el voto es una dummy con dos valores; la variacion que
+explica el apoyo al sistema es mayor. Para resolver la incertidumbre sobre cual
+variable importa mas, podemos contrastar el vinculo en un solo modelo
+multivariado.</p>
+<p><strong>Tabla 7.4 Un modelo multivariado que predice la nota al gobierno, con apoyo al sistema y voto por el PAC</strong></p>
+<div class="inline-table"><table style="text-align:center" class="table table-sm">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Nota al gobierno
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Apoyo al sistema
+</td>
+<td>
+0.546<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+p = 0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Voto PAC
+</td>
+<td>
+1.030<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+p = 0.00000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constante
+</td>
+<td>
+0.821<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+p = 0.002
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>N</em>
+</td>
+<td>
+772
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.195
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.193
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+</table></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">Coeficientes estandarizados</th>
+<th align="left"></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Apoyo al sistema</td>
+<td align="left">0.37</td>
+</tr>
+<tr class="even">
+<td align="left">Voto por el PAC</td>
+<td align="left">0.19</td>
+</tr>
+</tbody>
+</table></div>
+<p>La tabla nos dice tres cosas. Usando los niveles de significancia, sabemos que
+tanto el apoyo al sistema como el voto por el PAC importan: ambos efectos son
+positivos y significativos. Pero tambien aprendemos que el apoyo al sistema es el
+efecto mas poderoso: su coeficiente estandarizado es 0,37, mas lejos de cero que
+el del voto (0,19). Los coeficientes sin estandarizar refuerzan esta conclusion.</p>
+<p>Podriamos usar una estrategia similar para evaluar una serie de variables. La
+Tabla 7.5 reporta los coeficientes de un modelo complejo: apoyo al
+sistema, percepcion economica, educacion, genero, edad, voto por el PAC y
+provincia.</p>
+<p><strong>Tabla 7.5 Un modelo multivariado que predice la nota al gobierno, con varios predictores</strong></p>
+<div class="inline-table"><table style="text-align:center" class="table table-sm">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Nota al gobierno
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Apoyo al sistema
+</td>
+<td>
+0.475<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+p = 0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Percepcion economica
+</td>
+<td>
+0.848<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+p = 0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Educacion
+</td>
+<td>
+0.188
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+p = 0.121
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Hombre
+</td>
+<td>
+-0.306<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+p = 0.080
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Edad
+</td>
+<td>
+-0.004
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+p = 0.537
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Voto PAC
+</td>
+<td>
+0.923<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+p = 0.00001
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Provincia central
+</td>
+<td>
+-0.082
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+p = 0.676
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constante
+</td>
+<td>
+-0.270
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+p = 0.570
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>N</em>
+</td>
+<td>
+760
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.258
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.252
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+</table></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">Coeficientes estandarizados</th>
+<th align="left"></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Apoyo al sistema</td>
+<td align="left">0.33</td>
+</tr>
+<tr class="even">
+<td align="left">Percepcion economica</td>
+<td align="left">0.24</td>
+</tr>
+<tr class="odd">
+<td align="left">Educacion</td>
+<td align="left">0.05</td>
+</tr>
+<tr class="even">
+<td align="left">Hombre</td>
+<td align="left">-0.06</td>
+</tr>
+<tr class="odd">
+<td align="left">Edad</td>
+<td align="left">-0.02</td>
+</tr>
+<tr class="even">
+<td align="left">Voto por el PAC</td>
+<td align="left">0.17</td>
+</tr>
+<tr class="odd">
+<td align="left">Provincia central</td>
+<td align="left">-0.01</td>
+</tr>
+</tbody>
+</table></div>
+<p>Este tipo de tabla tiene mucha informacion, pero podemos centrarnos en unos pocos
+numeros. Primero, ¿que variables podemos ignorar por no ser estadisticamente
+significativas? Los coeficientes de educacion, genero, edad y provincia no son
+estadisticamente significativos: despues de controlar por otros factores, no
+importan. Las variables que si importan son el apoyo al sistema, la percepcion
+economica y el voto por el PAC.</p>
+<p>Para saber cuales de las variables significativas son los mejores predictores,
+usamos los coeficientes estandarizados. El mayor (en valor absoluto) es el apoyo al
+sistema (0,33), seguido de la percepcion economica (0,24) y del voto por el PAC
+(0,17).</p>
+<p>Asi, podriamos concluir que quienes apoyan mas al sistema y evaluan mejor la
+economia, y quienes votaron por el PAC, evaluan mejor al gobierno. La R cuadrada
+ajustada del modelo es 0,25: alrededor del 25 % de la variacion en esta actitud se
+explica por las variables incluidas. Revisa la tabla para asegurarte de entender
+como estas conclusiones se siguen de los numeros.</p>
+<div id="lo-clave-que-hay-que-reportar-como-cambian-los-coeficientes-al-introducir-controles" class="section level3" number="7.4.1">
+<h3>
+<span class="header-section-number">7.4.1</span> Lo clave que hay que reportar: como cambian los coeficientes al introducir controles<a class="anchor" aria-label="anchor" href="#lo-clave-que-hay-que-reportar-como-cambian-los-coeficientes-al-introducir-controles"><i class="fas fa-link"></i></a>
+</h3>
+<p>¿Que pasa si los coeficientes de nuestras variables cambian entre el modelo
+bivariado simple y un modelo multivariado mas complejo? Esto puede significar una
+de cuatro cosas:</p>
+<ol style="list-style-type: decimal">
+<li>
+<span class="math inline">\(\beta_1\)</span> <strong>no cambia</strong>. No hay cambios de signo ni de direccion si se agrega
+el control <span class="math inline">\(Z\)</span>. Tanto <span class="math inline">\(Z\)</span> como <span class="math inline">\(X\)</span> influyen en <span class="math inline">\(Y\)</span> (<strong>aditivo</strong>).</li>
+<li>
+<span class="math inline">\(\beta_1\)</span> <strong>se vuelve no significativo</strong> si se agrega <span class="math inline">\(Z\)</span>. <span class="math inline">\(Z\)</span> afecta a <span class="math inline">\(Y\)</span> y a
+<span class="math inline">\(X\)</span>, y no hay vinculo entre <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> al agregar <span class="math inline">\(Z\)</span> (<strong>espurio</strong>).</li>
+<li>
+<span class="math inline">\(\beta_1\)</span> <strong>se vuelve significativo</strong> si se agrega <span class="math inline">\(Z\)</span>. <span class="math inline">\(Z\)</span> afecta a <span class="math inline">\(Y\)</span> y a
+<span class="math inline">\(X\)</span>, y aparece un vinculo entre <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> al agregar <span class="math inline">\(Z\)</span> (<strong>confusion</strong>).</li>
+<li>
+<span class="math inline">\(Z\)</span> <strong>determina</strong> como <span class="math inline">\(X\)</span> influye en <span class="math inline">\(Y\)</span> (<strong>interactivo</strong>). Para contrastarlo
+habria que crear un termino de interaccion (<span class="math inline">\(X*Z\)</span>).</li>
+</ol>
+<p><span class="math display">\[Y=\beta_0+\beta_1X+\beta_2Z+\beta_3(X*Z)\]</span></p>
+<p>Recuerda: el foco esta siempre en los coeficientes de las variables <span class="math inline">\(X\)</span>. No nos
+importa como cambia la constante al comparar los modelos bivariado y multivariado.</p>
+</div>
+</div>
+<div id="resumen-1" class="section level2" number="7.5">
+<h2>
+<span class="header-section-number">7.5</span> Resumen<a class="anchor" aria-label="anchor" href="#resumen-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>Los modelos estadisticos con muchos predictores son una forma simple de aislar los
+efectos de variables clave, una necesidad cuando trabajamos con datos
+observacionales. El modelo multivariado se usa ampliamente en las ciencias
+sociales, tanto en el analisis de politicas como en el estudio del comportamiento
+politico. Este enfoque es la base de estrategias de analisis mas avanzadas que han
+surgido en las ultimas decadas en subcampos tan diversos como la politica judicial,
+el estudio del congreso, las relaciones internacionales, la economia politica y el
+estudio de la burocracia. Si abres una revista de ciencia politica, la
+probabilidad de encontrar varios ejemplos de modelos estadisticos es alta: ya sabes
+buscar el signo, la significancia y el tamano de los efectos para entender que nos
+dicen esas regresiones.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="regresion.html"><span class="header-section-number">6</span> Regresion</a></div>
+<div class="next"><a href="referencias.html">Referencias</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#modelos-estadisticos-con-muchos-predictores"><span class="header-section-number">7</span> Modelos estadisticos con muchos predictores</a></li>
+<li>
+<a class="nav-link" href="#que-es-la-comparacion-controlada"><span class="header-section-number">7.1</span> ¿Que es la comparacion controlada?</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#provincia-y-voto-tabulacion-cruzada-con-una-variable-de-control"><span class="header-section-number">7.1.1</span> Provincia y voto: tabulacion cruzada con una variable de control</a></li>
+<li><a class="nav-link" href="#evaluacion-del-gobierno-y-provincia-graficos-de-barras-con-control"><span class="header-section-number">7.1.2</span> Evaluacion del gobierno y provincia: graficos de barras con control</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#entonces-como-encaja-un-modelo-estadistico-en-todo-esto"><span class="header-section-number">7.2</span> Entonces, ¿como encaja un modelo estadistico en todo esto?</a></li>
+<li>
+<a class="nav-link" href="#el-modelo-multivariado"><span class="header-section-number">7.3</span> El modelo multivariado</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#coeficientes-parciales-frente-a-coeficientes-completos"><span class="header-section-number">7.3.1</span> Coeficientes parciales frente a coeficientes completos</a></li>
+<li><a class="nav-link" href="#r-cuadrada-ajustada"><span class="header-section-number">7.3.2</span> R cuadrada ajustada</a></li>
+<li><a class="nav-link" href="#como-determinamos-que-importa-de-verdad-los-coeficientes-estandarizados"><span class="header-section-number">7.3.3</span> ¿Como determinamos que importa de verdad? Los coeficientes estandarizados</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#un-ejemplo-usar-el-modelo-multivariado-para-entender-la-evaluacion-del-gobierno"><span class="header-section-number">7.4</span> Un ejemplo: usar el modelo multivariado para entender la evaluacion del gobierno</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#lo-clave-que-hay-que-reportar-como-cambian-los-coeficientes-al-introducir-controles"><span class="header-section-number">7.4.1</span> Lo clave que hay que reportar: como cambian los coeficientes al introducir controles</a></li></ul>
+</li>
+<li><a class="nav-link" href="#resumen-1"><span class="header-section-number">7.5</span> Resumen</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Estadistica aplicada para la ciencia politica</strong>" was written by Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

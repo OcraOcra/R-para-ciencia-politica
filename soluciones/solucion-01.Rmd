@@ -1,0 +1,62 @@
+---
+title: "Solucion 1: ciencia de datos y teoria"
+author: "Instructor"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+## 1. Cargar y explorar
+
+```{r}
+n_filas <- nrow(ciep)
+n_columnas <- ncol(ciep)
+c(n_filas, n_columnas)
+```
+
+**Interpretacion:** la base tiene 969 observaciones (personas encuestadas) y 22
+variables.
+
+## 2. Voto por el PAC segun nivel educativo
+
+```{r}
+tabla <- ciep %>%
+  filter(!is.na(votopac), !is.na(educarec)) %>%
+  group_by(Nivel = factor(educarec, levels = c(1, 2, 3),
+                          labels = c("Primaria o menos", "Secundaria", "Universitaria"))) %>%
+  summarise(`% voto PAC` = round(100 * mean(as.numeric(votopac)), 1))
+
+tabla
+```
+
+## 3. Interpretacion
+
+**Interpretacion:**
+
+- Quienes tienen educacion universitaria votaron mas por el PAC (67,2 %),
+  seguidos de secundaria (36,1 %) y primaria o menos (28,1 %).
+- La relacion es **positiva**: a mayor educacion, mayor voto por el PAC.
+- **No** se cumple la expectativa. Si esperabamos que el PAC fuera apoyado
+  principalmente por los sectores con menos recursos (menor educacion),
+  encontramos lo contrario: el apoyo aumenta con la educacion. La teoria
+  planteada no se sostiene con estos datos.
+
+## 4. Conceptos
+
+- **Conjunto de datos:** archivo electronico organizado en filas y columnas
+  (aqui, el archivo `.dta` de la encuesta del CIEP).
+- **Observacion:** cada fila; una persona encuestada.
+- **Variable:** cada columna; una caracteristica medida (edad, sexo, voto...).
+- **Hipotesis:** expectativa empirica concreta derivada de una teoria, que puede
+  contrastarse con datos (por ejemplo, "el PAC recibe mas apoyo entre quienes
+  tienen menos educacion").

@@ -1,0 +1,339 @@
+# Ciencia de datos, ciencia politica y politicas publicas
+
+Este curso conecta la practica de las ciencias sociales con la formacion de
+pregrado de dos maneras: mostrando como las y los cientistas sociales usan
+herramientas de analisis de datos para estudiar la politica, y mostrando como
+esas herramientas se usan para mejorar la evaluacion de programas y el analisis
+de politicas publicas.
+
+¿Que herramientas usan las y los cientistas sociales para llegar a las
+conclusiones que aparecen en un manual introductorio? Si abrieras un texto
+basico sobre gobierno y politica, encontrarias una variedad de hallazgos sobre
+el comportamiento del electorado, las decisiones de las cortes y las acciones
+de quienes legislan. Esos hallazgos son **empiricos** (se basan en la
+observacion) y muchos implican encuestas y analisis estadistico. Quizas no veas
+el trabajo estadistico en el texto, pero los hallazgos suelen basarse en
+investigaciones publicadas en articulos de revistas especializadas, como la
+*American Political Science Review* o el *American Journal of Political
+Science*. Revisa un numero reciente de esas revistas y veras cuanto se han
+multiplicado los metodos estadisticos en la ciencia politica.
+
+¿Como usamos las herramientas del analisis de datos para mejorar las politicas
+publicas? ¿Viste la pelicula *Moneyball*? La idea del film (¡con Brad Pitt!) es
+que una franquicia de beisbol con pocos recursos usa modelos estadisticos para
+identificar jugadores con buen rendimiento que aun no tienen contratos
+lucrativos. El gerente arma un equipo con talento barato y pasado por alto que
+se vuelve muy competitivo. Quienes hacen ciencia de datos (estadisticos) emiten
+juicios sobre el potencial de los jugadores superiores a la intuicion de
+buscadores y entrenadores experimentados. Este enfoque hoy se usa en toda las
+Grandes Ligas y se extendio a otros deportes profesionales. Para un ejemplo de
+la NBA, ver Silver ([2019](#ref-silver_nba)). Altos cargos federales han
+promovido que un enfoque similar guie la asignacion del gasto publico. En el
+libro *Moneyball for Government*, Jim Nussle y Peter Orzag sostienen que las
+agencias federales deberian invertir recursos sustanciales en la evaluacion de
+programas, para asegurar que los escasos recursos fiscales se usen de la forma
+mas eficaz. Las herramientas de la ciencia de datos y de las ciencias sociales
+pueden usarse para identificar programas que ofrezcan soluciones eficaces a
+problemas urgentes ([Nussle and Orzag 2014](#ref-nussle)).
+
+Estos tipos de hallazgos (a partir de datos y modelos) tambien se estan
+filtrando en el periodismo, sobre todo en la cobertura de campanas y
+elecciones. Hace unos quince anos, un grupo de cientistas politicos que
+estudiaba el comportamiento electoral dedico un libro entero, *Unconventional
+Wisdom*, a senalar las discrepancias entre la forma en que el periodismo cubre
+las campanas y la forma en que la ciencia politica entiende como funcionan
+([Kaufmann, Petrocik, and Shaw 2008b](#ref-ucw1)). Pero esto esta cambiando.
+En 2014, Ezra Klein publico un breve articulo sobre como la ciencia politica ha
+influido en el periodismo politico: "How political science conquered
+Washington" ([Klein 2014](#ref-klein)). Algunas de las lecciones mas duraderas
+de la politica estadounidense hoy se integran al periodismo politico. El
+*Washington Post* incluso albergo un blog, *The Monkey Cage*, que publicaba
+resumenes legibles de investigaciones a menudo complejas. Una de mis entradas
+favoritas es "Was women's suffrage a failure? What new evidence tells us about
+the first women voters" ([Corder and Wolbrecht 2016](#ref-corder_mc)).
+
+## El papel de la teoria y el papel de la observacion
+
+¿Como hacemos "ciencia"? ¿Y es la ciencia social realmente una ciencia?
+
+**La ciencia es contrastacion de hipotesis.** Es importante distinguir entre
+afirmaciones empiricas (correlacion) y afirmaciones teoricas (causalidad).
+Todas las personas tenemos ideas sobre por que la gente actua de cierta manera:
+por que algunas deciden ir a la universidad, por que eligen ciertas profesiones,
+por que viven en una ciudad o barrio particular, o como escogen entre un amplio
+grupo de posibles candidatos presidenciales. Todas esas ideas son **teorias**, y
+una teoria tipica contiene expectativas empiricas concretas. Esas expectativas
+(a menudo llamadas formalmente "hipotesis") pueden contrastarse observando las
+acciones y decisiones de las personas.
+
+**La ciencia es falsable.** Otra caracteristica de la ciencia: deberias poder
+refutar una teoria (falsarla) observando algo en el mundo. Esto es distinto de
+decir o afirmar que hemos probado algo. Si no refutas tu teoria, aprendiste algo
+y otros pueden construir sobre ello. Un experimento o una observacion no prueban
+que tienes razon, solo que no estas equivocado. Hay una diferencia sutil.
+
+**La ciencia puede replicarse.** Tambien deberias poder reproducir un hallazgo
+empirico, lo que implica que pensamos la ciencia tambien como un procedimiento.
+
+La ciencia social atiende a todo esto: teoria, contrastacion de hipotesis con
+datos y replicacion.
+
+### Un ejemplo de contrastacion de teoria: ¿influye tu situacion economica personal en tu voto?
+
+Considera la decision de elegir a un candidato presidencial. ¿Cual es el vinculo
+entre tus finanzas personales y tu eleccion en una eleccion presidencial? Podrias
+esperar que el electorado evalue a los candidatos segun el efecto probable que
+tendran sobre su economia personal. Parece razonable querer un candidato que te
+deje mejor y no peor. Podria haber otras razones para apoyar a un candidato, e
+incluso podrias ser puramente altruista, apoyando a quien mejore la situacion de
+los demas. Pero una teoria que sugiere que el electorado presta atencion a las
+finanzas personales plantea una implicacion empirica muy concreta. Dicho simple:
+quienes tienen mas ingresos deberian apoyar a candidatos que actuen o prometan
+bajar la carga tributaria futura. Una persona de bajos ingresos no tendria el
+mismo incentivo y podria preferir a quien suba los impuestos a los ricos para
+financiar servicios dirigidos a los pobres.
+
+En Costa Rica, un razonamiento parecido se aplica al **Partido Accion Ciudadana
+(PAC)**, un partido de centroizquierda que llego al gobierno en 2018 con un
+discurso de ampliacion de derechos y proteccion social. Si el apoyo al PAC
+proviene principalmente de los sectores con menos recursos, deberiamos observar
+mas voto por el PAC entre quienes tienen **menor nivel educativo**. Veamos que
+dicen los datos.
+
+La encuesta del CIEP de noviembre de 2020 pregunto a las personas por su nivel
+educativo y por su voto en las elecciones de 2018. El nivel educativo no es una
+medida perfecta de los ingresos, pero es un buen indicador de los recursos
+socioeconomicos de una persona. Dividimos la muestra en tres grupos: primaria o
+menos, secundaria y universitaria. Con una tabla sencilla podemos comparar el
+voto de los grupos con mas y menos educacion.
+
+**Tabla \@ref(tab:table11) Porcentaje de voto por el PAC, segun nivel educativo**
+
+
+``` r
+tabla11 <- ciep %>%
+  filter(!is.na(votopac), !is.na(educ_f)) %>%
+  group_by(`Nivel educativo` = educ_f) %>%
+  summarise(`% voto PAC` = round(100 * mean(as.numeric(votopac)), 1))
+
+kable(tabla11,
+      caption = "Fuente: encuesta CIEP-UCR, noviembre 2020.",
+      align = "lc")
+```
+
+
+
+Table: (\#tab:table11)Fuente: encuesta CIEP-UCR, noviembre 2020.
+
+|Nivel educativo  | % voto PAC |
+|:----------------|:----------:|
+|Primaria o menos |    28.1    |
+|Secundaria       |    36.1    |
+|Universitaria    |    67.2    |
+
+
+
+Los resultados de la Tabla \@ref(tab:table11) no respaldan en absoluto la idea
+de que el PAC recibe mas apoyo entre quienes tienen menos educacion. Al
+contrario: el apoyo al PAC **aumenta** con el nivel educativo. Solo el 28,1 %
+de las personas con primaria o menos voto por el PAC, frente al 36,1 % de
+quienes tienen secundaria y al 67,2 % de quienes tienen formacion universitaria.
+El grupo con mas recursos es, con diferencia, el mas propenso a votar por el PAC.
+Este resultado simplemente no respalda la expectativa de que el voto por el PAC
+provenga de los sectores con menos educacion.
+
+## Los macrodatos en los negocios y en las ciencias sociales
+
+En un sentido importante, la proliferacion de modelos estadisticos y el
+surgimiento de la ciencia de datos son muy recientes. La teoria estadistica que
+necesitamos para explotar los datos existe desde hace decadas. La capacidad de
+computo que necesitamos para resolver muchos problemas tambien esta disponible
+en el escritorio desde hace mas de treinta anos. Lo nuevo es la capacidad de
+reunir y almacenar enormes cantidades de informacion de forma facil y barata.
+
+¿Donde encontramos datos? Las encuestas son una herramienta comun de observacion
+de individuos y la unica forma de datos que analizamos en este curso. El conjunto
+de datos que usamos es una encuesta de opinion publica relativamente grande
+(969 personas en el caso del CIEP de noviembre de 2020). Las encuestas de este
+tipo, grandes y a menudo cara a cara, pueden ser muy costosas: millones de
+dolares para administrar, organizar y publicar. Una encuesta menos ambiciosa
+puede ser bastante economica. Si una encuesta no es viable (por costos o por
+acceso a las personas), podemos aprovechar datos de fuentes oficiales: registros
+tributarios, resultados electorales o, en especial para la investigacion de
+politicas publicas, datos administrativos (¿cual es la multa promedio que impone
+cierta entidad? ¿cuantas personas fueron auditadas por la administracion
+tributaria? ¿que distritos escolares tienen alta tasa de graduacion?).
+
+Internet y los medios electronicos (y la recuperacion automatizada de datos) han
+hecho que el acceso a datos sea muy economico. Los scripts automatizados pueden
+extraer datos de cualquier sitio web de acceso publico. El monitoreo y la
+recoleccion de datos por parte de empresas (comercio y redes sociales) han
+generado enormes cantidades de informacion sobre consumidores y votantes: estos
+"macrodatos" son una fuente mas rica que las encuestas pequenas. Las ciencias
+sociales estan adoptando tambien estas herramientas.
+
+¿Te interesan los detalles? Busca el libro *Super Crunchers* (2007), del
+economista y profesor de derecho Ian Ayres. Leeremos un capitulo cuando
+aprendamos sobre modelos estadisticos ([Ayres 2007](#ref-ayres)).
+
+## ¿Que es la regresion y por que necesito entenderla?
+
+El curso esta disenado para que te sientas comodo con un enfoque de modelado
+estadistico llamado **regresion** o **regresion por minimos cuadrados
+ordinarios** (a veces abreviada MCO u OLS, por sus siglas en ingles). La idea es
+que identificamos algo que nos interesa comprender, quizas por que algunas
+personas votan o no, por que eligen cierto candidato, si compran un producto o
+si son diagnosticadas con cancer de pulmon. Luego seleccionamos un conjunto de
+cosas que creemos podrian predecir esos resultados (una teoria guia esas
+decisiones). Para la participacion electoral: ¿es la persona partidaria?, ¿es
+instruida? Para un diagnostico de cancer de pulmon: ¿fuma?, ¿es mayor o menor?
+Despues usamos los datos para contrastar el vinculo entre los factores que
+creemos importantes (los predictores) y el resultado de interes. MCO es la
+tecnica que usamos para determinar que factores importan y cuales no.
+
+¿Por que necesitas entenderlo? La regresion se usa ampliamente en muchos
+contextos: desde la evaluacion de programas hasta el marketing y las campanas.
+Si trabajas en una organizacion que recolecta y analiza datos de forma rutinaria,
+alguien usara modelos estadisticos para interpretarlos. Al terminar este curso,
+entenderas mejor que hacen y como lo hacen.
+
+## Tenemos datos. ¿Por que aprender estadistica?
+
+### Inferencia
+
+Las encuestas suelen ser muestras de una poblacion mas amplia: aprender sobre
+poblaciones a partir de muestras se llama **inferencia**, y es la razon principal
+por la que usamos estadistica en ciencia politica. Queremos ser precisos y
+cuidadosos sobre lo que podemos inferir de esas muestras limitadas.
+
+### Reporte y precision
+
+Una segunda razon es que necesitamos resumir grandes cantidades de datos (cientos
+o miles de respuestas) con uno o unos pocos numeros. Las figuras pueden hacer lo
+mismo (y a menudo son mejores), pero las descripciones estadisticas tambien
+pueden ser breves y faciles de entender. Si quieres conocer la edad de las
+personas inscritas en un programa, puedes comunicar esa informacion con un solo
+numero: la edad promedio de las personas participantes fue 22.
+
+## Dos advertencias: los datos no son perfectos y nada es determinista
+
+### Los datos no son perfectos
+
+Recolectar datos puede ser caro y dificil. Hay muchos lugares donde es probable
+encontrar datos de alta calidad. Las franquicias deportivas e incluso las
+universidades invierten un enorme esfuerzo en recolectar datos individuales de
+rendimiento de atletas. Una universidad podria invertir el mismo tipo de
+recursos en recolectar datos de rendimiento individual del profesorado. Las
+empresas pueden ser igual de metricas y guiadas por datos, y el gobierno avanza
+en la misma direccion. Pero se necesitan recursos, tiempo y dinero para
+recolectar, organizar, reportar y explotar datos de forma sistematica. Las
+organizaciones inteligentes capturan datos (enormes cantidades) como parte
+rutinaria del negocio (Facebook, por ejemplo). Las organizaciones menos agiles
+tienen datos almacenados en sistemas separados, dependen de la digitacion y son
+menos capaces de capturarlos. O, como ocurre en la investigacion academica,
+quien investiga debe inventar y desplegar disenos de encuesta o experimentales
+costosos, limitados por un presupuesto bastante acotado.
+
+Las ciencias sociales suelen tener recursos limitados y esas limitaciones,
+junto con razonables preocupaciones de privacidad, implican que dependemos de
+muestras relativamente pequenas y de informacion autoinformada (en lugar de una
+vigilancia o monitoreo extensos).
+
+Ademas de la simple falta de recursos, hay otras razones que complican la
+recoleccion de datos sociales. Primero, las estrategias de muestreo simples se
+han vuelto dificiles por los telefonos celulares y la fatiga de encuestas. Los
+celulares facilitan bloquear llamadas y reducen la probabilidad de participar.
+Hay tantos grupos haciendo encuestas que, durante una eleccion renhida, las
+personas pueden dejar de participar. Para una revision de estos temas tecnicos,
+ver Zukin ([2015](#ref-zukin)).
+
+El resultado final es que las muestras pueden ser pequenas y no representativas,
+y que las personas pueden responder de forma descuidada. Encima de esto,
+nuestras herramientas para registrar respuestas pueden ser toscas: unas pocas
+categorias de edad o de ingreso, o unas pocas categorias para capturar tu
+identificacion partidaria o clase social. En resumen, la medicion suele ser
+imprecisa y entendemos que el error de medicion puede ser un problema. La
+alternativa a depender de datos pobres o escasos es simplemente adivinar. Y eso
+rara vez es la mejor opcion.
+
+### Las relaciones observadas no son deterministas
+
+Una reaccion instintiva ante los modelos estadisticos del comportamiento humano
+es afirmar que reducir a una persona a una serie de numeros o a un pequeno
+conjunto de atributos es tosco, denigrante y contraproducente. No es una
+critica del todo ingenua: el comportamiento humano es complejo. Pero las
+ciencias sociales no pensamos el mundo como determinista: pensamos y describimos
+los hallazgos de forma probabilistica. Podemos afirmar con confianza que el 85 %
+de un grupo deberia votar. Eso implica que la probabilidad de que cualquier
+persona del grupo vote es del 85 %. Pero no nos sorprendera que algunas personas
+(el 15 %) no voten.
+
+## Hablar el lenguaje de las ciencias sociales
+
+Hablar de datos exige entender algunos terminos basicos: conjuntos de datos,
+observaciones, variables y libros de codigos (codebooks).
+
+### Conjunto de datos
+
+Un *conjunto de datos* (dataset) es un archivo electronico organizado en filas y
+columnas de numeros (ocasionalmente con texto), analogo a una gran hoja de
+calculo.
+
+### Observacion
+
+Cada **fila** del conjunto de datos describe una sola observacion: una persona,
+familia, senador, juez, estado o pais, segun el "nivel de analisis". Una *n*
+minuscula suele referirse al numero de observaciones (n = 969 designa 969
+observaciones).
+
+### Variable
+
+Cada **columna** del conjunto de datos describe una caracteristica de todas las
+observaciones. Una columna puede registrar edad, ingresos o la eleccion de voto.
+
+### Libro de codigos (codebook)
+
+Un *libro de codigos* es un documento que explica, con palabras, el significado
+de los numeros del conjunto de datos. Por ejemplo, 7 = "Extremadamente
+conservador" en una escala de opinion.
+
+## Una nota sobre el software estadistico
+
+Para este texto elegi centrarme en la estadistica y la interpretacion de la
+salida, mas que en aprender un programa estadistico particular.
+
+¿Que es el software estadistico? Hay varios paquetes estadisticos (programas
+para analizar datos) disponibles en el mercado y usados por las ciencias
+sociales. SPSS, STATA, R y SAS son los mas comunes. Puedes hacer trabajo
+estadistico en EXCEL, pero no esta disenado para el analisis estadistico y ni
+siquiera puedes estimar los modelos complejos que usaremos al final del curso.
+Cada programa tiene su nicho: SPSS es muy elemental y esta respaldado por IBM,
+pero no hay mucho detalle sobre los algoritmos subyacentes. SAS se usa mucho en
+la industria y admite un entorno de produccion (generar los mismos informes a
+partir de datos cambiantes). SAS exige habilidades de programacion y es caro.
+
+**R es gratuito** pero, como SAS, exige aprender un lenguaje de programacion
+para ejecutar scripts o ingresar comandos linea por linea. A muchas personas de
+las ciencias sociales les gusta que R sea de codigo abierto y que dependa de la
+comunidad para producir software especializado gratuito (paquetes) que resuelve
+problemas estadisticos complejos.
+
+**STATA** se usa mucho en ciencias sociales y de la vida. Aunque algo caro,
+admite tanto linea de comandos como scripts y genera graficos muy buenos.
+
+Este documento y toda la salida que produzcas en el curso se generan con **R** y
+**RMarkdown**. Si quieres conseguir un empleo en ciencia de datos, tendras que
+llevar cursos que ensenen a usar uno o varios programas estadisticos. Este curso
+te introduce a R y a un entorno grafico basado en la nube para R, RStudio
+(alojado por Posit).
+
+## ¿Que sigue?
+
+El siguiente capitulo te presenta algunos numeros basicos que usamos para
+describir la distribucion de las variables de un conjunto de datos. El foco
+sustantivo es como las personas se identifican con los principales partidos
+politicos y, sobre todo, como evaluan y apoyan el sistema politico. ¿Que es la
+identificacion partidaria? ¿Quien apoya al sistema politico costarricense? ¿Hay
+diferencias entre mujeres y hombres? Usaremos la encuesta del CIEP de noviembre
+de 2020 para responder estas preguntas y aprender a interpretar la salida
+estadistica para comunicar lo que sabemos.

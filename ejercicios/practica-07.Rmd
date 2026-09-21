@@ -1,0 +1,76 @@
+---
+title: "Practica 7: modelos con muchos predictores"
+author: "Nombre: ____________________"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+**Objetivo:** estimar un modelo multivariado, usar coeficientes estandarizados y
+hacer una comparacion controlada.
+
+## 1. Modelo bivariado (referencia)
+
+```{r}
+modelo_bi <- lm(as.numeric(nota_gob) ~ as.numeric(b6), data = ciep)
+summary(modelo_bi)$coefficients
+```
+
+## 2. Modelo multivariado
+
+```{r}
+modelo_multi <- lm(
+  as.numeric(nota_gob) ~ as.numeric(b6) + as.numeric(sit_economica) +
+    as.numeric(votopac) + as.numeric(educarec) + as.numeric(sexo) +
+    as.numeric(edad),
+  data = ciep
+)
+summary(modelo_multi)$coefficients
+```
+
+- ¿Que predictores son estadisticamente significativos (p < 0,05)?
+- Compara el coeficiente del apoyo al sistema en el modelo bivariado y en el
+  multivariado. ¿Cambio mucho?
+
+## 3. Coeficientes estandarizados
+
+```{r}
+b <- coef(modelo_multi)[-1]
+sy <- sd(modelo_multi$model[[1]])
+std <- b * sapply(modelo_multi$model[-1], sd) / sy
+round(std, 3)
+```
+
+- ¿Cual predictor tiene el mayor efecto estandarizado?
+
+## 4. Comparacion controlada
+
+Calcula el porcentaje de voto por el PAC por provincia, **controlando por nivel
+educativo**.
+
+```{r}
+ciep %>%
+  filter(!is.na(votopac), !is.na(provinciarec), !is.na(educarec)) %>%
+  group_by(Educacion = factor(educarec, levels = c(1, 2, 3),
+                              labels = c("Primaria", "Secundaria", "Universitaria")),
+           Provincia = factor(provinciarec, levels = c(0, 1),
+                              labels = c("Costera", "Central"))) %>%
+  summarise(`% voto PAC` = round(100 * mean(as.numeric(votopac)), 1), .groups = "drop")
+```
+
+- ¿La diferencia entre provincias se mantiene al controlar por educacion?
+- ¿Es un efecto aditivo, espurio, de confusion o interactivo? Explica.
+
+## 5. Conclusion
+
+Escribe un parrafo con la conclusion principal del modelo multivariado.
