@@ -77,3 +77,10 @@ atribucion, **sin uso comercial** y compartir igual.
 
 La traduccion, la adaptacion de ejemplos con datos del CIEP y los ejercicios son
 aportes originales de **Marco Artavia Pacheco**.
+
+### Uso permitido
+
+- **Si:** usar el material para ensenar, dar tutorias (cobrando el servicio), y
+  adaptarlo o compartirlo manteniendo la atribucion y la misma licencia.
+- **No:** vender el libro, los apuntes o sus derivados como producto. El material
+  en si no se comercializa; se cobra la tutorias (el servicio), no el recurso.
