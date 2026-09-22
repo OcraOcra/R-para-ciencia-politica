@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Capitulo 6 Regresion | Estadistica aplicada para la ciencia politica</title>
+<title>Capitulo 9 Regresion | Estadistica aplicada para la ciencia politica</title>
 <meta name="author" content="Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder">
 <meta name="description" content="Este capitulo introduce un enfoque de modelado estadistico llamado regresion o regresion por minimos cuadrados ordinarios (MCO u OLS). La idea es que identificamos algo que nos interesa...">
 <meta name="generator" content="bookdown 0.46 with bs4_book()">
-<meta property="og:title" content="Capitulo 6 Regresion | Estadistica aplicada para la ciencia politica">
+<meta property="og:title" content="Capitulo 9 Regresion | Estadistica aplicada para la ciencia politica">
 <meta property="og:type" content="book">
 <meta property="og:description" content="Este capitulo introduce un enfoque de modelado estadistico llamado regresion o regresion por minimos cuadrados ordinarios (MCO u OLS). La idea es que identificamos algo que nos interesa...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Capitulo 6 Regresion | Estadistica aplicada para la ciencia politica">
+<meta name="twitter:title" content="Capitulo 9 Regresion | Estadistica aplicada para la ciencia politica">
 <meta name="twitter:description" content="Este capitulo introduce un enfoque de modelado estadistico llamado regresion o regresion por minimos cuadrados ordinarios (MCO u OLS). La idea es que identificamos algo que nos interesa...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -69,15 +69,20 @@
 <li><a class="" href="index.html">Sobre este libro</a></li>
 <li><a class="" href="ciencia-de-datos-ciencia-politica-y-politicas-publicas.html"><span class="header-section-number">1</span> Ciencia de datos, ciencia politica y politicas publicas</a></li>
 <li><a class="" href="estadistica-descriptiva.html"><span class="header-section-number">2</span> Estadistica descriptiva</a></li>
-<li><a class="" href="introduccion-a-las-medidas-de-asociacion-la-correlacion.html"><span class="header-section-number">3</span> Introduccion a las medidas de asociacion: la correlacion</a></li>
-<li><a class="" href="medidas-de-asociacion-la-prueba-t.html"><span class="header-section-number">4</span> Medidas de asociacion: la prueba t</a></li>
-<li><a class="" href="medidas-de-asociacion-el-chi-cuadrado.html"><span class="header-section-number">5</span> Medidas de asociacion: el chi-cuadrado</a></li>
-<li><a class="active" href="regresion.html"><span class="header-section-number">6</span> Regresion</a></li>
-<li><a class="" href="modelos-estadisticos-con-muchos-predictores.html"><span class="header-section-number">7</span> Modelos estadisticos con muchos predictores</a></li>
+<li><a class="" href="la-curva-normal-y-los-puntajes-z.html"><span class="header-section-number">3</span> La curva normal y los puntajes z</a></li>
+<li><a class="" href="introduccion-a-las-medidas-de-asociacion-la-correlacion.html"><span class="header-section-number">4</span> Introduccion a las medidas de asociacion: la correlacion</a></li>
+<li><a class="" href="medidas-de-asociacion-la-prueba-t.html"><span class="header-section-number">5</span> Medidas de asociacion: la prueba t</a></li>
+<li><a class="" href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html"><span class="header-section-number">6</span> La diferencia de medias paso a paso: prueba z, prueba t e intervalo de confianza</a></li>
+<li><a class="" href="analisis-de-varianza-prueba-f-anova.html"><span class="header-section-number">7</span> Analisis de varianza (prueba F): ANOVA</a></li>
+<li><a class="" href="medidas-de-asociacion-el-chi-cuadrado.html"><span class="header-section-number">8</span> Medidas de asociacion: el chi-cuadrado</a></li>
+<li><a class="active" href="regresion.html"><span class="header-section-number">9</span> Regresion</a></li>
+<li><a class="" href="modelos-estadisticos-con-muchos-predictores.html"><span class="header-section-number">10</span> Modelos estadisticos con muchos predictores</a></li>
+<li><a class="" href="regresion-desde-la-simulacion-y-visualizacion-de-modelos.html"><span class="header-section-number">11</span> Regresion desde la simulacion y visualizacion de modelos</a></li>
+<li><a class="" href="lecturas-recomendadas.html">Lecturas recomendadas</a></li>
 <li><a class="" href="referencias.html">Referencias</a></li>
 <li><a class="" href="sobre-el-autor-original.html">Sobre el autor original</a></li>
 <li><a class="" href="sobre-esta-adaptacion.html">Sobre esta adaptacion</a></li>
-<li><a class="" href="codebook-encuesta-ciep-ucr-noviembre-2020.html"><span class="header-section-number">8</span> Codebook: encuesta CIEP-UCR, noviembre 2020</a></li>
+<li><a class="" href="codebook-encuesta-ciep-ucr-noviembre-2020.html"><span class="header-section-number">12</span> Codebook: encuesta CIEP-UCR, noviembre 2020</a></li>
 </ul>
 
         <div class="book-extra">
@@ -85,9 +90,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="regresion" class="section level1" number="6">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="regresion" class="section level1" number="9">
 <h1>
-<span class="header-section-number">Capitulo 6</span> Regresion<a class="anchor" aria-label="anchor" href="#regresion"><i class="fas fa-link"></i></a>
+<span class="header-section-number">Capitulo 9</span> Regresion<a class="anchor" aria-label="anchor" href="#regresion"><i class="fas fa-link"></i></a>
 </h1>
 <p>Este capitulo introduce un enfoque de modelado estadistico llamado <strong>regresion</strong>
 o <strong>regresion por minimos cuadrados ordinarios</strong> (MCO u OLS). La idea es que
@@ -102,9 +107,9 @@ usamos para determinar que factores importan y cuales no.</p>
 programas hasta el marketing y las campanas. Si trabajas en una organizacion que
 recolecta y analiza datos de forma rutinaria, alguien usara modelos estadisticos
 para interpretarlos, y MCO puede ser una de sus herramientas.</p>
-<div id="por-que-no-usar-simplemente-medidas-de-asociacion" class="section level2" number="6.1">
+<div id="por-que-no-usar-simplemente-medidas-de-asociacion" class="section level2" number="9.1">
 <h2>
-<span class="header-section-number">6.1</span> ¿Por que no usar simplemente medidas de asociacion?<a class="anchor" aria-label="anchor" href="#por-que-no-usar-simplemente-medidas-de-asociacion"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1</span> ¿Por que no usar simplemente medidas de asociacion?<a class="anchor" aria-label="anchor" href="#por-que-no-usar-simplemente-medidas-de-asociacion"><i class="fas fa-link"></i></a>
 </h2>
 <p>Las medidas de asociacion de los capitulos anteriores permiten evaluar el vinculo
 entre una variable dependiente (<span class="math inline">\(Y\)</span>) y una variable independiente (<span class="math inline">\(X\)</span>) con el
@@ -127,12 +132,12 @@ de <span class="math inline">\(Y\)</span>?</p>
 <p>Una alternativa a las medidas de asociacion, el <strong>modelo lineal simple</strong> (la
 regresion, o MCO), permite manejar ambos problemas. En este capitulo nos centramos
 en un modelo de dos variables, que ayuda con el problema de comunicar informacion
-especifica sobre el tamano del efecto. En el capitulo 7 extendemos el modelo para
+especifica sobre el tamano del efecto. En el capitulo 10 extendemos el modelo para
 incluir mas de una variable <span class="math inline">\(X\)</span>.</p>
 </div>
-<div id="regresion-por-minimos-cuadrados-ordinarios-mco" class="section level2" number="6.2">
+<div id="regresion-por-minimos-cuadrados-ordinarios-mco" class="section level2" number="9.2">
 <h2>
-<span class="header-section-number">6.2</span> Regresion por minimos cuadrados ordinarios (MCO)<a class="anchor" aria-label="anchor" href="#regresion-por-minimos-cuadrados-ordinarios-mco"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.2</span> Regresion por minimos cuadrados ordinarios (MCO)<a class="anchor" aria-label="anchor" href="#regresion-por-minimos-cuadrados-ordinarios-mco"><i class="fas fa-link"></i></a>
 </h2>
 <p>La regresion lineal supone una “forma funcional” particular para la relacion entre
 <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span>: que la relacion puede resumirse con una <strong>linea</strong> (y no con una curva u
@@ -177,9 +182,9 @@ recuerdas la geometria, la formula de una recta es:</p>
 <p><span class="math display">\[\Delta{Y} = \Delta{X}*\beta_1\]</span></p>
 <p>Este calculo (el tamano del cambio en <span class="math inline">\(Y\)</span> dado un cambio en <span class="math inline">\(X\)</span>) sera la forma
 clave de interpretar y comparar el tamano de los efectos con MCO.</p>
-<div id="graficar-relaciones-entre-dos-variables" class="section level3" number="6.2.1">
+<div id="graficar-relaciones-entre-dos-variables" class="section level3" number="9.2.1">
 <h3>
-<span class="header-section-number">6.2.1</span> Graficar relaciones entre dos variables<a class="anchor" aria-label="anchor" href="#graficar-relaciones-entre-dos-variables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.2.1</span> Graficar relaciones entre dos variables<a class="anchor" aria-label="anchor" href="#graficar-relaciones-entre-dos-variables"><i class="fas fa-link"></i></a>
 </h3>
 <p>La relacion entre dos variables puede ser lineal o tomar otra forma (en U, una
 curva). Una forma de entender la utilidad del modelo lineal es producir un
@@ -188,12 +193,12 @@ es lineal. El ejemplo siguiente usa datos publicados por <span class="citation">
 dependiente (Y) es el porcentaje de legisladoras mujeres en la legislatura estatal
 y la variable independiente (X) es el porcentaje de la poblacion estatal que se
 adhiere a la fe cristiana. Un diagrama de dispersion para los 50 estados
-estadounidenses aparece en la Figura <a href="regresion.html#fig:figure61">6.1</a>.</p>
-<p><strong>Figura <a href="regresion.html#fig:figure61">6.1</a> Diagrama de dispersion: mujeres en la legislatura estatal segun la proporcion de residentes cristianos</strong></p>
+estadounidenses aparece en la Figura <a href="regresion.html#fig:figure61">9.1</a>.</p>
+<p><strong>Figura <a href="regresion.html#fig:figure61">9.1</a> Diagrama de dispersion: mujeres en la legislatura estatal segun la proporcion de residentes cristianos</strong></p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:figure61"></span>
 <img src="images/states_scatter.png" alt="Mujeres en la legislatura estatal y proporcion de residentes cristianos" width="90%"><p class="caption">
-Figura 6.1. Mujeres en la legislatura estatal y proporcion de residentes cristianos
+Figura 9.1. Mujeres en la legislatura estatal y proporcion de residentes cristianos
 </p>
 </div>
 <p>Experimenta dibujando la linea que crees que describe mejor el vinculo entre las
@@ -204,12 +209,12 @@ linea podria ser bastante empinada o bastante plana.</p>
 interesan los dos parametros que describen la linea: la pendiente y el intercepto.
 ¿Que criterio usamos para elegir una linea sobre otra? El criterio que usamos es
 <strong>minimizar la suma de los errores al cuadrado</strong>. La recta de regresion real se
-agrega a los datos en la Figura <a href="regresion.html#fig:figure62">6.2</a>.</p>
-<p><strong>Figura <a href="regresion.html#fig:figure62">6.2</a> Diagrama de dispersion con la recta MCO</strong></p>
+agrega a los datos en la Figura <a href="regresion.html#fig:figure62">9.2</a>.</p>
+<p><strong>Figura <a href="regresion.html#fig:figure62">9.2</a> Diagrama de dispersion con la recta MCO</strong></p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:figure62"></span>
 <img src="images/states_OLS.png" alt="Diagrama de dispersion con la recta de regresion" width="90%"><p class="caption">
-Figura 6.2. Diagrama de dispersion con la recta de regresion
+Figura 9.2. Diagrama de dispersion con la recta de regresion
 </p>
 </div>
 <p>La recta que mejor se ajusta a los datos tiene una pendiente de -0,35. Como <span class="math inline">\(Y\)</span> es
@@ -218,9 +223,9 @@ que <span class="math inline">\(\Delta Y = \Delta X * \beta_1\)</span>. Si compa
 cristianas con uno de 50 % (<span class="math inline">\(\Delta X = 20\)</span>), esperariamos ver -0,35*20, es decir,
 una caida de 7 puntos en el porcentaje previsto de legisladoras.</p>
 </div>
-<div id="calculo-en-el-modelo-lineal-simple" class="section level3" number="6.2.2">
+<div id="calculo-en-el-modelo-lineal-simple" class="section level3" number="9.2.2">
 <h3>
-<span class="header-section-number">6.2.2</span> Calculo en el modelo lineal simple<a class="anchor" aria-label="anchor" href="#calculo-en-el-modelo-lineal-simple"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.2.2</span> Calculo en el modelo lineal simple<a class="anchor" aria-label="anchor" href="#calculo-en-el-modelo-lineal-simple"><i class="fas fa-link"></i></a>
 </h3>
 <p>La regresion resume los datos con una linea que minimiza la suma del error al
 cuadrado (<span class="math inline">\(\epsilon^2\)</span>). Para el modelo bivariado, el calculo de <span class="math inline">\(\beta_1\)</span> es
@@ -235,28 +240,28 @@ entre grupos: las diferencias de grupo importan mas que si todos los grupos esta
 altos o bajos en <span class="math inline">\(Y\)</span>. La formula del intercepto asegura que el valor promedio de
 <span class="math inline">\(X\)</span> este asociado al valor promedio de <span class="math inline">\(Y\)</span>.</p>
 </div>
-<div id="que-tan-restrictiva-es-la-suposicion-de-linealidad" class="section level3" number="6.2.3">
+<div id="que-tan-restrictiva-es-la-suposicion-de-linealidad" class="section level3" number="9.2.3">
 <h3>
-<span class="header-section-number">6.2.3</span> ¿Que tan restrictiva es la suposicion de linealidad?<a class="anchor" aria-label="anchor" href="#que-tan-restrictiva-es-la-suposicion-de-linealidad"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.2.3</span> ¿Que tan restrictiva es la suposicion de linealidad?<a class="anchor" aria-label="anchor" href="#que-tan-restrictiva-es-la-suposicion-de-linealidad"><i class="fas fa-link"></i></a>
 </h3>
-<p>El diagrama de dispersion de la Figura <a href="regresion.html#fig:figure62">6.2</a> revela dos cosas.
+<p>El diagrama de dispersion de la Figura <a href="regresion.html#fig:figure62">9.2</a> revela dos cosas.
 Primero, hay mucho error: es una relacion “ruidosa”. Segundo, parece razonable
 usar una linea para describir los datos. Podemos evaluarlo permitiendo que <span class="math inline">\(X\)</span> y
-<span class="math inline">\(Y\)</span> se vinculen de otra forma. La Figura <a href="regresion.html#fig:figure63">6.3</a> resume los puntos con
+<span class="math inline">\(Y\)</span> se vinculen de otra forma. La Figura <a href="regresion.html#fig:figure63">9.3</a> resume los puntos con
 un “suavizador” local. Incluso con este enfoque muy flexible, la relacion parece
 cercana a lineal.</p>
-<p><strong>Figura <a href="regresion.html#fig:figure63">6.3</a> Diagrama de dispersion con suavizador local</strong></p>
+<p><strong>Figura <a href="regresion.html#fig:figure63">9.3</a> Diagrama de dispersion con suavizador local</strong></p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:figure63"></span>
 <img src="images/states_smooth.png" alt="Diagrama de dispersion con suavizador local" width="90%"><p class="caption">
-Figura 6.3. Diagrama de dispersion con suavizador local
+Figura 9.3. Diagrama de dispersion con suavizador local
 </p>
 </div>
 </div>
 </div>
-<div id="interpretar-los-coeficientes-de-regresion" class="section level2" number="6.3">
+<div id="interpretar-los-coeficientes-de-regresion" class="section level2" number="9.3">
 <h2>
-<span class="header-section-number">6.3</span> Interpretar los coeficientes de regresion<a class="anchor" aria-label="anchor" href="#interpretar-los-coeficientes-de-regresion"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.3</span> Interpretar los coeficientes de regresion<a class="anchor" aria-label="anchor" href="#interpretar-los-coeficientes-de-regresion"><i class="fas fa-link"></i></a>
 </h2>
 <p>El modelo lineal supone que <span class="math inline">\(Y\)</span> es una funcion lineal de <span class="math inline">\(X\)</span>. Los datos se usan
 para contrastar si la relacion (la pendiente) es positiva, negativa o cero.
@@ -271,11 +276,11 @@ nula). La relacion entre <span class="math inline">\(X\)</span> y <span class="m
 <p>Para ver como funciona la regresion en la practica, usamos dos ejemplos: el
 vinculo entre la nota al gobierno y el apoyo al sistema, y el vinculo entre la
 nota al gobierno y la edad.</p>
-<div id="ejemplo-evaluacion-del-gobierno-y-apoyo-al-sistema" class="section level4" number="6.3.0.1">
+<div id="ejemplo-evaluacion-del-gobierno-y-apoyo-al-sistema" class="section level4" number="9.3.0.1">
 <h4>
-<span class="header-section-number">6.3.0.1</span> <strong>Ejemplo: evaluacion del gobierno y apoyo al sistema</strong><a class="anchor" aria-label="anchor" href="#ejemplo-evaluacion-del-gobierno-y-apoyo-al-sistema"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.3.0.1</span> <strong>Ejemplo: evaluacion del gobierno y apoyo al sistema</strong><a class="anchor" aria-label="anchor" href="#ejemplo-evaluacion-del-gobierno-y-apoyo-al-sistema"><i class="fas fa-link"></i></a>
 </h4>
-<p><strong>Tabla 6.1 Nota al gobierno en funcion del apoyo al sistema</strong></p>
+<p><strong>Tabla 9.1 Nota al gobierno en funcion del apoyo al sistema</strong></p>
 <pre><code>
 =================================
                  Nota al gobierno
@@ -301,15 +306,15 @@ la escala de 0 a 10.</p>
 confiados de que, en la poblacion, quienes mas apoyan al sistema evaluan mejor al
 gobierno.</p>
 </div>
-<div id="ejemplo-nota-al-gobierno-y-edad" class="section level4" number="6.3.0.2">
+<div id="ejemplo-nota-al-gobierno-y-edad" class="section level4" number="9.3.0.2">
 <h4>
-<span class="header-section-number">6.3.0.2</span> <strong>Ejemplo: nota al gobierno y edad</strong><a class="anchor" aria-label="anchor" href="#ejemplo-nota-al-gobierno-y-edad"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.3.0.2</span> <strong>Ejemplo: nota al gobierno y edad</strong><a class="anchor" aria-label="anchor" href="#ejemplo-nota-al-gobierno-y-edad"><i class="fas fa-link"></i></a>
 </h4>
-<p>En el capitulo 3 vimos el vinculo entre la edad y la evaluacion de los partidos.
+<p>En el capitulo 4 vimos el vinculo entre la edad y la evaluacion de los partidos.
 Ahora consideramos si la edad predice la nota al gobierno. Si <span class="math inline">\(Y\)</span> es la nota al
 gobierno (0 a 10) y <span class="math inline">\(X\)</span> es la edad, esperariamos que las personas mayores evaluen
 de forma distinta al gobierno.</p>
-<p><strong>Tabla 6.2 Nota al gobierno y edad</strong></p>
+<p><strong>Tabla 9.2 Nota al gobierno y edad</strong></p>
 <pre><code>
 ============================
             Nota al gobierno
@@ -333,25 +338,25 @@ entre la edad y la nota al gobierno.</p>
 resultados de una regresion.</p>
 </div>
 </div>
-<div id="contrastacion-de-hipotesis-con-mco" class="section level2" number="6.4">
+<div id="contrastacion-de-hipotesis-con-mco" class="section level2" number="9.4">
 <h2>
-<span class="header-section-number">6.4</span> Contrastacion de hipotesis con MCO<a class="anchor" aria-label="anchor" href="#contrastacion-de-hipotesis-con-mco"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4</span> Contrastacion de hipotesis con MCO<a class="anchor" aria-label="anchor" href="#contrastacion-de-hipotesis-con-mco"><i class="fas fa-link"></i></a>
 </h2>
 <p>Ademas de usar la salida de la regresion para conocer la direccion y el tamano de
 la relacion, tambien la usamos para evaluar la significancia estadistica y que tan
 bien el modelo se ajusta a los datos.</p>
-<div id="una-nota-tecnica-sobre-la-prueba-t" class="section level3" number="6.4.1">
+<div id="una-nota-tecnica-sobre-la-prueba-t" class="section level3" number="9.4.1">
 <h3>
-<span class="header-section-number">6.4.1</span> Una nota tecnica sobre la prueba t<a class="anchor" aria-label="anchor" href="#una-nota-tecnica-sobre-la-prueba-t"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.1</span> Una nota tecnica sobre la prueba t<a class="anchor" aria-label="anchor" href="#una-nota-tecnica-sobre-la-prueba-t"><i class="fas fa-link"></i></a>
 </h3>
 <p>La prueba t es simplemente una prueba t de una muestra sobre si <span class="math inline">\(\beta_1 = 0\)</span>:</p>
 <p><span class="math display">\[t=\frac{\beta_1-0}{\sigma_{\beta_1}} \]</span></p>
 <p>El termino de arriba es la diferencia entre el coeficiente observado y cero. El de
 abajo es la desviacion estandar del coeficiente.</p>
 </div>
-<div id="el-error-de-muestreo-o-desviacion-estandar-de-beta_1" class="section level3" number="6.4.2">
+<div id="el-error-de-muestreo-o-desviacion-estandar-de-beta_1" class="section level3" number="9.4.2">
 <h3>
-<span class="header-section-number">6.4.2</span> El error de muestreo o desviacion estandar de <span class="math inline">\(\beta_1\)</span><a class="anchor" aria-label="anchor" href="#el-error-de-muestreo-o-desviacion-estandar-de-beta_1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.2</span> El error de muestreo o desviacion estandar de <span class="math inline">\(\beta_1\)</span><a class="anchor" aria-label="anchor" href="#el-error-de-muestreo-o-desviacion-estandar-de-beta_1"><i class="fas fa-link"></i></a>
 </h3>
 <p>El coeficiente de pendiente tiene una distribucion muestral como otras medidas de
 asociacion. Si tomaras varias muestras, el promedio de las pendientes seria la
@@ -370,9 +375,9 @@ precision, queremos un n grande, valores de <span class="math inline">\(X\)</spa
 especificado (pocos errores).</p>
 </div>
 </div>
-<div id="evaluar-la-bondad-de-ajuste" class="section level2" number="6.5">
+<div id="evaluar-la-bondad-de-ajuste" class="section level2" number="9.5">
 <h2>
-<span class="header-section-number">6.5</span> Evaluar la bondad de ajuste<a class="anchor" aria-label="anchor" href="#evaluar-la-bondad-de-ajuste"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.5</span> Evaluar la bondad de ajuste<a class="anchor" aria-label="anchor" href="#evaluar-la-bondad-de-ajuste"><i class="fas fa-link"></i></a>
 </h2>
 <p>Ademas de los coeficientes y la prueba de significancia, la salida de regresion
 incluye una medida util de la “bondad de ajuste”: la <strong>R<sup>2</sup></strong> (R cuadrada). El
@@ -390,9 +395,9 @@ el ejemplo de la edad, la R<sup>2</sup> es practicamente cero, asi que es un mod
 se ajusta a los datos. En el ejemplo del apoyo al sistema, la R<sup>2</sup> es 0,153:
 alrededor del 15 % de la variacion en la nota al gobierno se explica por el apoyo
 al sistema.</p>
-<div id="usar-la-r2-en-la-practica" class="section level3" number="6.5.1">
+<div id="usar-la-r2-en-la-practica" class="section level3" number="9.5.1">
 <h3>
-<span class="header-section-number">6.5.1</span> Usar la R<sup>2</sup> en la practica<a class="anchor" aria-label="anchor" href="#usar-la-r2-en-la-practica"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.5.1</span> Usar la R<sup>2</sup> en la practica<a class="anchor" aria-label="anchor" href="#usar-la-r2-en-la-practica"><i class="fas fa-link"></i></a>
 </h3>
 <p>La R<sup>2</sup> no es util para comparar tipos de modelos muy distintos (distintos niveles
 de agregacion o variables dependientes muy diferentes). Si es util para comparar
@@ -400,9 +405,9 @@ el rendimiento general de modelos similares. La mejor forma de entender la R<sup
 es que reporta la proporcion de la suma de cuadrados explicada por el modelo.</p>
 </div>
 </div>
-<div id="variables-dummy" class="section level2" number="6.6">
+<div id="variables-dummy" class="section level2" number="9.6">
 <h2>
-<span class="header-section-number">6.6</span> Variables dummy<a class="anchor" aria-label="anchor" href="#variables-dummy"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6</span> Variables dummy<a class="anchor" aria-label="anchor" href="#variables-dummy"><i class="fas fa-link"></i></a>
 </h2>
 <p>Algunas situaciones de investigacion exigen usar variables categoricas o nominales
 (estado civil, provincia, genero, religion) en el modelo lineal. Usamos variables
@@ -411,13 +416,13 @@ es que reporta la proporcion de la suma de cuadrados explicada por el modelo.</p
 razon para esperar que “central” sea el doble de algo que “costera”? No. Una
 alternativa es crear una variable que identifique a las personas de un grupo de
 interes como “1” y al resto como “0”.</p>
-<div id="ejemplos-de-variables-dummy" class="section level3" number="6.6.1">
+<div id="ejemplos-de-variables-dummy" class="section level3" number="9.6.1">
 <h3>
-<span class="header-section-number">6.6.1</span> Ejemplos de variables dummy<a class="anchor" aria-label="anchor" href="#ejemplos-de-variables-dummy"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6.1</span> Ejemplos de variables dummy<a class="anchor" aria-label="anchor" href="#ejemplos-de-variables-dummy"><i class="fas fa-link"></i></a>
 </h3>
-<div id="genero" class="section level4" number="6.6.1.1">
+<div id="genero" class="section level4" number="9.6.1.1">
 <h4>
-<span class="header-section-number">6.6.1.1</span> Genero<a class="anchor" aria-label="anchor" href="#genero"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6.1.1</span> Genero<a class="anchor" aria-label="anchor" href="#genero"><i class="fas fa-link"></i></a>
 </h4>
 <p>Si nos interesara la diferencia entre hombres y mujeres, podriamos crear una
 variable dummy con dos categorias:</p>
@@ -433,7 +438,7 @@ variable dummy con dos categorias:</p>
 <p><span class="math display">\[Y=\beta_0+\beta_1\]</span></p>
 <p>El ejemplo siguiente usa una variable dummy de genero para predecir la nota al
 gobierno.</p>
-<p><strong>Tabla 6.3 Nota al gobierno y genero</strong></p>
+<p><strong>Tabla 9.3 Nota al gobierno y genero</strong></p>
 <pre><code>
 ===============================
                Nota al gobierno
@@ -456,15 +461,15 @@ Adjusted R2         0.002
 <p>El efecto no es estadisticamente significativo (p = 0,104), asi que no podemos
 concluir que hombres y mujeres difieran en su evaluacion del gobierno.</p>
 </div>
-<div id="educacion" class="section level4" number="6.6.1.2">
+<div id="educacion" class="section level4" number="9.6.1.2">
 <h4>
-<span class="header-section-number">6.6.1.2</span> Educacion<a class="anchor" aria-label="anchor" href="#educacion"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6.1.2</span> Educacion<a class="anchor" aria-label="anchor" href="#educacion"><i class="fas fa-link"></i></a>
 </h4>
 <p>Usando una dummy para educacion, podriamos comparar directamente el efecto de la
 educacion con el efecto del genero. Si la comparacion de interes es tener
 educacion universitaria frente al resto, podriamos crear una dummy que tome dos
 valores: 0 (primaria o secundaria) y 1 (universitaria).</p>
-<p><strong>Tabla 6.4 Nota al gobierno y educacion universitaria</strong></p>
+<p><strong>Tabla 9.4 Nota al gobierno y educacion universitaria</strong></p>
 <pre><code>
 ======================================
                       Nota al gobierno
@@ -486,9 +491,9 @@ que en el caso del genero, asi que la educacion predice mejor la nota al gobiern
 que el sexo.</p>
 </div>
 </div>
-<div id="que-pasa-si-x-tiene-mas-de-dos-categorias" class="section level3" number="6.6.2">
+<div id="que-pasa-si-x-tiene-mas-de-dos-categorias" class="section level3" number="9.6.2">
 <h3>
-<span class="header-section-number">6.6.2</span> ¿Que pasa si <span class="math inline">\(X\)</span> tiene mas de dos categorias?<a class="anchor" aria-label="anchor" href="#que-pasa-si-x-tiene-mas-de-dos-categorias"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6.2</span> ¿Que pasa si <span class="math inline">\(X\)</span> tiene mas de dos categorias?<a class="anchor" aria-label="anchor" href="#que-pasa-si-x-tiene-mas-de-dos-categorias"><i class="fas fa-link"></i></a>
 </h3>
 <p>Si quieres usar una variable con muchas categorias, necesitas varias variables
 dummy. Si tienes N categorias, necesitas N-1 dummies. En los ejemplos anteriores
@@ -496,7 +501,7 @@ teniamos dos categorias, asi que necesitabamos una dummy. Si quisieramos contras
 diferencias entre las tres categorias educativas (primaria, secundaria,
 universitaria), necesitariamos dos dummies, tomando una categoria como <strong>base</strong>.
 Tomamos “Primaria o menos” como base.</p>
-<p><strong>Tabla 6.5 Nota al gobierno y nivel educativo (tres categorias)</strong></p>
+<p><strong>Tabla 9.5 Nota al gobierno y nivel educativo (tres categorias)</strong></p>
 <pre><code>
 ==============================
               Nota al gobierno
@@ -521,9 +526,9 @@ de este modelo es un poco mayor que usando una sola dummy, asi que el modelo se
 ajusta un poco mejor.</p>
 </div>
 </div>
-<div id="resumen" class="section level2" number="6.7">
+<div id="resumen-3" class="section level2" number="9.7">
 <h2>
-<span class="header-section-number">6.7</span> Resumen<a class="anchor" aria-label="anchor" href="#resumen"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.7</span> Resumen<a class="anchor" aria-label="anchor" href="#resumen-3"><i class="fas fa-link"></i></a>
 </h2>
 <p>El modelo lineal expresa la relacion entre dos variables. La variable dependiente
 es predecible (mas o menos) a partir de la variable independiente. Los coeficientes
@@ -536,37 +541,37 @@ comparar grupos que no se pueden ordenar de forma significativa.</p>
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="medidas-de-asociacion-el-chi-cuadrado.html"><span class="header-section-number">5</span> Medidas de asociacion: el chi-cuadrado</a></div>
-<div class="next"><a href="modelos-estadisticos-con-muchos-predictores.html"><span class="header-section-number">7</span> Modelos estadisticos con muchos predictores</a></div>
+<div class="prev"><a href="medidas-de-asociacion-el-chi-cuadrado.html"><span class="header-section-number">8</span> Medidas de asociacion: el chi-cuadrado</a></div>
+<div class="next"><a href="modelos-estadisticos-con-muchos-predictores.html"><span class="header-section-number">10</span> Modelos estadisticos con muchos predictores</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#regresion"><span class="header-section-number">6</span> Regresion</a></li>
-<li><a class="nav-link" href="#por-que-no-usar-simplemente-medidas-de-asociacion"><span class="header-section-number">6.1</span> ¿Por que no usar simplemente medidas de asociacion?</a></li>
+<li><a class="nav-link" href="#regresion"><span class="header-section-number">9</span> Regresion</a></li>
+<li><a class="nav-link" href="#por-que-no-usar-simplemente-medidas-de-asociacion"><span class="header-section-number">9.1</span> ¿Por que no usar simplemente medidas de asociacion?</a></li>
 <li>
-<a class="nav-link" href="#regresion-por-minimos-cuadrados-ordinarios-mco"><span class="header-section-number">6.2</span> Regresion por minimos cuadrados ordinarios (MCO)</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#graficar-relaciones-entre-dos-variables"><span class="header-section-number">6.2.1</span> Graficar relaciones entre dos variables</a></li>
-<li><a class="nav-link" href="#calculo-en-el-modelo-lineal-simple"><span class="header-section-number">6.2.2</span> Calculo en el modelo lineal simple</a></li>
-<li><a class="nav-link" href="#que-tan-restrictiva-es-la-suposicion-de-linealidad"><span class="header-section-number">6.2.3</span> ¿Que tan restrictiva es la suposicion de linealidad?</a></li>
+<a class="nav-link" href="#regresion-por-minimos-cuadrados-ordinarios-mco"><span class="header-section-number">9.2</span> Regresion por minimos cuadrados ordinarios (MCO)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#graficar-relaciones-entre-dos-variables"><span class="header-section-number">9.2.1</span> Graficar relaciones entre dos variables</a></li>
+<li><a class="nav-link" href="#calculo-en-el-modelo-lineal-simple"><span class="header-section-number">9.2.2</span> Calculo en el modelo lineal simple</a></li>
+<li><a class="nav-link" href="#que-tan-restrictiva-es-la-suposicion-de-linealidad"><span class="header-section-number">9.2.3</span> ¿Que tan restrictiva es la suposicion de linealidad?</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#interpretar-los-coeficientes-de-regresion"><span class="header-section-number">6.3</span> Interpretar los coeficientes de regresion</a></li>
+<li><a class="nav-link" href="#interpretar-los-coeficientes-de-regresion"><span class="header-section-number">9.3</span> Interpretar los coeficientes de regresion</a></li>
 <li>
-<a class="nav-link" href="#contrastacion-de-hipotesis-con-mco"><span class="header-section-number">6.4</span> Contrastacion de hipotesis con MCO</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#una-nota-tecnica-sobre-la-prueba-t"><span class="header-section-number">6.4.1</span> Una nota tecnica sobre la prueba t</a></li>
-<li><a class="nav-link" href="#el-error-de-muestreo-o-desviacion-estandar-de-beta_1"><span class="header-section-number">6.4.2</span> El error de muestreo o desviacion estandar de \(\beta_1\)</a></li>
+<a class="nav-link" href="#contrastacion-de-hipotesis-con-mco"><span class="header-section-number">9.4</span> Contrastacion de hipotesis con MCO</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#una-nota-tecnica-sobre-la-prueba-t"><span class="header-section-number">9.4.1</span> Una nota tecnica sobre la prueba t</a></li>
+<li><a class="nav-link" href="#el-error-de-muestreo-o-desviacion-estandar-de-beta_1"><span class="header-section-number">9.4.2</span> El error de muestreo o desviacion estandar de \(\beta_1\)</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#evaluar-la-bondad-de-ajuste"><span class="header-section-number">6.5</span> Evaluar la bondad de ajuste</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#usar-la-r2-en-la-practica"><span class="header-section-number">6.5.1</span> Usar la R2 en la practica</a></li></ul>
+<a class="nav-link" href="#evaluar-la-bondad-de-ajuste"><span class="header-section-number">9.5</span> Evaluar la bondad de ajuste</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#usar-la-r2-en-la-practica"><span class="header-section-number">9.5.1</span> Usar la R2 en la practica</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#variables-dummy"><span class="header-section-number">6.6</span> Variables dummy</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#ejemplos-de-variables-dummy"><span class="header-section-number">6.6.1</span> Ejemplos de variables dummy</a></li>
-<li><a class="nav-link" href="#que-pasa-si-x-tiene-mas-de-dos-categorias"><span class="header-section-number">6.6.2</span> ¿Que pasa si \(X\) tiene mas de dos categorias?</a></li>
+<a class="nav-link" href="#variables-dummy"><span class="header-section-number">9.6</span> Variables dummy</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ejemplos-de-variables-dummy"><span class="header-section-number">9.6.1</span> Ejemplos de variables dummy</a></li>
+<li><a class="nav-link" href="#que-pasa-si-x-tiene-mas-de-dos-categorias"><span class="header-section-number">9.6.2</span> ¿Que pasa si \(X\) tiene mas de dos categorias?</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#resumen"><span class="header-section-number">6.7</span> Resumen</a></li>
+<li><a class="nav-link" href="#resumen-3"><span class="header-section-number">9.7</span> Resumen</a></li>
 </ul>
 
       <div class="book-extra">

@@ -78,7 +78,7 @@ programa fue dirigida a servicios y un tercio fue postergada 18 meses. ¿La
 capacitacion y los servicios ofrecidos a personas desempleadas aumentan sus
 ingresos? Los resultados se resumen en las dos figuras siguientes.
 
-**Figura 3.1. Efectos estimados de los programas JTPA sobre los ingresos**
+**Figura 4.1. Efectos estimados de los programas JTPA sobre los ingresos**
 
 **Mujeres de 21 anos o mas**
 
@@ -238,7 +238,7 @@ medida que aumenta el apoyo al sistema) tambien se observa en la poblacion mas
 amplia? Usamos estadistica, en concreto un grupo de estadisticos de prueba
 conocidos como **medidas de asociacion**, para hacer una **inferencia** sobre la
 relacion en la poblacion. Una de estas medidas, la correlacion, se introduce
-brevemente abajo; las otras dos se desarrollan en los capitulos 4 y 5.
+brevemente abajo; las otras dos se desarrollan en los capitulos 5 y 8.
 
 La inferencia es aprender sobre algo que no podemos observar a partir de algo que
 si podemos observar. Podemos observar muestras pequenas; a menudo no podemos
@@ -269,7 +269,7 @@ en la muestra **estadisticamente significativo**?
 - **Significancia estadistica.** ¿El efecto observado podria deberse al azar?
 
 Nos centraremos en el tamano y la direccion al aprender la correlacion, y pasaremos
-al concepto de significancia estadistica en el capitulo 5.
+al concepto de significancia estadistica en el capitulo 8.
 
 Recordemos los tipos de variables. Distinguimos entre variables **categoricas**
 (las personas se agrupan en categorias que no se pueden ordenar: provincia,
@@ -390,11 +390,11 @@ categorias es arbitrario, no debes usar correlacion, porque seria enganosa.
 ### Leer una matriz de correlacion
 
 La mayoria de los programas estadisticos producen las correlaciones en forma de
-**matriz**. La Tabla 3.2 reproduce la salida que resume el vinculo
+**matriz**. La Tabla 4.2 reproduce la salida que resume el vinculo
 entre la nota al gobierno y la nota a los partidos politicos. Por ahora solo
 necesitamos fijarnos en un numero, la correlacion de Pearson.
 
-**Tabla 3.2 Correlacion entre la nota al gobierno y la nota a los partidos**
+**Tabla 4.2 Correlacion entre la nota al gobierno y la nota a los partidos**
 
 
 ```
@@ -410,10 +410,10 @@ el vinculo no es perfecto: hay personas que califican bien a uno y mal al otro.
 
 Nota que la forma mas util de usar la correlacion es **comparar** las correlaciones
 entre dos pares de variables del mismo conjunto de datos. La Tabla
-3.3 trata la nota al gobierno como variable dependiente $Y$ y
+4.3 trata la nota al gobierno como variable dependiente $Y$ y
 contrasta el vinculo con varios predictores.
 
-**Tabla 3.3 Matriz de correlacion: apoyo al sistema, notas a instituciones, educacion y edad**
+**Tabla 4.3 Matriz de correlacion: apoyo al sistema, notas a instituciones, educacion y edad**
 
 
 ```

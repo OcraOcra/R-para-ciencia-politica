@@ -1,0 +1,77 @@
+---
+title: "Practica 12: correlacion con datos nativos y correlograma"
+author: "Nombre: ____________________"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+library(corrplot)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+**Objetivo:** calcular matrices de correlacion con datos nativos de R, identificar
+las correlaciones mas fuertes y representarlas con un correlograma.
+
+## 1. `mtcars`: matriz de correlacion
+
+`mtcars` contiene datos de 32 automoviles de 1973-1974.
+
+```{r}
+cor_mtcars <- cor(mtcars)
+round(cor_mtcars, 2)
+```
+
+- ¿Cual es el par de variables con la correlacion **positiva mas alta**?
+- ¿Cual es el par con la correlacion **mas cercana a cero**?
+- ¿Cual es la correlacion mas fuerte en valor absoluto (positiva o negativa)?
+
+## 2. Correlacion negativa: `mpg` y `wt`
+
+```{r}
+# Diagrama de dispersion con recta de regresion
+library(ggpmisc)
+
+ggplot(mtcars, aes(x = mpg, y = wt)) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm") +
+  stat_poly_eq() +
+  labs(title = "Relacion entre mpg y wt",
+       subtitle = "Linea de regresion",
+       x = "Millas por galon (mpg)", y = "Peso (wt)") +
+  theme_minimal()
+```
+
+- Interpreta la relacion. ¿Por que tiene sentido que sea negativa?
+- ¿Que representa el R2 que aparece en el grafico?
+
+## 3. Correlograma de `mtcars`
+
+```{r}
+corrplot(cor_mtcars, method = "square", type = "lower",
+         order = "hclust", tl.col = "black", tl.srt = 45,
+         addCoef.col = TRUE)
+```
+
+- ¿Que color representa las correlaciones positivas y cual las negativas?
+
+## 4. Otros conjuntos de datos
+
+```{r}
+# airquality: hay valores faltantes, se eliminan con na.omit()
+air_tidy <- na.omit(airquality)
+round(cor(air_tidy), 2)
+
+# USArrests: arrestos por estado en 1973
+round(cor(USArrests), 2)
+```
+
+- En `airquality`, ¿que variable se relaciona mas con el ozono (`Ozone`)?
+- En `USArrests`, ¿el `UrbanPop` se relaciona con `Murder`? ¿Es fuerte o debil?

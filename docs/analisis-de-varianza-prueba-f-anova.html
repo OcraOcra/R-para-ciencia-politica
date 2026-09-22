@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capitulo 7 Analisis de varianza (prueba F): ANOVA | Estadistica aplicada para la ciencia politica</title>
+<meta name="author" content="Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder">
+<meta name="description" content="La prueba t compara las medias de dos grupos. ¿Que hacemos cuando queremos comparar tres o mas grupos? Si compararamos cada par de grupos con pruebas t separadas, cometeriamos mas errores de tipo...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Capitulo 7 Analisis de varianza (prueba F): ANOVA | Estadistica aplicada para la ciencia politica">
+<meta property="og:type" content="book">
+<meta property="og:description" content="La prueba t compara las medias de dos grupos. ¿Que hacemos cuando queremos comparar tres o mas grupos? Si compararamos cada par de grupos con pruebas t separadas, cometeriamos mas errores de tipo...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capitulo 7 Analisis de varianza (prueba F): ANOVA | Estadistica aplicada para la ciencia politica">
+<meta name="twitter:description" content="La prueba t compara las medias de dos grupos. ¿Que hacemos cuando queremos comparar tres o mas grupos? Si compararamos cada par de grupos con pruebas t separadas, cometeriamos mas errores de tipo...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 0em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Estadistica aplicada para la ciencia politica</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Sobre este libro</a></li>
+<li><a class="" href="ciencia-de-datos-ciencia-politica-y-politicas-publicas.html"><span class="header-section-number">1</span> Ciencia de datos, ciencia politica y politicas publicas</a></li>
+<li><a class="" href="estadistica-descriptiva.html"><span class="header-section-number">2</span> Estadistica descriptiva</a></li>
+<li><a class="" href="la-curva-normal-y-los-puntajes-z.html"><span class="header-section-number">3</span> La curva normal y los puntajes z</a></li>
+<li><a class="" href="introduccion-a-las-medidas-de-asociacion-la-correlacion.html"><span class="header-section-number">4</span> Introduccion a las medidas de asociacion: la correlacion</a></li>
+<li><a class="" href="medidas-de-asociacion-la-prueba-t.html"><span class="header-section-number">5</span> Medidas de asociacion: la prueba t</a></li>
+<li><a class="" href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html"><span class="header-section-number">6</span> La diferencia de medias paso a paso: prueba z, prueba t e intervalo de confianza</a></li>
+<li><a class="active" href="analisis-de-varianza-prueba-f-anova.html"><span class="header-section-number">7</span> Analisis de varianza (prueba F): ANOVA</a></li>
+<li><a class="" href="medidas-de-asociacion-el-chi-cuadrado.html"><span class="header-section-number">8</span> Medidas de asociacion: el chi-cuadrado</a></li>
+<li><a class="" href="regresion.html"><span class="header-section-number">9</span> Regresion</a></li>
+<li><a class="" href="modelos-estadisticos-con-muchos-predictores.html"><span class="header-section-number">10</span> Modelos estadisticos con muchos predictores</a></li>
+<li><a class="" href="regresion-desde-la-simulacion-y-visualizacion-de-modelos.html"><span class="header-section-number">11</span> Regresion desde la simulacion y visualizacion de modelos</a></li>
+<li><a class="" href="lecturas-recomendadas.html">Lecturas recomendadas</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+<li><a class="" href="sobre-el-autor-original.html">Sobre el autor original</a></li>
+<li><a class="" href="sobre-esta-adaptacion.html">Sobre esta adaptacion</a></li>
+<li><a class="" href="codebook-encuesta-ciep-ucr-noviembre-2020.html"><span class="header-section-number">12</span> Codebook: encuesta CIEP-UCR, noviembre 2020</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="analisis-de-varianza-prueba-f-anova" class="section level1" number="7">
+<h1>
+<span class="header-section-number">Capitulo 7</span> Analisis de varianza (prueba F): ANOVA<a class="anchor" aria-label="anchor" href="#analisis-de-varianza-prueba-f-anova"><i class="fas fa-link"></i></a>
+</h1>
+<p>La prueba t compara las medias de <strong>dos</strong> grupos. ¿Que hacemos cuando queremos
+comparar <strong>tres o mas</strong> grupos? Si compararamos cada par de grupos con pruebas t
+separadas, cometeriamos mas errores de tipo I (cada prueba agrega una oportunidad
+de rechazar <span class="math inline">\(H_0\)</span> por azar). El <strong>analisis de varianza (ANOVA)</strong> resuelve el
+problema con una sola prueba global basada en la razon <strong>F</strong>. Este capitulo sigue
+el material del curso CP-2007 (<span class="citation">(<a href="referencias.html#ref-gomez2025">Gomez Campos 2025</a>)</span>) y de <span class="citation">(<a href="referencias.html#ref-levin1999">Levin 1999</a>)</span>.</p>
+<div id="la-idea-detras-del-anova" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> La idea detras del ANOVA<a class="anchor" aria-label="anchor" href="#la-idea-detras-del-anova"><i class="fas fa-link"></i></a>
+</h2>
+<p>El ANOVA trata la variacion total de un conjunto de puntajes como si se pudiera
+dividir en dos componentes:</p>
+<ul>
+<li>la <strong>variacion dentro de los grupos</strong>: la distancia entre cada puntaje y la
+media de su propio grupo; y</li>
+<li>la <strong>variacion entre los grupos</strong>: la distancia entre las medias de los grupos.</li>
+</ul>
+<p>La razon <strong>F</strong> compara ambos componentes:</p>
+<p><span class="math display">\[F=\frac{\text{variacion entre grupos}}{\text{variacion dentro de los grupos}}\]</span></p>
+<p>Cuanto mayor sea la variacion entre los grupos en relacion con la variacion dentro
+de ellos, mayor sera la razon F y mayor la probabilidad de rechazar la hipotesis
+nula. La hipotesis nula del ANOVA es que <strong>todas las medias poblacionales de los
+grupos son iguales</strong>.</p>
+</div>
+<div id="procedimiento-manual-en-catorce-pasos" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> Procedimiento manual en catorce pasos<a class="anchor" aria-label="anchor" href="#procedimiento-manual-en-catorce-pasos"><i class="fas fa-link"></i></a>
+</h2>
+<p>Para ilustrar el procedimiento usamos el ejemplo clasico de Levin (<span class="citation">(<a href="referencias.html#ref-levin1999">Levin 1999</a>)</span>):
+¿varia el coeficiente intelectual (C.I.) segun la clase social? Se comparan tres
+grupos (alta, media y baja), con cinco observaciones cada uno.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="analisis-de-varianza-prueba-f-anova.html#cb27-1" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb27-2"><a href="analisis-de-varianza-prueba-f-anova.html#cb27-2" tabindex="-1"></a>  <span class="at">Alta  =</span> <span class="fu">c</span>(<span class="dv">130</span>, <span class="dv">125</span>, <span class="dv">130</span>, <span class="dv">120</span>, <span class="dv">122</span>),</span>
+<span id="cb27-3"><a href="analisis-de-varianza-prueba-f-anova.html#cb27-3" tabindex="-1"></a>  <span class="at">Media =</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">115</span>, <span class="dv">115</span>, <span class="dv">110</span>, <span class="dv">112</span>),</span>
+<span id="cb27-4"><a href="analisis-de-varianza-prueba-f-anova.html#cb27-4" tabindex="-1"></a>  <span class="at">Baja  =</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">100</span>, <span class="dv">90</span>, <span class="dv">100</span>, <span class="dv">85</span>)</span>
+<span id="cb27-5"><a href="analisis-de-varianza-prueba-f-anova.html#cb27-5" tabindex="-1"></a>)</span>
+<span id="cb27-6"><a href="analisis-de-varianza-prueba-f-anova.html#cb27-6" tabindex="-1"></a>datos</span>
+<span id="cb27-7"><a href="analisis-de-varianza-prueba-f-anova.html#cb27-7" tabindex="-1"></a>  Alta Media Baja</span>
+<span id="cb27-8"><a href="analisis-de-varianza-prueba-f-anova.html#cb27-8" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">130</span>   <span class="dv">120</span>  <span class="dv">110</span></span>
+<span id="cb27-9"><a href="analisis-de-varianza-prueba-f-anova.html#cb27-9" tabindex="-1"></a><span class="dv">2</span>  <span class="dv">125</span>   <span class="dv">115</span>  <span class="dv">100</span></span>
+<span id="cb27-10"><a href="analisis-de-varianza-prueba-f-anova.html#cb27-10" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">130</span>   <span class="dv">115</span>   <span class="dv">90</span></span>
+<span id="cb27-11"><a href="analisis-de-varianza-prueba-f-anova.html#cb27-11" tabindex="-1"></a><span class="dv">4</span>  <span class="dv">120</span>   <span class="dv">110</span>  <span class="dv">100</span></span>
+<span id="cb27-12"><a href="analisis-de-varianza-prueba-f-anova.html#cb27-12" tabindex="-1"></a><span class="dv">5</span>  <span class="dv">122</span>   <span class="dv">112</span>   <span class="dv">85</span></span></code></pre></div>
+<p>Las hipotesis son:</p>
+<ul>
+<li>
+<span class="math inline">\(H_0\)</span>: las clases alta, media y baja no difieren en su coeficiente intelectual.</li>
+<li>
+<span class="math inline">\(H_1\)</span>: las clases alta, media y baja difieren en su coeficiente intelectual.</li>
+</ul>
+<p>Los pasos 1 a 9 calculan la razon F; los pasos 10 a 14 la interpretan y localizan
+las diferencias.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-1" tabindex="-1"></a><span class="co"># Paso 1: media de cada grupo</span></span>
+<span id="cb28-2"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-2" tabindex="-1"></a>prom_alta  <span class="ot">&lt;-</span> <span class="fu">mean</span>(datos<span class="sc">$</span>Alta)</span>
+<span id="cb28-3"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-3" tabindex="-1"></a>prom_media <span class="ot">&lt;-</span> <span class="fu">mean</span>(datos<span class="sc">$</span>Media)</span>
+<span id="cb28-4"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-4" tabindex="-1"></a>prom_baja  <span class="ot">&lt;-</span> <span class="fu">mean</span>(datos<span class="sc">$</span>Baja)</span>
+<span id="cb28-5"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-5" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-6" tabindex="-1"></a><span class="co"># Tamano total y por grupo</span></span>
+<span id="cb28-7"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-7" tabindex="-1"></a>N_total <span class="ot">&lt;-</span> <span class="fu">nrow</span>(datos) <span class="sc">*</span> <span class="fu">ncol</span>(datos)</span>
+<span id="cb28-8"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-8" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(datos)</span>
+<span id="cb28-9"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-9" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">ncol</span>(datos)</span>
+<span id="cb28-10"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-10" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-11" tabindex="-1"></a><span class="co"># Paso 2: suma total de cuadrados</span></span>
+<span id="cb28-12"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-12" tabindex="-1"></a>SC_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(datos<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> (<span class="fu">sum</span>(datos))<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> N_total</span>
+<span id="cb28-13"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-13" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-14" tabindex="-1"></a><span class="co"># Paso 3: suma de cuadrados entre grupos</span></span>
+<span id="cb28-15"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-15" tabindex="-1"></a>SC_entre <span class="ot">&lt;-</span> (<span class="fu">sum</span>(datos<span class="sc">$</span>Alta)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> N <span class="sc">+</span> <span class="fu">sum</span>(datos<span class="sc">$</span>Media)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> N <span class="sc">+</span></span>
+<span id="cb28-16"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-16" tabindex="-1"></a>             <span class="fu">sum</span>(datos<span class="sc">$</span>Baja)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> N) <span class="sc">-</span> (<span class="fu">sum</span>(datos))<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> N_total</span>
+<span id="cb28-17"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-17" tabindex="-1"></a></span>
+<span id="cb28-18"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-18" tabindex="-1"></a><span class="co"># Paso 4: suma de cuadrados dentro de los grupos</span></span>
+<span id="cb28-19"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-19" tabindex="-1"></a>SC_dentro <span class="ot">&lt;-</span> SC_total <span class="sc">-</span> SC_entre</span>
+<span id="cb28-20"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-20" tabindex="-1"></a></span>
+<span id="cb28-21"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-21" tabindex="-1"></a><span class="co"># Pasos 5 y 6: grados de libertad</span></span>
+<span id="cb28-22"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-22" tabindex="-1"></a>gl_entre <span class="ot">&lt;-</span> k <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb28-23"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-23" tabindex="-1"></a>gl_dentro <span class="ot">&lt;-</span> N_total <span class="sc">-</span> k</span>
+<span id="cb28-24"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-24" tabindex="-1"></a></span>
+<span id="cb28-25"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-25" tabindex="-1"></a><span class="co"># Pasos 7 y 8: medias cuadraticas</span></span>
+<span id="cb28-26"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-26" tabindex="-1"></a>MC_entre <span class="ot">&lt;-</span> SC_entre <span class="sc">/</span> gl_entre</span>
+<span id="cb28-27"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-27" tabindex="-1"></a>MC_dentro <span class="ot">&lt;-</span> SC_dentro <span class="sc">/</span> gl_dentro</span>
+<span id="cb28-28"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-28" tabindex="-1"></a></span>
+<span id="cb28-29"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-29" tabindex="-1"></a><span class="co"># Paso 9: razon F experimental</span></span>
+<span id="cb28-30"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-30" tabindex="-1"></a>F_exp <span class="ot">&lt;-</span> MC_entre <span class="sc">/</span> MC_dentro</span>
+<span id="cb28-31"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-31" tabindex="-1"></a></span>
+<span id="cb28-32"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-32" tabindex="-1"></a><span class="fu">c</span>(<span class="at">prom_alta =</span> prom_alta, <span class="at">prom_media =</span> prom_media, <span class="at">prom_baja =</span> prom_baja,</span>
+<span id="cb28-33"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-33" tabindex="-1"></a>  <span class="at">SC_total =</span> SC_total, <span class="at">SC_entre =</span> SC_entre, <span class="at">SC_dentro =</span> SC_dentro,</span>
+<span id="cb28-34"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-34" tabindex="-1"></a>  <span class="at">F_exp =</span> F_exp)</span>
+<span id="cb28-35"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-35" tabindex="-1"></a> prom_alta prom_media  prom_baja   SC_total   SC_entre  SC_dentro </span>
+<span id="cb28-36"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-36" tabindex="-1"></a> <span class="fl">125.40000</span>  <span class="fl">114.40000</span>   <span class="fl">97.00000</span> <span class="fl">2570.93333</span> <span class="fl">2050.53333</span>  <span class="fl">520.40000</span> </span>
+<span id="cb28-37"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-37" tabindex="-1"></a>     F_exp </span>
+<span id="cb28-38"><a href="analisis-de-varianza-prueba-f-anova.html#cb28-38" tabindex="-1"></a>  <span class="fl">23.64181</span> </span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="analisis-de-varianza-prueba-f-anova.html#cb29-1" tabindex="-1"></a><span class="co"># Paso 10: valor critico de F (tabla F) para 0,05 con gl 2 y 12</span></span>
+<span id="cb29-2"><a href="analisis-de-varianza-prueba-f-anova.html#cb29-2" tabindex="-1"></a>F_teorica <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="fl">0.95</span>, gl_entre, gl_dentro)</span>
+<span id="cb29-3"><a href="analisis-de-varianza-prueba-f-anova.html#cb29-3" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F_experimental =</span> F_exp, <span class="at">F_teorica =</span> F_teorica,</span>
+<span id="cb29-4"><a href="analisis-de-varianza-prueba-f-anova.html#cb29-4" tabindex="-1"></a>  <span class="at">gl_entre =</span> gl_entre, <span class="at">gl_dentro =</span> gl_dentro)</span>
+<span id="cb29-5"><a href="analisis-de-varianza-prueba-f-anova.html#cb29-5" tabindex="-1"></a>F_experimental      F_teorica       gl_entre      gl_dentro </span>
+<span id="cb29-6"><a href="analisis-de-varianza-prueba-f-anova.html#cb29-6" tabindex="-1"></a>     <span class="fl">23.641814</span>       <span class="fl">3.885294</span>       <span class="fl">2.000000</span>      <span class="fl">12.000000</span> </span></code></pre></div>
+<p>La F experimental (23,64) es mayor que la F teorica (3,89). Por lo tanto,
+<strong>rechazamos <span class="math inline">\(H_0\)</span></strong>: si hay diferencias en el coeficiente intelectual segun la
+clase social. Ahora necesitamos saber <strong>entre cuales grupos</strong> estan esas
+diferencias.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="analisis-de-varianza-prueba-f-anova.html#cb30-1" tabindex="-1"></a><span class="co"># Paso 11: diferencias de medias entre todos los pares de grupos</span></span>
+<span id="cb30-2"><a href="analisis-de-varianza-prueba-f-anova.html#cb30-2" tabindex="-1"></a>Dif_AltaMedia <span class="ot">&lt;-</span> <span class="fu">abs</span>(prom_alta <span class="sc">-</span> prom_media)</span>
+<span id="cb30-3"><a href="analisis-de-varianza-prueba-f-anova.html#cb30-3" tabindex="-1"></a>Dif_AltaBaja  <span class="ot">&lt;-</span> <span class="fu">abs</span>(prom_alta <span class="sc">-</span> prom_baja)</span>
+<span id="cb30-4"><a href="analisis-de-varianza-prueba-f-anova.html#cb30-4" tabindex="-1"></a>Dif_MediaBaja <span class="ot">&lt;-</span> <span class="fu">abs</span>(prom_media <span class="sc">-</span> prom_baja)</span>
+<span id="cb30-5"><a href="analisis-de-varianza-prueba-f-anova.html#cb30-5" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="analisis-de-varianza-prueba-f-anova.html#cb30-6" tabindex="-1"></a><span class="co"># Paso 12: valor q-alpha (tabla del rango studentizado) para k = 3, gl = 12, 0,05</span></span>
+<span id="cb30-7"><a href="analisis-de-varianza-prueba-f-anova.html#cb30-7" tabindex="-1"></a>q_alpha <span class="ot">&lt;-</span> <span class="fu">qtukey</span>(<span class="fl">0.95</span>, k, gl_dentro)</span>
+<span id="cb30-8"><a href="analisis-de-varianza-prueba-f-anova.html#cb30-8" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="analisis-de-varianza-prueba-f-anova.html#cb30-9" tabindex="-1"></a><span class="co"># Paso 13: Diferencia Significativa Honesta (DSH) de Tukey</span></span>
+<span id="cb30-10"><a href="analisis-de-varianza-prueba-f-anova.html#cb30-10" tabindex="-1"></a>DSH <span class="ot">&lt;-</span> q_alpha <span class="sc">*</span> <span class="fu">sqrt</span>(MC_dentro <span class="sc">/</span> N)</span>
+<span id="cb30-11"><a href="analisis-de-varianza-prueba-f-anova.html#cb30-11" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="analisis-de-varianza-prueba-f-anova.html#cb30-12" tabindex="-1"></a><span class="fu">c</span>(<span class="at">q_alpha =</span> q_alpha, <span class="at">DSH =</span> DSH,</span>
+<span id="cb30-13"><a href="analisis-de-varianza-prueba-f-anova.html#cb30-13" tabindex="-1"></a>  <span class="at">AltaMedia =</span> Dif_AltaMedia, <span class="at">AltaBaja =</span> Dif_AltaBaja, <span class="at">MediaBaja =</span> Dif_MediaBaja)</span>
+<span id="cb30-14"><a href="analisis-de-varianza-prueba-f-anova.html#cb30-14" tabindex="-1"></a>  q_alpha       DSH AltaMedia  AltaBaja MediaBaja </span>
+<span id="cb30-15"><a href="analisis-de-varianza-prueba-f-anova.html#cb30-15" tabindex="-1"></a> <span class="fl">3.772929</span> <span class="fl">11.111473</span> <span class="fl">11.000000</span> <span class="fl">28.400000</span> <span class="fl">17.400000</span> </span></code></pre></div>
+<p><strong>Paso 14: comparar cada diferencia con la DSH.</strong></p>
+<ul>
+<li>Alta vs. Media (11) es <strong>menor</strong> que la DSH (11,10): no hay diferencia
+significativa.</li>
+<li>Alta vs. Baja (28,4) es <strong>mayor</strong> que la DSH: si hay diferencia significativa.</li>
+<li>Media vs. Baja (17,4) es <strong>mayor</strong> que la DSH: si hay diferencia significativa.</li>
+</ul>
+<p>El analisis confirma que hay diferencias en el coeficiente intelectual segun la
+clase social, pero solo entre la clase alta y la baja y entre la media y la baja.
+No hay diferencias significativas entre la clase alta y la media.</p>
+</div>
+<div id="comprobacion-con-las-funciones-de-r" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> Comprobacion con las funciones de R<a class="anchor" aria-label="anchor" href="#comprobacion-con-las-funciones-de-r"><i class="fas fa-link"></i></a>
+</h2>
+<p>Para usar <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> necesitamos transformar los datos a formato <strong>largo</strong> (una
+columna con la clase social y otra con el coeficiente intelectual), usando
+<code>pivot_longer()</code>.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-1" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb31-2"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-2" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-3" tabindex="-1"></a>df_tidy <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-4" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"clase"</span>, <span class="at">values_to =</span> <span class="st">"ci"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-5"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clase =</span> <span class="fu">factor</span>(clase, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Alta"</span>, <span class="st">"Media"</span>, <span class="st">"Baja"</span>)))</span>
+<span id="cb31-6"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-6" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-7" tabindex="-1"></a>df_tidy</span>
+<span id="cb31-8"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-8" tabindex="-1"></a><span class="co"># A tibble: 15 × 2</span></span>
+<span id="cb31-9"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-9" tabindex="-1"></a>   clase    ci</span>
+<span id="cb31-10"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-10" tabindex="-1"></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb31-11"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-11" tabindex="-1"></a> <span class="dv">1</span> Alta    <span class="dv">130</span></span>
+<span id="cb31-12"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-12" tabindex="-1"></a> <span class="dv">2</span> Media   <span class="dv">120</span></span>
+<span id="cb31-13"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-13" tabindex="-1"></a> <span class="dv">3</span> Baja    <span class="dv">110</span></span>
+<span id="cb31-14"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-14" tabindex="-1"></a> <span class="dv">4</span> Alta    <span class="dv">125</span></span>
+<span id="cb31-15"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-15" tabindex="-1"></a> <span class="dv">5</span> Media   <span class="dv">115</span></span>
+<span id="cb31-16"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-16" tabindex="-1"></a> <span class="dv">6</span> Baja    <span class="dv">100</span></span>
+<span id="cb31-17"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-17" tabindex="-1"></a> <span class="dv">7</span> Alta    <span class="dv">130</span></span>
+<span id="cb31-18"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-18" tabindex="-1"></a> <span class="dv">8</span> Media   <span class="dv">115</span></span>
+<span id="cb31-19"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-19" tabindex="-1"></a> <span class="dv">9</span> Baja     <span class="dv">90</span></span>
+<span id="cb31-20"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-20" tabindex="-1"></a><span class="dv">10</span> Alta    <span class="dv">120</span></span>
+<span id="cb31-21"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-21" tabindex="-1"></a><span class="dv">11</span> Media   <span class="dv">110</span></span>
+<span id="cb31-22"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-22" tabindex="-1"></a><span class="dv">12</span> Baja    <span class="dv">100</span></span>
+<span id="cb31-23"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-23" tabindex="-1"></a><span class="dv">13</span> Alta    <span class="dv">122</span></span>
+<span id="cb31-24"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-24" tabindex="-1"></a><span class="dv">14</span> Media   <span class="dv">112</span></span>
+<span id="cb31-25"><a href="analisis-de-varianza-prueba-f-anova.html#cb31-25" tabindex="-1"></a><span class="dv">15</span> Baja     <span class="dv">85</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="analisis-de-varianza-prueba-f-anova.html#cb32-1" tabindex="-1"></a>res_anova <span class="ot">&lt;-</span> <span class="fu">aov</span>(ci <span class="sc">~</span> clase, <span class="at">data =</span> df_tidy)</span>
+<span id="cb32-2"><a href="analisis-de-varianza-prueba-f-anova.html#cb32-2" tabindex="-1"></a><span class="fu">summary</span>(res_anova)</span>
+<span id="cb32-3"><a href="analisis-de-varianza-prueba-f-anova.html#cb32-3" tabindex="-1"></a>            Df Sum Sq Mean Sq F value   <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
+<span id="cb32-4"><a href="analisis-de-varianza-prueba-f-anova.html#cb32-4" tabindex="-1"></a>clase        <span class="dv">2</span> <span class="fl">2050.5</span>  <span class="fl">1025.3</span>   <span class="fl">23.64</span> <span class="fl">6.88e-05</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb32-5"><a href="analisis-de-varianza-prueba-f-anova.html#cb32-5" tabindex="-1"></a>Residuals   <span class="dv">12</span>  <span class="fl">520.4</span>    <span class="fl">43.4</span>                     </span>
+<span id="cb32-6"><a href="analisis-de-varianza-prueba-f-anova.html#cb32-6" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb32-7"><a href="analisis-de-varianza-prueba-f-anova.html#cb32-7" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span></code></pre></div>
+<p>La salida reproduce el procedimiento manual: <code>Sum Sq</code> son las sumas de cuadrados,
+<code>Mean Sq</code> las medias cuadraticas, <code>F value</code> la razon F y <code>Pr(&gt;F)</code> el valor p. Como
+p = 6,88e-05 (mucho menor que 0,05), rechazamos <span class="math inline">\(H_0\)</span>.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="analisis-de-varianza-prueba-f-anova.html#cb33-1" tabindex="-1"></a><span class="co"># Prueba post hoc de Tukey: ¿que pares de grupos difieren?</span></span>
+<span id="cb33-2"><a href="analisis-de-varianza-prueba-f-anova.html#cb33-2" tabindex="-1"></a><span class="fu">TukeyHSD</span>(res_anova)</span>
+<span id="cb33-3"><a href="analisis-de-varianza-prueba-f-anova.html#cb33-3" tabindex="-1"></a>  Tukey multiple comparisons of means</span>
+<span id="cb33-4"><a href="analisis-de-varianza-prueba-f-anova.html#cb33-4" tabindex="-1"></a>    <span class="dv">95</span>% family<span class="sc">-</span>wise confidence level</span>
+<span id="cb33-5"><a href="analisis-de-varianza-prueba-f-anova.html#cb33-5" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="analisis-de-varianza-prueba-f-anova.html#cb33-6" tabindex="-1"></a>Fit<span class="sc">:</span> <span class="fu">aov</span>(<span class="at">formula =</span> ci <span class="sc">~</span> clase, <span class="at">data =</span> df_tidy)</span>
+<span id="cb33-7"><a href="analisis-de-varianza-prueba-f-anova.html#cb33-7" tabindex="-1"></a></span>
+<span id="cb33-8"><a href="analisis-de-varianza-prueba-f-anova.html#cb33-8" tabindex="-1"></a><span class="sc">$</span>clase</span>
+<span id="cb33-9"><a href="analisis-de-varianza-prueba-f-anova.html#cb33-9" tabindex="-1"></a>            diff       lwr         upr     p adj</span>
+<span id="cb33-10"><a href="analisis-de-varianza-prueba-f-anova.html#cb33-10" tabindex="-1"></a>Media<span class="sc">-</span>Alta <span class="sc">-</span><span class="fl">11.0</span> <span class="sc">-</span><span class="fl">22.11147</span>   <span class="fl">0.1114733</span> <span class="fl">0.0524062</span></span>
+<span id="cb33-11"><a href="analisis-de-varianza-prueba-f-anova.html#cb33-11" tabindex="-1"></a>Baja<span class="sc">-</span>Alta  <span class="sc">-</span><span class="fl">28.4</span> <span class="sc">-</span><span class="fl">39.51147</span> <span class="sc">-</span><span class="fl">17.2885267</span> <span class="fl">0.0000510</span></span>
+<span id="cb33-12"><a href="analisis-de-varianza-prueba-f-anova.html#cb33-12" tabindex="-1"></a>Baja<span class="sc">-</span>Media <span class="sc">-</span><span class="fl">17.4</span> <span class="sc">-</span><span class="fl">28.51147</span>  <span class="sc">-</span><span class="fl">6.2885267</span> <span class="fl">0.0033905</span></span></code></pre></div>
+<p>La columna <code>p adj</code> muestra el valor p ajustado por comparaciones multiples. Las
+diferencias Baja-Alta y Baja-Media son significativas (p &lt; 0,05), mientras que
+Media-Alta queda justo por encima del umbral (p = 0,052). Los resultados coinciden
+con el procedimiento manual.</p>
+</div>
+<div id="aplicacion-con-la-encuesta-del-ciep-2" class="section level2" number="7.4">
+<h2>
+<span class="header-section-number">7.4</span> Aplicacion con la encuesta del CIEP<a class="anchor" aria-label="anchor" href="#aplicacion-con-la-encuesta-del-ciep-2"><i class="fas fa-link"></i></a>
+</h2>
+<p>¿Depende la evaluacion del gobierno (<code>nota_gob</code>, de 0 a 10) del nivel educativo?
+Comparamos los tres niveles educativos de la encuesta del CIEP.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="analisis-de-varianza-prueba-f-anova.html#cb34-1" tabindex="-1"></a>ciep <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="analisis-de-varianza-prueba-f-anova.html#cb34-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(nota_gob), <span class="sc">!</span><span class="fu">is.na</span>(educ_f)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="analisis-de-varianza-prueba-f-anova.html#cb34-3" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Nivel educativo</span><span class="st">`</span> <span class="ot">=</span> educ_f) <span class="sc">%&gt;%</span></span>
+<span id="cb34-4"><a href="analisis-de-varianza-prueba-f-anova.html#cb34-4" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb34-5"><a href="analisis-de-varianza-prueba-f-anova.html#cb34-5" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb34-6"><a href="analisis-de-varianza-prueba-f-anova.html#cb34-6" tabindex="-1"></a>    <span class="at">Media =</span> <span class="fu">round</span>(<span class="fu">mean</span>(<span class="fu">as.numeric</span>(nota_gob)), <span class="dv">2</span>),</span>
+<span id="cb34-7"><a href="analisis-de-varianza-prueba-f-anova.html#cb34-7" tabindex="-1"></a>    <span class="st">`</span><span class="at">Desv. est.</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">sd</span>(<span class="fu">as.numeric</span>(nota_gob)), <span class="dv">2</span>),</span>
+<span id="cb34-8"><a href="analisis-de-varianza-prueba-f-anova.html#cb34-8" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb34-9"><a href="analisis-de-varianza-prueba-f-anova.html#cb34-9" tabindex="-1"></a>  )</span>
+<span id="cb34-10"><a href="analisis-de-varianza-prueba-f-anova.html#cb34-10" tabindex="-1"></a><span class="co"># A tibble: 3 × 4</span></span>
+<span id="cb34-11"><a href="analisis-de-varianza-prueba-f-anova.html#cb34-11" tabindex="-1"></a>  <span class="st">`</span><span class="at">Nivel educativo</span><span class="st">`</span>     n Media <span class="st">`</span><span class="at">Desv. est.</span><span class="st">`</span></span>
+<span id="cb34-12"><a href="analisis-de-varianza-prueba-f-anova.html#cb34-12" tabindex="-1"></a>  <span class="sc">&lt;</span>ord<span class="sc">&gt;</span>             <span class="er">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>        <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb34-13"><a href="analisis-de-varianza-prueba-f-anova.html#cb34-13" tabindex="-1"></a><span class="dv">1</span> Primaria o menos    <span class="dv">228</span>  <span class="fl">3.88</span>         <span class="fl">3.18</span></span>
+<span id="cb34-14"><a href="analisis-de-varianza-prueba-f-anova.html#cb34-14" tabindex="-1"></a><span class="dv">2</span> Secundaria          <span class="dv">384</span>  <span class="fl">3.88</span>         <span class="fl">2.79</span></span>
+<span id="cb34-15"><a href="analisis-de-varianza-prueba-f-anova.html#cb34-15" tabindex="-1"></a><span class="dv">3</span> Universitaria       <span class="dv">343</span>  <span class="fl">4.48</span>         <span class="fl">2.37</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-1" tabindex="-1"></a>res_ciep <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">as.numeric</span>(nota_gob) <span class="sc">~</span> educ_f, <span class="at">data =</span> ciep)</span>
+<span id="cb35-2"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-2" tabindex="-1"></a><span class="fu">summary</span>(res_ciep)</span>
+<span id="cb35-3"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-3" tabindex="-1"></a>             Df Sum Sq Mean Sq F value  <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)   </span>
+<span id="cb35-4"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-4" tabindex="-1"></a>educ_f        <span class="dv">2</span>     <span class="dv">79</span>   <span class="fl">39.44</span>   <span class="fl">5.214</span> <span class="fl">0.00559</span> <span class="sc">**</span></span>
+<span id="cb35-5"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-5" tabindex="-1"></a>Residuals   <span class="dv">952</span>   <span class="dv">7201</span>    <span class="fl">7.56</span>                   </span>
+<span id="cb35-6"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-6" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb35-7"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-7" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
+<span id="cb35-8"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-8" tabindex="-1"></a><span class="dv">14</span> observations deleted due to missingness</span>
+<span id="cb35-9"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-9" tabindex="-1"></a><span class="fu">TukeyHSD</span>(res_ciep)</span>
+<span id="cb35-10"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-10" tabindex="-1"></a>  Tukey multiple comparisons of means</span>
+<span id="cb35-11"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-11" tabindex="-1"></a>    <span class="dv">95</span>% family<span class="sc">-</span>wise confidence level</span>
+<span id="cb35-12"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-12" tabindex="-1"></a></span>
+<span id="cb35-13"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-13" tabindex="-1"></a>Fit<span class="sc">:</span> <span class="fu">aov</span>(<span class="at">formula =</span> <span class="fu">as.numeric</span>(nota_gob) <span class="sc">~</span> educ_f, <span class="at">data =</span> ciep)</span>
+<span id="cb35-14"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-14" tabindex="-1"></a></span>
+<span id="cb35-15"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-15" tabindex="-1"></a><span class="sc">$</span>educ_f</span>
+<span id="cb35-16"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-16" tabindex="-1"></a>                                      diff        lwr       upr</span>
+<span id="cb35-17"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-17" tabindex="-1"></a>Secundaria<span class="sc">-</span>Primaria o menos    <span class="fl">0.003015351</span> <span class="sc">-</span><span class="fl">0.5367349</span> <span class="fl">0.5427656</span></span>
+<span id="cb35-18"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-18" tabindex="-1"></a>Universitaria<span class="sc">-</span>Primaria o menos <span class="fl">0.600941128</span>  <span class="fl">0.0493037</span> <span class="fl">1.1525786</span></span>
+<span id="cb35-19"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-19" tabindex="-1"></a>Universitaria<span class="sc">-</span>Secundaria       <span class="fl">0.597925777</span>  <span class="fl">0.1182976</span> <span class="fl">1.0775540</span></span>
+<span id="cb35-20"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-20" tabindex="-1"></a>                                   p adj</span>
+<span id="cb35-21"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-21" tabindex="-1"></a>Secundaria<span class="sc">-</span>Primaria o menos    <span class="fl">0.9999052</span></span>
+<span id="cb35-22"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-22" tabindex="-1"></a>Universitaria<span class="sc">-</span>Primaria o menos <span class="fl">0.0288229</span></span>
+<span id="cb35-23"><a href="analisis-de-varianza-prueba-f-anova.html#cb35-23" tabindex="-1"></a>Universitaria<span class="sc">-</span>Secundaria       <span class="fl">0.0098203</span></span></code></pre></div>
+<p>La razon F es 5,21 con un valor p de 0,0056: hay diferencias significativas en la
+evaluacion del gobierno segun el nivel educativo. El analisis de Tukey muestra
+que la diferencia esta entre quienes tienen educacion universitaria y los otros
+dos grupos: las personas con formacion universitaria evaluan mejor al gobierno
+(4,48 en promedio) que quienes tienen primaria (3,88) o secundaria (3,89). Entre
+primaria y secundaria no hay diferencia significativa.</p>
+<p><strong>Figura <a href="analisis-de-varianza-prueba-f-anova.html#fig:anova-ciep-fig">7.1</a> Evaluacion del gobierno por nivel educativo, encuesta CIEP 2020</strong></p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:anova-ciep-fig"></span>
+<img src="04c-anova_files/figure-html/anova-ciep-fig-1.png" alt="Nota media al gobierno por nivel educativo, encuesta CIEP 2020" width="90%"><p class="caption">
+Figura 7.1. Nota media al gobierno por nivel educativo, encuesta CIEP 2020
+</p>
+</div>
+</div>
+<div id="anova-frente-a-la-prueba-t" class="section level2" number="7.5">
+<h2>
+<span class="header-section-number">7.5</span> ANOVA frente a la prueba t<a class="anchor" aria-label="anchor" href="#anova-frente-a-la-prueba-t"><i class="fas fa-link"></i></a>
+</h2>
+<p>El ANOVA generaliza la prueba t a mas de dos grupos. De hecho, cuando hay solo dos
+grupos, el ANOVA y la prueba t dan la misma conclusion: la razon F es igual al
+cuadrado de la razon t. Usamos la prueba t para dos grupos porque es mas directa,
+y el ANOVA cuando hay tres o mas.</p>
+</div>
+<div id="resumen-2" class="section level2" number="7.6">
+<h2>
+<span class="header-section-number">7.6</span> Resumen<a class="anchor" aria-label="anchor" href="#resumen-2"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>El ANOVA contrasta si las medias de tres o mas grupos son iguales.</li>
+<li>La razon F compara la variacion entre grupos con la variacion dentro de ellos.</li>
+<li>Si se rechaza <span class="math inline">\(H_0\)</span>, la prueba post hoc de Tukey (DSH) identifica que pares de
+grupos difieren.</li>
+<li>En R, el ANOVA se calcula con <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> y las comparaciones multiples con
+<code><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD()</a></code>.</li>
+</ul>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html"><span class="header-section-number">6</span> La diferencia de medias paso a paso: prueba z, prueba t e intervalo de confianza</a></div>
+<div class="next"><a href="medidas-de-asociacion-el-chi-cuadrado.html"><span class="header-section-number">8</span> Medidas de asociacion: el chi-cuadrado</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#analisis-de-varianza-prueba-f-anova"><span class="header-section-number">7</span> Analisis de varianza (prueba F): ANOVA</a></li>
+<li><a class="nav-link" href="#la-idea-detras-del-anova"><span class="header-section-number">7.1</span> La idea detras del ANOVA</a></li>
+<li><a class="nav-link" href="#procedimiento-manual-en-catorce-pasos"><span class="header-section-number">7.2</span> Procedimiento manual en catorce pasos</a></li>
+<li><a class="nav-link" href="#comprobacion-con-las-funciones-de-r"><span class="header-section-number">7.3</span> Comprobacion con las funciones de R</a></li>
+<li><a class="nav-link" href="#aplicacion-con-la-encuesta-del-ciep-2"><span class="header-section-number">7.4</span> Aplicacion con la encuesta del CIEP</a></li>
+<li><a class="nav-link" href="#anova-frente-a-la-prueba-t"><span class="header-section-number">7.5</span> ANOVA frente a la prueba t</a></li>
+<li><a class="nav-link" href="#resumen-2"><span class="header-section-number">7.6</span> Resumen</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Estadistica aplicada para la ciencia politica</strong>" was written by Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

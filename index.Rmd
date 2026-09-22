@@ -33,6 +33,18 @@ realizado en Costa Rica (n = 969 personas). El archivo de datos
 paquete **haven**. Al final del libro encontraras un **codebook** con el
 significado de cada variable.
 
+## Material complementario del curso CP-2007 (UCR) {.unnumbered}
+
+Ademas de la traduccion de la obra de Corder, el libro incluye capitulos
+complementarios inspirados en la guia del curso **CP-2007, Analisis Politico
+Cuantitativo 2**, de la Escuela de Ciencias Politicas de la Universidad de Costa
+Rica (profesor Steffan Gomez Campos, 2025): la curva normal y los puntajes z
+(capitulo 3), el procedimiento manual de la prueba z, la prueba t y el intervalo
+de confianza de la diferencia de medias (capitulo 6), el analisis de varianza o
+ANOVA (capitulo 7) y la regresion a partir de datos simulados (capitulo 11). El
+capitulo sobre el chi-cuadrado tambien incorpora el calculo manual del
+estadistico y la correccion de Yates.
+
 ## Creditos y licencia {.unnumbered}
 
 Este libro es una **traduccion y adaptacion** de la obra *Applied Statistics

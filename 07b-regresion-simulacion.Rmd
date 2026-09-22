@@ -1,0 +1,239 @@
+# Regresion desde la simulacion y visualizacion de modelos
+
+En el capitulo 9 estimamos modelos de regresion con datos reales de encuesta. El
+problema es que, con datos reales, nunca sabemos **cual es la verdadera relacion**
+entre las variables: solo vemos una muestra ruidosa. En este capitulo hacemos un
+ejercicio muy didactico que retoma el curso CP-2007 ([@gomez2025]): **jugamos a
+ser la Naturaleza**. Nosotros creamos los datos y, por lo tanto, conocemos de
+antemano los coeficientes verdaderos. Luego estimamos el modelo con `lm()` y
+comprobamos si recupera esos coeficientes. Tambien aprendemos a **visualizar** los
+coeficientes de varios modelos con el paquete **jtools**. La referencia base es
+Vargas ([@vargas2016]) y [@gujarati2011].
+
+## Crear los datos "como en la naturaleza"
+
+Supongamos que queremos explicar el apoyo de una persona al ejecutivo o alcalde
+local. La variable dependiente es un **termometro** de sensacion que va de 0 a 100,
+donde valores mas altos indican opiniones mas favorables. Los predictores son:
+
+- `age`: edad, variable continua distribuida normalmente;
+- `college`: variable dicotomica (1 si la persona obtuvo un titulo universitario);
+- `income`: ingresos en miles de dolares, con un ligero sesgo positivo.
+
+```{r sim-predictores}
+# Fijamos la semilla para que el ejercicio sea replicable
+set.seed(333)
+
+# Edad: normal con media 45 y desviacion estandar 15
+age <- as.integer(rnorm(100, 45, 15))
+
+# Universidad: binomial, probabilidad 0,3 de tener titulo
+college <- rbinom(100, 1, 0.3)
+
+# Ingresos (miles de dolares): distribucion beta con sesgo positivo
+income <- 10 * rbeta(100, 2, 8)
+
+head(data.frame(age, college, income))
+```
+
+Ahora especificamos la relacion lineal que, en nuestro universo simulado, genera la
+variable dependiente:
+
+$$termometro_i=\alpha+age_i\cdot\beta_1+college_i\cdot\beta_2+income_i\cdot\beta_3+\epsilon_i$$
+
+Como somos la Naturaleza, elegimos los valores de los parametros: intercepto
+$\alpha=80$, $\beta_1=-0,5$ (cada ano adicional reduce el apoyo en medio punto),
+$\beta_2=15$ (tener titulo universitario aumenta el apoyo en 15 puntos) y
+$\beta_3=-2$ (cada mil dolares adicionales reduce el apoyo en 2 puntos). El error
+$\epsilon$ se extrae de una normal con media 0 y desviacion estandar 2,5.
+
+```{r sim-dependiente}
+a  <- 80
+b1 <- -0.5
+b2 <- 15
+b3 <- -2
+e  <- rnorm(100, 0, 2.5)
+
+# Variable dependiente
+thermometer <- a + age * b1 + college * b2 + income * b3 + e
+
+# Base de datos
+mayor <- data.frame(thermometer, age, college, income)
+head(mayor, 10)
+```
+
+El primer paso de cualquier analisis es **explorar los datos**. Veamos el resumen
+de todas las variables y su distribucion.
+
+```{r sim-explorar}
+summary(mayor)
+```
+
+**Figura \@ref(fig:sim-hist) Distribucion de las variables del modelo simulado**
+
+```{r sim-hist, echo=FALSE, fig.cap="Distribucion de la variable dependiente y los predictores simulados", out.width='95%', fig.align='center'}
+mayor %>%
+  pivot_longer(everything(), names_to = "variable", values_to = "valor") %>%
+  ggplot(aes(x = valor)) +
+  facet_wrap(~ variable, scales = "free") +
+  geom_histogram(fill = "steelblue", color = "white") +
+  labs(x = "Valor", y = "Conteo") +
+  theme_minimal()
+```
+
+El termometro se mueve aproximadamente entre 30 y 90; la edad, entre 15 y 80; los
+ingresos, entre 0 y 5 (miles de dolares); y cerca de 70 personas no tienen titulo
+universitario. Nada raro, como corresponde a datos que nosotros mismos generamos.
+
+## Correlacion como paso previo a la regresion
+
+Antes de estimar el modelo, conviene inspeccionar la **matriz de correlacion**.
+Una forma eficiente de hacerlo es con el paquete **corrplot**.
+
+```{r sim-cor}
+library(corrplot)
+
+M <- cor(mayor)
+round(M, 3)
+```
+
+```{r sim-corrplot, fig.cap="Correlograma de las variables del modelo simulado", out.width='80%', fig.align='center'}
+corrplot(M, method = "square", type = "lower", order = "hclust",
+         tl.col = "black", tl.srt = 45, addCoef.col = TRUE)
+```
+
+Las correlaciones positivas se muestran en azul y las negativas en rojo; el tamano
+del cuadrado es proporcional al coeficiente. La primera columna nos dice como se
+relaciona el termometro con cada predictor: `age` tiene una correlacion negativa
+fuerte (-0,68), `college` una positiva moderada (0,59) y `income` una negativa
+debil (-0,39). Estas correlaciones ya anticipan la direccion de los coeficientes.
+
+## Estimar los modelos
+
+La funcion `lm()` estima el modelo lineal. Especificamos la formula como
+`respuesta ~ predictor_1 + predictor_2 + ...`. Estimamos tres modelos de
+complejidad creciente.
+
+```{r sim-modelos}
+modelo1 <- lm(thermometer ~ age, data = mayor)
+modelo2 <- lm(thermometer ~ age + college, data = mayor)
+modelo3 <- lm(thermometer ~ age + college + income, data = mayor)
+
+summary(modelo1)
+```
+
+```{r sim-modelo2}
+summary(modelo2)
+```
+
+```{r sim-modelo3}
+summary(modelo3)
+```
+
+Observa que los coeficientes estimados del modelo 3 (`age` = -0,527, `college` =
+15,40, `income` = -1,80) son muy cercanos a los coeficientes **verdaderos** que
+nosotros fijamos (-0,5, 15 y -2). Esto es exactamente lo que esperabamos: la
+regresion recupera la relacion real cuando el modelo esta bien especificado. En
+datos reales nunca podemos hacer esta comprobacion, porque no conocemos los
+coeficientes verdaderos; la simulacion nos permite ver el mecanismo con claridad.
+
+Ademas, a medida que agregamos predictores, la **R cuadrada** sube (0,46, 0,92 y
+0,95) porque cada predictor verdadero aporta a la explicacion de la variable
+dependiente. En datos reales, recordar que la R cuadrada **ajustada** penaliza la
+inclusion de predictores inutiles.
+
+## Tablas comparadas con jtools
+
+El paquete **jtools** produce tablas mas ordenadas que `summary()` y permite
+comparar varios modelos en una sola tabla.
+
+```{r sim-summs}
+library(jtools)
+export_summs(modelo1, modelo2, modelo3,
+             model.names = c("modelo 1", "modelo 2", "modelo 3"),
+             statistics = "all")
+```
+
+La tabla resume los tres modelos. Para interpretarla:
+
+- las **estrellas** marcan los predictores estadisticamente significativos;
+- el **signo** del coeficiente indica la direccion de la relacion;
+- `r.squared` y `adj.r.squared` indican que tan bien se ajusta el modelo; con
+  varios predictores conviene mirar la R cuadrada **ajustada**.
+
+### Coeficientes estandarizados
+
+Como los predictores estan en unidades distintas (anos, 0/1, miles de dolares), no
+podemos comparar directamente el tamano de los coeficientes. Con
+`scale = TRUE`, jtools estandariza los coeficientes a unidades de desviacion
+estandar, lo que permite ordenarlos por importancia.
+
+```{r sim-summs-scale}
+export_summs(modelo1, modelo2, modelo3,
+             model.names = c("modelo 1", "modelo 2", "modelo 3"),
+             scale = TRUE, statistics = "all")
+```
+
+En el modelo 3, el predictor con mayor efecto estandarizado es `age` (-7,58),
+seguido de `college` (15,40) y `income` (-1,98). Es decir, la edad es el factor que
+mas pesa en el apoyo al alcalde.
+
+### Visualizar los coeficientes
+
+La funcion `plot_summs()` representa graficamente los coeficientes con sus
+intervalos de confianza, lo que facilita comparar modelos.
+
+```{r sim-plot-summs, fig.cap="Coeficientes del modelo completo simulado", out.width='85%', fig.align='center'}
+plot_summs(modelo3) +
+  labs(x = "Coeficientes", y = "") +
+  scale_x_continuous(breaks = seq(-2, 16, 2))
+```
+
+```{r sim-plot-summs-scale, fig.cap="Coeficientes estandarizados del modelo completo", out.width='85%', fig.align='center'}
+plot_summs(modelo3, scale = TRUE) +
+  labs(x = "Coeficientes estandarizados", y = "") +
+  scale_x_continuous(breaks = seq(-8, 16, 2))
+```
+
+```{r sim-plot-summs-comp, fig.cap="Coeficientes estandarizados de los tres modelos", out.width='85%', fig.align='center'}
+plot_summs(modelo1, modelo2, modelo3,
+           model.names = c("Mod 1", "Mod 2", "Mod 3"), scale = TRUE) +
+  labs(x = "Coeficientes estandarizados", y = "",
+       title = "Coeficientes de los modelos de regresion") +
+  scale_x_continuous(breaks = seq(-8, 16, 2))
+```
+
+### La recta de regresion
+
+Finalmente, podemos visualizar la relacion entre el termometro y la edad, con su
+recta de regresion.
+
+**Figura \@ref(fig:sim-scatter) Relacion entre edad y apoyo al alcalde (datos simulados)**
+
+```{r sim-scatter, echo=FALSE, fig.cap="Diagrama de dispersion del termometro segun la edad", out.width='85%', fig.align='center'}
+ggplot(mayor, aes(x = age, y = thermometer)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(x = "Edad", y = "Termometro de apoyo al alcalde") +
+  theme_minimal()
+```
+
+A medida que aumenta la edad, el apoyo tiende a bajar: la pendiente negativa que
+nosotros mismos fijamos en la simulacion aparece con claridad.
+
+## Conexion con los datos del CIEP
+
+El mismo flujo de trabajo (explorar, correlacionar, estimar, comparar y
+estandarizar) es el que se aplica a los datos reales del CIEP en los capitulos 9 y
+10. La unica diferencia es que, con datos reales, no conocemos los coeficientes
+verdaderos y debemos apoyarnos en la teoria, la significancia y la R cuadrada
+ajustada para juzgar nuestros modelos.
+
+## Resumen
+
+- Simular datos permite conocer los coeficientes verdaderos y comprobar que la
+  regresion los recupera.
+- La matriz de correlacion (`corrplot`) es un paso previo util a la regresion.
+- `lm()` estima el modelo; la R cuadrada (ajustada) mide el ajuste.
+- `export_summs()` y `plot_summs()` (paquete jtools) producen tablas y graficos
+  comparados de varios modelos, incluidos los coeficientes estandarizados.

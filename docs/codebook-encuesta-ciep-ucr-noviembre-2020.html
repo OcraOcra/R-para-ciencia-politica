@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Capitulo 8 Codebook: encuesta CIEP-UCR, noviembre 2020 | Estadistica aplicada para la ciencia politica</title>
+<title>Capitulo 12 Codebook: encuesta CIEP-UCR, noviembre 2020 | Estadistica aplicada para la ciencia politica</title>
 <meta name="author" content="Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder">
 <meta name="description" content="Este apendice describe las variables de la base de datos data/CIEPnoviembre2020.dta, leida en R con haven::read_dta(). El libro de codigos se genera automaticamente a partir de las etiquetas del...">
 <meta name="generator" content="bookdown 0.46 with bs4_book()">
-<meta property="og:title" content="Capitulo 8 Codebook: encuesta CIEP-UCR, noviembre 2020 | Estadistica aplicada para la ciencia politica">
+<meta property="og:title" content="Capitulo 12 Codebook: encuesta CIEP-UCR, noviembre 2020 | Estadistica aplicada para la ciencia politica">
 <meta property="og:type" content="book">
 <meta property="og:description" content="Este apendice describe las variables de la base de datos data/CIEPnoviembre2020.dta, leida en R con haven::read_dta(). El libro de codigos se genera automaticamente a partir de las etiquetas del...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Capitulo 8 Codebook: encuesta CIEP-UCR, noviembre 2020 | Estadistica aplicada para la ciencia politica">
+<meta name="twitter:title" content="Capitulo 12 Codebook: encuesta CIEP-UCR, noviembre 2020 | Estadistica aplicada para la ciencia politica">
 <meta name="twitter:description" content="Este apendice describe las variables de la base de datos data/CIEPnoviembre2020.dta, leida en R con haven::read_dta(). El libro de codigos se genera automaticamente a partir de las etiquetas del...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -69,15 +69,20 @@
 <li><a class="" href="index.html">Sobre este libro</a></li>
 <li><a class="" href="ciencia-de-datos-ciencia-politica-y-politicas-publicas.html"><span class="header-section-number">1</span> Ciencia de datos, ciencia politica y politicas publicas</a></li>
 <li><a class="" href="estadistica-descriptiva.html"><span class="header-section-number">2</span> Estadistica descriptiva</a></li>
-<li><a class="" href="introduccion-a-las-medidas-de-asociacion-la-correlacion.html"><span class="header-section-number">3</span> Introduccion a las medidas de asociacion: la correlacion</a></li>
-<li><a class="" href="medidas-de-asociacion-la-prueba-t.html"><span class="header-section-number">4</span> Medidas de asociacion: la prueba t</a></li>
-<li><a class="" href="medidas-de-asociacion-el-chi-cuadrado.html"><span class="header-section-number">5</span> Medidas de asociacion: el chi-cuadrado</a></li>
-<li><a class="" href="regresion.html"><span class="header-section-number">6</span> Regresion</a></li>
-<li><a class="" href="modelos-estadisticos-con-muchos-predictores.html"><span class="header-section-number">7</span> Modelos estadisticos con muchos predictores</a></li>
+<li><a class="" href="la-curva-normal-y-los-puntajes-z.html"><span class="header-section-number">3</span> La curva normal y los puntajes z</a></li>
+<li><a class="" href="introduccion-a-las-medidas-de-asociacion-la-correlacion.html"><span class="header-section-number">4</span> Introduccion a las medidas de asociacion: la correlacion</a></li>
+<li><a class="" href="medidas-de-asociacion-la-prueba-t.html"><span class="header-section-number">5</span> Medidas de asociacion: la prueba t</a></li>
+<li><a class="" href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html"><span class="header-section-number">6</span> La diferencia de medias paso a paso: prueba z, prueba t e intervalo de confianza</a></li>
+<li><a class="" href="analisis-de-varianza-prueba-f-anova.html"><span class="header-section-number">7</span> Analisis de varianza (prueba F): ANOVA</a></li>
+<li><a class="" href="medidas-de-asociacion-el-chi-cuadrado.html"><span class="header-section-number">8</span> Medidas de asociacion: el chi-cuadrado</a></li>
+<li><a class="" href="regresion.html"><span class="header-section-number">9</span> Regresion</a></li>
+<li><a class="" href="modelos-estadisticos-con-muchos-predictores.html"><span class="header-section-number">10</span> Modelos estadisticos con muchos predictores</a></li>
+<li><a class="" href="regresion-desde-la-simulacion-y-visualizacion-de-modelos.html"><span class="header-section-number">11</span> Regresion desde la simulacion y visualizacion de modelos</a></li>
+<li><a class="" href="lecturas-recomendadas.html">Lecturas recomendadas</a></li>
 <li><a class="" href="referencias.html">Referencias</a></li>
 <li><a class="" href="sobre-el-autor-original.html">Sobre el autor original</a></li>
 <li><a class="" href="sobre-esta-adaptacion.html">Sobre esta adaptacion</a></li>
-<li><a class="active" href="codebook-encuesta-ciep-ucr-noviembre-2020.html"><span class="header-section-number">8</span> Codebook: encuesta CIEP-UCR, noviembre 2020</a></li>
+<li><a class="active" href="codebook-encuesta-ciep-ucr-noviembre-2020.html"><span class="header-section-number">12</span> Codebook: encuesta CIEP-UCR, noviembre 2020</a></li>
 </ul>
 
         <div class="book-extra">
@@ -85,20 +90,20 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="codebook-encuesta-ciep-ucr-noviembre-2020" class="section level1" number="8">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="codebook-encuesta-ciep-ucr-noviembre-2020" class="section level1" number="12">
 <h1>
-<span class="header-section-number">Capitulo 8</span> Codebook: encuesta CIEP-UCR, noviembre 2020<a class="anchor" aria-label="anchor" href="#codebook-encuesta-ciep-ucr-noviembre-2020"><i class="fas fa-link"></i></a>
+<span class="header-section-number">Capitulo 12</span> Codebook: encuesta CIEP-UCR, noviembre 2020<a class="anchor" aria-label="anchor" href="#codebook-encuesta-ciep-ucr-noviembre-2020"><i class="fas fa-link"></i></a>
 </h1>
 <p>Este apendice describe las variables de la base de datos
 <code>data/CIEPnoviembre2020.dta</code>, leida en R con <code><a href="https://haven.tidyverse.org/reference/read_dta.html">haven::read_dta()</a></code>. El libro de
 codigos se genera automaticamente a partir de las etiquetas del archivo.</p>
-<div id="listado-de-variables" class="section level2" number="8.1">
+<div id="listado-de-variables" class="section level2" number="12.1">
 <h2>
-<span class="header-section-number">8.1</span> Listado de variables<a class="anchor" aria-label="anchor" href="#listado-de-variables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.1</span> Listado de variables<a class="anchor" aria-label="anchor" href="#listado-de-variables"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:codebook">Tabla 8.1. </span>Fuente: encuesta CIEP-UCR, noviembre 2020.</caption>
+<span id="tab:codebook">Tabla 12.1. </span>Fuente: encuesta CIEP-UCR, noviembre 2020.</caption>
 <colgroup>
 <col width="9%">
 <col width="37%">
@@ -247,9 +252,9 @@ codigos se genera automaticamente a partir de las etiquetas del archivo.</p>
 </tbody>
 </table></div>
 </div>
-<div id="descripcion-de-los-bloques-de-variables" class="section level2" number="8.2">
+<div id="descripcion-de-los-bloques-de-variables" class="section level2" number="12.2">
 <h2>
-<span class="header-section-number">8.2</span> Descripcion de los bloques de variables<a class="anchor" aria-label="anchor" href="#descripcion-de-los-bloques-de-variables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.2</span> Descripcion de los bloques de variables<a class="anchor" aria-label="anchor" href="#descripcion-de-los-bloques-de-variables"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>
@@ -277,9 +282,9 @@ del pais), <code>gestionrec</code> (valoracion de la gestion del gobierno), <cod
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#codebook-encuesta-ciep-ucr-noviembre-2020"><span class="header-section-number">8</span> Codebook: encuesta CIEP-UCR, noviembre 2020</a></li>
-<li><a class="nav-link" href="#listado-de-variables"><span class="header-section-number">8.1</span> Listado de variables</a></li>
-<li><a class="nav-link" href="#descripcion-de-los-bloques-de-variables"><span class="header-section-number">8.2</span> Descripcion de los bloques de variables</a></li>
+<li><a class="nav-link" href="#codebook-encuesta-ciep-ucr-noviembre-2020"><span class="header-section-number">12</span> Codebook: encuesta CIEP-UCR, noviembre 2020</a></li>
+<li><a class="nav-link" href="#listado-de-variables"><span class="header-section-number">12.1</span> Listado de variables</a></li>
+<li><a class="nav-link" href="#descripcion-de-los-bloques-de-variables"><span class="header-section-number">12.2</span> Descripcion de los bloques de variables</a></li>
 </ul>
 
       <div class="book-extra">

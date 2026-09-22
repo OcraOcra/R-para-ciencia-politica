@@ -1,0 +1,92 @@
+---
+title: "Solucion 9: la diferencia de medias paso a paso"
+author: "Instructor"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+## 1. Datos de etnocentrismo
+
+```{r}
+hombre <- c(rep(1, 21), rep(2, 7), rep(3, 4), rep(4, 2), 5)
+mujer  <- c(rep(1, 23), rep(2, 8), rep(3, 2), 4, 5)
+
+n_h <- length(hombre)
+n_m <- length(mujer)
+c(n_h, n_m)
+```
+
+## 2. Procedimiento manual
+
+```{r}
+media_h <- sum(hombre) / n_h
+media_m <- sum(mujer) / n_m
+
+s_h <- sqrt(sum(hombre^2) / n_h - media_h^2)
+s_m <- sqrt(sum(mujer^2) / n_m - media_m^2)
+
+error_h <- s_h / sqrt(n_h - 1)
+error_m <- s_m / sqrt(n_m - 1)
+
+error_dif <- sqrt(error_h^2 + error_m^2)
+
+z_punt <- (media_h - media_m) / error_dif
+
+auc <- (pnorm(z_punt, lower.tail = TRUE) - 0.5) * 2
+p_value <- 1 - auc
+
+c(z = z_punt, p = p_value)
+```
+
+**Interpretacion:** el puntaje z es 0,71 y el valor p es 0,48. Como p > 0,05, se
+**mantiene** la hipotesis nula: no hay diferencias significativas en etnocentrismo
+entre hombres y mujeres. La diferencia observada (0,17) es compatible con el error
+de muestreo.
+
+## 3. Comprobacion con `z.test()`
+
+```{r}
+library(BSDA)
+z.test(x = hombre, sigma.x = sd(hombre),
+       y = mujer,  sigma.y = sd(mujer),
+       conf.level = 0.95)
+```
+
+**Interpretacion:** los resultados coinciden con el calculo manual (z = 0,7077,
+p = 0,4791).
+
+## 4. Intervalo de confianza
+
+El IC de la diferencia de medias es (-0,3034, 0,6462). **Incluye el cero**, por lo
+que no podemos rechazar la hipotesis nula: la diferencia observada es compatible
+con una diferencia poblacional de cero.
+
+## 5. Aplicacion con el CIEP
+
+```{r}
+test <- ciep %>%
+  filter(!is.na(nota_gob), !is.na(votopac)) %>%
+  mutate(
+    nota_gob = as.numeric(nota_gob),
+    Voto = factor(votopac, levels = c(0, 1), labels = c("No voto PAC", "Voto PAC"))
+  )
+
+t.test(nota_gob ~ Voto, data = test)
+```
+
+**Interpretacion:** la media de quienes no votaron por el PAC es 3,44 y la de
+quienes si votaron es 4,69 (diferencia de 1,25 puntos). El valor t es -6,55 y el
+valor p es menor que 0,001. El intervalo de confianza (-1,62, -0,87) **no incluye
+el cero**. La diferencia es estadisticamente significativa: quienes votaron por el
+PAC evaluan mejor al gobierno.

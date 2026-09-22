@@ -1,0 +1,84 @@
+---
+title: "Solucion 10: analisis de varianza (ANOVA)"
+author: "Instructor"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+## 1. Datos de ejemplo
+
+```{r}
+datos <- data.frame(
+  Alta  = c(130, 125, 130, 120, 122),
+  Media = c(120, 115, 115, 110, 112),
+  Baja  = c(110, 100, 90, 100, 85)
+)
+datos
+```
+
+## 2. ANOVA con `aov()`
+
+```{r}
+library(tidyr)
+
+df_tidy <- datos %>%
+  pivot_longer(everything(), names_to = "clase", values_to = "ci")
+
+res_anova <- aov(ci ~ clase, data = df_tidy)
+summary(res_anova)
+```
+
+**Interpretacion:** la razon F es 23,64 y el valor p es 6,88e-05 (mucho menor que
+0,05). Se rechaza la hipotesis nula: si hay diferencias en el coeficiente
+intelectual segun la clase social.
+
+## 3. Prueba post hoc de Tukey
+
+```{r}
+TukeyHSD(res_anova)
+```
+
+**Interpretacion:** hay diferencias significativas entre Baja-Alta (p = 0,000051)
+y Baja-Media (p = 0,0034). La diferencia Media-Alta queda justo por encima del
+umbral (p = 0,0524), por lo que no es significativa al 5 %.
+
+## 4. Aplicacion con el CIEP
+
+```{r}
+ciep <- ciep %>%
+  mutate(educ_f = factor(as.numeric(educarec), levels = 1:3,
+                         labels = c("Primaria o menos", "Secundaria", "Universitaria")))
+
+res_ciep <- aov(as.numeric(nota_gob) ~ educ_f, data = ciep)
+summary(res_ciep)
+TukeyHSD(res_ciep)
+
+ciep %>%
+  filter(!is.na(nota_gob), !is.na(educ_f)) %>%
+  group_by(educ_f) %>%
+  summarise(Media = round(mean(as.numeric(nota_gob)), 2), .groups = "drop")
+```
+
+**Interpretacion:** la razon F es 5,21 y el valor p es 0,0056: hay diferencias
+significativas. El analisis de Tukey muestra que la diferencia esta entre quienes
+tienen educacion universitaria y los otros dos grupos. Las personas con formacion
+universitaria evaluan mejor al gobierno (4,48) que quienes tienen primaria (3,88)
+o secundaria (3,89). Entre primaria y secundaria no hay diferencia significativa.
+
+## 5. Interpretacion
+
+El nivel educativo si se asocia con la evaluacion del gobierno, pero el efecto se
+concentra en la educacion universitaria: quienes la tienen evaluan al gobierno casi
+0,6 puntos mas alto (en una escala de 0 a 10) que los otros grupos. El efecto es
+moderado pero estadisticamente significativo.

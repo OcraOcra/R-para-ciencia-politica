@@ -1,0 +1,78 @@
+---
+title: "Practica 10: analisis de varianza (ANOVA)"
+author: "Nombre: ____________________"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+**Objetivo:** usar el ANOVA para comparar las medias de tres o mas grupos y la
+prueba de Tukey para identificar entre que grupos estan las diferencias.
+
+## 1. Datos de ejemplo (coeficiente intelectual por clase social)
+
+```{r}
+datos <- data.frame(
+  Alta  = c(130, 125, 130, 120, 122),
+  Media = c(120, 115, 115, 110, 112),
+  Baja  = c(110, 100, 90, 100, 85)
+)
+datos
+```
+
+## 2. ANOVA con `aov()`
+
+Transforma los datos a formato largo y corre el ANOVA.
+
+```{r}
+library(tidyr)
+
+df_tidy <- datos %>%
+  pivot_longer(everything(), names_to = "clase", values_to = "ci")
+
+res_anova <- aov(ci ~ ___, data = df_tidy)
+summary(res_anova)
+```
+
+- ¿Cual es la razon F? ¿Cual es el valor p?
+- ¿Se rechaza la hipotesis nula (las tres clases tienen el mismo C.I.)?
+
+## 3. Prueba post hoc de Tukey
+
+```{r}
+TukeyHSD(res_anova)
+```
+
+- ¿Entre que pares de grupos hay diferencias significativas (p adj < 0,05)?
+
+## 4. Aplicacion con el CIEP
+
+¿Depende la nota al gobierno (`nota_gob`) del nivel educativo (`educarec`)?
+
+```{r}
+ciep <- ciep %>%
+  mutate(educ_f = factor(as.numeric(educarec), levels = 1:3,
+                         labels = c("Primaria o menos", "Secundaria", "Universitaria")))
+
+res_ciep <- aov(as.numeric(nota_gob) ~ ___, data = ciep)
+summary(res_ciep)
+TukeyHSD(res_ciep)
+```
+
+- ¿Hay diferencias significativas entre los niveles educativos?
+- ¿Entre que grupos?
+
+## 5. Interpretacion
+
+Escribe un parrafo con la conclusion: ¿que grupo evalua mejor al gobierno? ¿El
+efecto es grande o pequeno? Usa las medias por grupo para justificar.

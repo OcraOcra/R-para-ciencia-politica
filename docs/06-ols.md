@@ -41,7 +41,7 @@ de $Y$?
 Una alternativa a las medidas de asociacion, el **modelo lineal simple** (la
 regresion, o MCO), permite manejar ambos problemas. En este capitulo nos centramos
 en un modelo de dos variables, que ayuda con el problema de comunicar informacion
-especifica sobre el tamano del efecto. En el capitulo 7 extendemos el modelo para
+especifica sobre el tamano del efecto. En el capitulo 10 extendemos el modelo para
 incluir mas de una variable $X$.
 
 ## Regresion por minimos cuadrados ordinarios (MCO)
@@ -191,7 +191,7 @@ nota al gobierno y la edad.
 
 #### **Ejemplo: evaluacion del gobierno y apoyo al sistema**
 
-**Tabla 6.1 Nota al gobierno en funcion del apoyo al sistema**
+**Tabla 9.1 Nota al gobierno en funcion del apoyo al sistema**
 
 
 ```
@@ -227,12 +227,12 @@ gobierno.
 
 #### **Ejemplo: nota al gobierno y edad**
 
-En el capitulo 3 vimos el vinculo entre la edad y la evaluacion de los partidos.
+En el capitulo 4 vimos el vinculo entre la edad y la evaluacion de los partidos.
 Ahora consideramos si la edad predice la nota al gobierno. Si $Y$ es la nota al
 gobierno (0 a 10) y $X$ es la edad, esperariamos que las personas mayores evaluen
 de forma distinta al gobierno.
 
-**Tabla 6.2 Nota al gobierno y edad**
+**Tabla 9.2 Nota al gobierno y edad**
 
 
 ```
@@ -361,7 +361,7 @@ $$Y=\beta_0+\beta_1$$
 El ejemplo siguiente usa una variable dummy de genero para predecir la nota al
 gobierno.
 
-**Tabla 6.3 Nota al gobierno y genero**
+**Tabla 9.3 Nota al gobierno y genero**
 
 
 ```
@@ -396,7 +396,7 @@ educacion con el efecto del genero. Si la comparacion de interes es tener
 educacion universitaria frente al resto, podriamos crear una dummy que tome dos
 valores: 0 (primaria o secundaria) y 1 (universitaria).
 
-**Tabla 6.4 Nota al gobierno y educacion universitaria**
+**Tabla 9.4 Nota al gobierno y educacion universitaria**
 
 
 ```
@@ -431,7 +431,7 @@ diferencias entre las tres categorias educativas (primaria, secundaria,
 universitaria), necesitariamos dos dummies, tomando una categoria como **base**.
 Tomamos "Primaria o menos" como base.
 
-**Tabla 6.5 Nota al gobierno y nivel educativo (tres categorias)**
+**Tabla 9.5 Nota al gobierno y nivel educativo (tres categorias)**
 
 
 ```

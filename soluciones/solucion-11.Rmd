@@ -1,0 +1,81 @@
+---
+title: "Solucion 11: regresion desde la simulacion"
+author: "Instructor"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+## 1. Crear los datos "como en la naturaleza"
+
+```{r}
+set.seed(333)
+
+age <- as.integer(rnorm(100, 45, 15))
+college <- rbinom(100, 1, 0.3)
+income <- 10 * rbeta(100, 2, 8)
+e <- rnorm(100, 0, 2.5)
+
+thermometer <- 80 + age * (-0.5) + college * 15 + income * (-2) + e
+
+mayor <- data.frame(thermometer, age, college, income)
+head(mayor)
+```
+
+## 2. Estimar tres modelos
+
+```{r}
+modelo1 <- lm(thermometer ~ age, data = mayor)
+modelo2 <- lm(thermometer ~ age + college, data = mayor)
+modelo3 <- lm(thermometer ~ age + college + income, data = mayor)
+
+summary(modelo3)
+```
+
+**Interpretacion:** los coeficientes estimados (-0,527, 15,40, -1,80) son muy
+cercanos a los verdaderos (-0,5, 15, -2). La regresion recupera la relacion real
+cuando el modelo esta bien especificado.
+
+## 3. Tabla comparada con jtools
+
+```{r}
+library(jtools)
+export_summs(modelo1, modelo2, modelo3,
+             model.names = c("modelo 1", "modelo 2", "modelo 3"),
+             scale = TRUE, statistics = "all")
+```
+
+**Interpretacion:** el mayor efecto estandarizado corresponde a `age` (-7,58),
+seguido de `college` (15,40) e `income` (-1,98). La edad es el factor que mas pesa.
+
+## 4. Visualizar los coeficientes
+
+```{r}
+plot_summs(modelo3, scale = TRUE)
+```
+
+**Interpretacion:** ninguno de los intervalos de confianza cruza el cero: los tres
+predictores son estadisticamente significativos.
+
+## 5. Correlacion como paso previo
+
+```{r}
+library(corrplot)
+M <- cor(mayor)
+round(M, 3)
+corrplot(M, method = "square", type = "lower", addCoef.col = TRUE)
+```
+
+**Interpretacion:** si. La correlacion del termometro con `age` es negativa (-0,68),
+con `college` es positiva (0,59) y con `income` es negativa (-0,39), lo que anticipa
+correctamente el signo de los coeficientes del modelo.

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capitulo 3 La curva normal y los puntajes z | Estadistica aplicada para la ciencia politica</title>
+<meta name="author" content="Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder">
+<meta name="description" content="Este capitulo es un puente entre la estadistica descriptiva y la inferencia. Antes de comparar grupos o estimar modelos necesitamos entender la distribucion normal, porque casi todas las pruebas...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Capitulo 3 La curva normal y los puntajes z | Estadistica aplicada para la ciencia politica">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Este capitulo es un puente entre la estadistica descriptiva y la inferencia. Antes de comparar grupos o estimar modelos necesitamos entender la distribucion normal, porque casi todas las pruebas...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capitulo 3 La curva normal y los puntajes z | Estadistica aplicada para la ciencia politica">
+<meta name="twitter:description" content="Este capitulo es un puente entre la estadistica descriptiva y la inferencia. Antes de comparar grupos o estimar modelos necesitamos entender la distribucion normal, porque casi todas las pruebas...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 0em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Estadistica aplicada para la ciencia politica</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Sobre este libro</a></li>
+<li><a class="" href="ciencia-de-datos-ciencia-politica-y-politicas-publicas.html"><span class="header-section-number">1</span> Ciencia de datos, ciencia politica y politicas publicas</a></li>
+<li><a class="" href="estadistica-descriptiva.html"><span class="header-section-number">2</span> Estadistica descriptiva</a></li>
+<li><a class="active" href="la-curva-normal-y-los-puntajes-z.html"><span class="header-section-number">3</span> La curva normal y los puntajes z</a></li>
+<li><a class="" href="introduccion-a-las-medidas-de-asociacion-la-correlacion.html"><span class="header-section-number">4</span> Introduccion a las medidas de asociacion: la correlacion</a></li>
+<li><a class="" href="medidas-de-asociacion-la-prueba-t.html"><span class="header-section-number">5</span> Medidas de asociacion: la prueba t</a></li>
+<li><a class="" href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html"><span class="header-section-number">6</span> La diferencia de medias paso a paso: prueba z, prueba t e intervalo de confianza</a></li>
+<li><a class="" href="analisis-de-varianza-prueba-f-anova.html"><span class="header-section-number">7</span> Analisis de varianza (prueba F): ANOVA</a></li>
+<li><a class="" href="medidas-de-asociacion-el-chi-cuadrado.html"><span class="header-section-number">8</span> Medidas de asociacion: el chi-cuadrado</a></li>
+<li><a class="" href="regresion.html"><span class="header-section-number">9</span> Regresion</a></li>
+<li><a class="" href="modelos-estadisticos-con-muchos-predictores.html"><span class="header-section-number">10</span> Modelos estadisticos con muchos predictores</a></li>
+<li><a class="" href="regresion-desde-la-simulacion-y-visualizacion-de-modelos.html"><span class="header-section-number">11</span> Regresion desde la simulacion y visualizacion de modelos</a></li>
+<li><a class="" href="lecturas-recomendadas.html">Lecturas recomendadas</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+<li><a class="" href="sobre-el-autor-original.html">Sobre el autor original</a></li>
+<li><a class="" href="sobre-esta-adaptacion.html">Sobre esta adaptacion</a></li>
+<li><a class="" href="codebook-encuesta-ciep-ucr-noviembre-2020.html"><span class="header-section-number">12</span> Codebook: encuesta CIEP-UCR, noviembre 2020</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="la-curva-normal-y-los-puntajes-z" class="section level1" number="3">
+<h1>
+<span class="header-section-number">Capitulo 3</span> La curva normal y los puntajes z<a class="anchor" aria-label="anchor" href="#la-curva-normal-y-los-puntajes-z"><i class="fas fa-link"></i></a>
+</h1>
+<p>Este capitulo es un puente entre la estadistica descriptiva y la inferencia. Antes
+de comparar grupos o estimar modelos necesitamos entender la <strong>distribucion
+normal</strong>, porque casi todas las pruebas que usaremos (la prueba z, la prueba t, la
+razon F) suponen que las medias muestrales se comportan de manera aproximadamente
+normal. El capitulo sigue de cerca el material del curso CP-2007 de la Escuela de
+Ciencias Politicas de la UCR (<span class="citation">(<a href="referencias.html#ref-gomez2025">Gomez Campos 2025</a>)</span>) y los conceptos de <span class="citation">(<a href="referencias.html#ref-levin1999">Levin 1999</a>)</span>.</p>
+<div id="la-curva-normal" class="section level2" number="3.1">
+<h2>
+<span class="header-section-number">3.1</span> La curva normal<a class="anchor" aria-label="anchor" href="#la-curva-normal"><i class="fas fa-link"></i></a>
+</h2>
+<p>La <strong>curva normal</strong> es un tipo de curva uniforme y simetrica cuya forma recuerda
+a una campana, por lo que tambien se le llama “curva en forma de campana”. Sus
+rasgos mas importantes son:</p>
+<ul>
+<li>Es <strong>simetrica</strong>: si doblaramos la curva por su punto mas alto, las dos mitades
+serian identicas.</li>
+<li>Es <strong>unimodal</strong>: tiene un solo pico, y en ese punto coinciden la media, la
+mediana y la moda.</li>
+<li>Sus <strong>colas</strong> caen gradualmente y se extienden indefinidamente, acercandose a la
+linea de base sin alcanzarla nunca.</li>
+<li>El <strong>area bajo la curva</strong> (AUC, por sus siglas en ingles) entre la curva y la
+linea de base contiene el 100 % de los casos.</li>
+</ul>
+<p>La simetria tiene una consecuencia muy util: cualquier distancia <span class="math inline">\(\sigma\)</span>
+(desviacion estandar) por encima de la media contiene la misma proporcion de casos
+que la misma distancia por debajo. En concreto, en cualquier distribucion normal:</p>
+<ul>
+<li>aproximadamente el <strong>68,26 %</strong> de los casos cae entre <span class="math inline">\(-1\sigma\)</span> y <span class="math inline">\(+1\sigma\)</span>;</li>
+<li>aproximadamente el <strong>95,44 %</strong> cae entre <span class="math inline">\(-2\sigma\)</span> y <span class="math inline">\(+2\sigma\)</span>; y</li>
+<li>aproximadamente el <strong>99,74 %</strong> cae entre <span class="math inline">\(-3\sigma\)</span> y <span class="math inline">\(+3\sigma\)</span>.</li>
+</ul>
+<p>Esta es la llamada <strong>regla 68-95-99,7</strong>. Seis desviaciones estandar (tres hacia
+cada lado) incluyen practicamente todos los casos de una distribucion normal.</p>
+</div>
+<div id="generar-datos-normales-en-r" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> Generar datos normales en R<a class="anchor" aria-label="anchor" href="#generar-datos-normales-en-r"><i class="fas fa-link"></i></a>
+</h2>
+<p>Para ver como funciona la curva normal, generemos datos aleatorios con la funcion
+<code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code>. Le pedimos a R 50 observaciones de una distribucion normal con media
+50 y desviacion estandar 12,5. Fijamos <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> para que el ejercicio sea
+reproducible.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="la-curva-normal-y-los-puntajes-z.html#cb2-1" tabindex="-1"></a><span class="co"># Fijamos la semilla para que los resultados sean reproducibles</span></span>
+<span id="cb2-2"><a href="la-curva-normal-y-los-puntajes-z.html#cb2-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020</span>)</span>
+<span id="cb2-3"><a href="la-curva-normal-y-los-puntajes-z.html#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="la-curva-normal-y-los-puntajes-z.html#cb2-4" tabindex="-1"></a><span class="co"># 50 observaciones de una normal con media 50 y desviacion estandar 12,5</span></span>
+<span id="cb2-5"><a href="la-curva-normal-y-los-puntajes-z.html#cb2-5" tabindex="-1"></a>datos1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="fl">12.5</span>)</span>
+<span id="cb2-6"><a href="la-curva-normal-y-los-puntajes-z.html#cb2-6" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">round</span>(datos1, <span class="dv">1</span>))</span>
+<span id="cb2-7"><a href="la-curva-normal-y-los-puntajes-z.html#cb2-7" tabindex="-1"></a> [<span class="dv">1</span>] <span class="fl">12.0</span> <span class="fl">15.0</span> <span class="fl">21.4</span> <span class="fl">35.2</span> <span class="fl">35.9</span> <span class="fl">36.3</span> <span class="fl">39.3</span> <span class="fl">39.8</span> <span class="fl">40.7</span> <span class="fl">40.9</span> <span class="fl">43.0</span> <span class="fl">43.7</span> <span class="fl">45.4</span></span>
+<span id="cb2-8"><a href="la-curva-normal-y-los-puntajes-z.html#cb2-8" tabindex="-1"></a>[<span class="dv">14</span>] <span class="fl">45.4</span> <span class="fl">46.2</span> <span class="fl">46.4</span> <span class="fl">47.1</span> <span class="fl">48.2</span> <span class="fl">48.5</span> <span class="fl">49.1</span> <span class="fl">50.3</span> <span class="fl">50.7</span> <span class="fl">51.0</span> <span class="fl">51.4</span> <span class="fl">51.5</span> <span class="fl">52.5</span></span>
+<span id="cb2-9"><a href="la-curva-normal-y-los-puntajes-z.html#cb2-9" tabindex="-1"></a>[<span class="dv">27</span>] <span class="fl">53.2</span> <span class="fl">53.6</span> <span class="fl">53.8</span> <span class="fl">54.0</span> <span class="fl">54.7</span> <span class="fl">54.9</span> <span class="fl">55.6</span> <span class="fl">56.1</span> <span class="fl">58.3</span> <span class="fl">59.0</span> <span class="fl">60.4</span> <span class="fl">61.4</span> <span class="fl">61.4</span></span>
+<span id="cb2-10"><a href="la-curva-normal-y-los-puntajes-z.html#cb2-10" tabindex="-1"></a>[<span class="dv">40</span>] <span class="fl">61.7</span> <span class="fl">61.7</span> <span class="fl">63.7</span> <span class="fl">63.7</span> <span class="fl">65.0</span> <span class="fl">66.2</span> <span class="fl">71.3</span> <span class="fl">72.0</span> <span class="fl">72.5</span> <span class="fl">77.2</span> <span class="fl">80.4</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="la-curva-normal-y-los-puntajes-z.html#cb3-1" tabindex="-1"></a><span class="co"># Parametros de la muestra generada</span></span>
+<span id="cb3-2"><a href="la-curva-normal-y-los-puntajes-z.html#cb3-2" tabindex="-1"></a>prom <span class="ot">&lt;-</span> <span class="fu">mean</span>(datos1)</span>
+<span id="cb3-3"><a href="la-curva-normal-y-los-puntajes-z.html#cb3-3" tabindex="-1"></a>de <span class="ot">&lt;-</span> <span class="fu">sd</span>(datos1)</span>
+<span id="cb3-4"><a href="la-curva-normal-y-los-puntajes-z.html#cb3-4" tabindex="-1"></a><span class="fu">c</span>(<span class="at">Promedio =</span> prom, <span class="at">Desviacion_estandar =</span> de)</span>
+<span id="cb3-5"><a href="la-curva-normal-y-los-puntajes-z.html#cb3-5" tabindex="-1"></a>           Promedio Desviacion_estandar </span>
+<span id="cb3-6"><a href="la-curva-normal-y-los-puntajes-z.html#cb3-6" tabindex="-1"></a>           <span class="fl">51.57028</span>            <span class="fl">13.89987</span> </span>
+<span id="cb3-7"><a href="la-curva-normal-y-los-puntajes-z.html#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="la-curva-normal-y-los-puntajes-z.html#cb3-8" tabindex="-1"></a><span class="co"># Cuantos datos hay entre el promedio y una desviacion estandar (una cola)?</span></span>
+<span id="cb3-9"><a href="la-curva-normal-y-los-puntajes-z.html#cb3-9" tabindex="-1"></a>datos_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> datos1)</span>
+<span id="cb3-10"><a href="la-curva-normal-y-los-puntajes-z.html#cb3-10" tabindex="-1"></a>de1_df <span class="ot">&lt;-</span> datos_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(x <span class="sc">&gt;=</span> prom <span class="sc">&amp;</span> x <span class="sc">&lt;=</span> (prom <span class="sc">+</span> de))</span>
+<span id="cb3-11"><a href="la-curva-normal-y-los-puntajes-z.html#cb3-11" tabindex="-1"></a><span class="fu">c</span>(<span class="at">n =</span> <span class="fu">nrow</span>(de1_df), <span class="at">porcentaje =</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">nrow</span>(de1_df) <span class="sc">/</span> <span class="fu">length</span>(datos1), <span class="dv">1</span>))</span>
+<span id="cb3-12"><a href="la-curva-normal-y-los-puntajes-z.html#cb3-12" tabindex="-1"></a>         n porcentaje </span>
+<span id="cb3-13"><a href="la-curva-normal-y-los-puntajes-z.html#cb3-13" tabindex="-1"></a>        <span class="dv">19</span>         <span class="dv">38</span> </span></code></pre></div>
+<p>Los parametros de la muestra (promedio y desviacion estandar) no coinciden
+exactamente con los de la distribucion de la que salieron (50 y 12,5). Esto es
+esperable: son numeros generados al azar. La <strong>ley de los grandes numeros</strong> dice
+que cuanto mas grande sea la muestra, mas se acercaran los estadisticos muestrales
+a los parametros verdaderos. Comprobemoslo generando un millon de datos.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="la-curva-normal-y-los-puntajes-z.html#cb4-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020</span>)</span>
+<span id="cb4-2"><a href="la-curva-normal-y-los-puntajes-z.html#cb4-2" tabindex="-1"></a>datos2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000000</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="fl">12.5</span>)</span>
+<span id="cb4-3"><a href="la-curva-normal-y-los-puntajes-z.html#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="la-curva-normal-y-los-puntajes-z.html#cb4-4" tabindex="-1"></a><span class="co"># Parametros de la muestra grande</span></span>
+<span id="cb4-5"><a href="la-curva-normal-y-los-puntajes-z.html#cb4-5" tabindex="-1"></a><span class="fu">c</span>(<span class="at">Promedio =</span> <span class="fu">mean</span>(datos2), <span class="at">Desviacion_estandar =</span> <span class="fu">sd</span>(datos2))</span>
+<span id="cb4-6"><a href="la-curva-normal-y-los-puntajes-z.html#cb4-6" tabindex="-1"></a>           Promedio Desviacion_estandar </span>
+<span id="cb4-7"><a href="la-curva-normal-y-los-puntajes-z.html#cb4-7" tabindex="-1"></a>           <span class="fl">50.00676</span>            <span class="fl">12.49015</span> </span>
+<span id="cb4-8"><a href="la-curva-normal-y-los-puntajes-z.html#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="la-curva-normal-y-los-puntajes-z.html#cb4-9" tabindex="-1"></a><span class="co"># Cuantos datos hay entre el promedio y una desviacion estandar?</span></span>
+<span id="cb4-10"><a href="la-curva-normal-y-los-puntajes-z.html#cb4-10" tabindex="-1"></a>de1_df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> datos2) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(x <span class="sc">&gt;=</span> <span class="fu">mean</span>(datos2) <span class="sc">&amp;</span> x <span class="sc">&lt;=</span> (<span class="fu">mean</span>(datos2) <span class="sc">+</span> <span class="fu">sd</span>(datos2)))</span>
+<span id="cb4-11"><a href="la-curva-normal-y-los-puntajes-z.html#cb4-11" tabindex="-1"></a><span class="fu">c</span>(<span class="at">porcentaje =</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">nrow</span>(de1_df2) <span class="sc">/</span> <span class="fu">length</span>(datos2), <span class="dv">1</span>))</span>
+<span id="cb4-12"><a href="la-curva-normal-y-los-puntajes-z.html#cb4-12" tabindex="-1"></a>porcentaje </span>
+<span id="cb4-13"><a href="la-curva-normal-y-los-puntajes-z.html#cb4-13" tabindex="-1"></a>      <span class="fl">34.1</span> </span></code></pre></div>
+<p>Con un millon de observaciones, el promedio y la desviacion estandar se acercan
+muchisimo a 50 y 12,5, y el porcentaje de casos entre el promedio y una desviacion
+estandar se acerca al 34,13 % teorico. La siguiente figura compara la densidad de
+la muestra grande con las lineas de una y dos desviaciones estandar.</p>
+<p><strong>Figura <a href="la-curva-normal-y-los-puntajes-z.html#fig:norm-density">3.1</a> Densidad de una distribucion normal simulada (n = 1.000.000)</strong></p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:norm-density"></span>
+<img src="02b-curva-normal-z_files/figure-html/norm-density-1.png" alt="Densidad de una distribucion normal simulada con media 50 y desviacion estandar 12,5" width="90%"><p class="caption">
+Figura 3.1. Densidad de una distribucion normal simulada con media 50 y desviacion estandar 12,5
+</p>
+</div>
+</div>
+<div id="puntajes-crudos-y-puntajes-z-z-score" class="section level2" number="3.3">
+<h2>
+<span class="header-section-number">3.3</span> Puntajes crudos y puntajes z (z-score)<a class="anchor" aria-label="anchor" href="#puntajes-crudos-y-puntajes-z-z-score"><i class="fas fa-link"></i></a>
+</h2>
+<p>En una distribucion normal podemos convertir cualquier <strong>puntaje crudo</strong> (un valor
+<span class="math inline">\(x\)</span> de la escala original) en un <strong>puntaje z</strong> o <strong>puntaje estandar</strong>. El puntaje
+z indica la direccion y el grado en que un puntaje crudo se desvia de la media,
+medido en unidades de desviacion estandar. La formula es:</p>
+<p><span class="math display">\[z=\frac{x-\bar{X}}{\sigma}\]</span></p>
+<p>donde <span class="math inline">\(x\)</span> es el valor de interes, <span class="math inline">\(\bar{X}\)</span> es la media y <span class="math inline">\(\sigma\)</span> es la
+desviacion estandar. La cantidad <span class="math inline">\(x-\bar{X}\)</span> se conoce como el <strong>puntaje de
+desviacion</strong>, de modo que la formula tambien se escribe <span class="math inline">\(z=x/\sigma\)</span>.</p>
+<div id="ejemplo-resuelto" class="section level3" number="3.3.1">
+<h3>
+<span class="header-section-number">3.3.1</span> Ejemplo resuelto<a class="anchor" aria-label="anchor" href="#ejemplo-resuelto"><i class="fas fa-link"></i></a>
+</h3>
+<p>Supongamos que el ingreso anual en una ciudad se distribuye normalmente con media
+de 5.000 dolares y desviacion estandar de 1.500. ¿Cual es el puntaje z de una
+persona que gana 7.000?</p>
+<p><span class="math display">\[z=\frac{7000-5000}{1500}=1,33\]</span></p>
+<p>Un ingreso de 7.000 esta a 1,33 desviaciones estandar por encima del ingreso
+medio. Veamos el mismo calculo con nuestros datos simulados, para el valor
+<span class="math inline">\(x=60\)</span>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="la-curva-normal-y-los-puntajes-z.html#cb5-1" tabindex="-1"></a><span class="co"># Puntaje z de x = 60 en la distribucion simulada</span></span>
+<span id="cb5-2"><a href="la-curva-normal-y-los-puntajes-z.html#cb5-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">60</span></span>
+<span id="cb5-3"><a href="la-curva-normal-y-los-puntajes-z.html#cb5-3" tabindex="-1"></a>z_score <span class="ot">&lt;-</span> (x <span class="sc">-</span> <span class="fu">mean</span>(datos2)) <span class="sc">/</span> <span class="fu">sd</span>(datos2)</span>
+<span id="cb5-4"><a href="la-curva-normal-y-los-puntajes-z.html#cb5-4" tabindex="-1"></a><span class="fu">c</span>(<span class="at">x =</span> x, <span class="at">media =</span> <span class="fu">mean</span>(datos2), <span class="at">sd =</span> <span class="fu">sd</span>(datos2), <span class="at">z =</span> z_score)</span>
+<span id="cb5-5"><a href="la-curva-normal-y-los-puntajes-z.html#cb5-5" tabindex="-1"></a>         x      media         sd          z </span>
+<span id="cb5-6"><a href="la-curva-normal-y-los-puntajes-z.html#cb5-6" tabindex="-1"></a><span class="fl">60.0000000</span> <span class="fl">50.0067584</span> <span class="fl">12.4901492</span>  <span class="fl">0.8000899</span> </span></code></pre></div>
+<p>El puntaje crudo 60 representa 0,80 desviaciones estandar por encima del promedio.
+Podemos comprobarlo en sentido inverso: si conocemos la desviacion estandar y el
+puntaje z, recuperamos el puntaje crudo con <span class="math inline">\(x = (z \cdot \sigma) + \bar{X}\)</span>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="la-curva-normal-y-los-puntajes-z.html#cb6-1" tabindex="-1"></a><span class="co"># Fraccion de desviacion estandar a la que refiere el z-score</span></span>
+<span id="cb6-2"><a href="la-curva-normal-y-los-puntajes-z.html#cb6-2" tabindex="-1"></a>fraccion_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(datos2) <span class="sc">*</span> z_score</span>
+<span id="cb6-3"><a href="la-curva-normal-y-los-puntajes-z.html#cb6-3" tabindex="-1"></a><span class="co"># Promedio mas esa fraccion = puntaje crudo original</span></span>
+<span id="cb6-4"><a href="la-curva-normal-y-los-puntajes-z.html#cb6-4" tabindex="-1"></a><span class="fu">c</span>(<span class="at">fraccion_sd =</span> fraccion_sd, <span class="at">puntaje_crudo =</span> <span class="fu">mean</span>(datos2) <span class="sc">+</span> fraccion_sd)</span>
+<span id="cb6-5"><a href="la-curva-normal-y-los-puntajes-z.html#cb6-5" tabindex="-1"></a>  fraccion_sd puntaje_crudo </span>
+<span id="cb6-6"><a href="la-curva-normal-y-los-puntajes-z.html#cb6-6" tabindex="-1"></a>     <span class="fl">9.993242</span>     <span class="fl">60.000000</span> </span></code></pre></div>
+</div>
+</div>
+<div id="el-area-bajo-la-curva-y-la-funcion-pnorm" class="section level2" number="3.4">
+<h2>
+<span class="header-section-number">3.4</span> El area bajo la curva y la funcion <code>pnorm()</code><a class="anchor" aria-label="anchor" href="#el-area-bajo-la-curva-y-la-funcion-pnorm"><i class="fas fa-link"></i></a>
+</h2>
+<p>El area bajo la curva normal acumulada hasta un valor dado es una probabilidad.
+En R la calculamos con la funcion <code><a href="https://rdrr.io/r/stats/Normal.html">pnorm()</a></code>, que recibe el puntaje crudo, la media
+y la desviacion estandar. Con <code>lower.tail = TRUE</code> obtenemos el area acumulada
+<strong>hasta</strong> el valor; con <code>lower.tail = FALSE</code>, el area <strong>posterior</strong> a el.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="la-curva-normal-y-los-puntajes-z.html#cb7-1" tabindex="-1"></a><span class="co"># Area acumulada hasta x = 60 (AUC previa)</span></span>
+<span id="cb7-2"><a href="la-curva-normal-y-los-puntajes-z.html#cb7-2" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">mean</span>(datos2), <span class="at">sd =</span> <span class="fu">sd</span>(datos2), <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-3"><a href="la-curva-normal-y-los-puntajes-z.html#cb7-3" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.7881706</span></span>
+<span id="cb7-4"><a href="la-curva-normal-y-los-puntajes-z.html#cb7-4" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="la-curva-normal-y-los-puntajes-z.html#cb7-5" tabindex="-1"></a><span class="co"># Area entre el promedio y x = 60 (restando el 50 % que queda a la izquierda)</span></span>
+<span id="cb7-6"><a href="la-curva-normal-y-los-puntajes-z.html#cb7-6" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">mean</span>(datos2), <span class="at">sd =</span> <span class="fu">sd</span>(datos2)) <span class="sc">-</span> <span class="fl">0.5</span></span>
+<span id="cb7-7"><a href="la-curva-normal-y-los-puntajes-z.html#cb7-7" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.2881706</span></span>
+<span id="cb7-8"><a href="la-curva-normal-y-los-puntajes-z.html#cb7-8" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="la-curva-normal-y-los-puntajes-z.html#cb7-9" tabindex="-1"></a><span class="co"># Area posterior a x = 60</span></span>
+<span id="cb7-10"><a href="la-curva-normal-y-los-puntajes-z.html#cb7-10" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">mean</span>(datos2), <span class="at">sd =</span> <span class="fu">sd</span>(datos2), <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-11"><a href="la-curva-normal-y-los-puntajes-z.html#cb7-11" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.2118294</span></span></code></pre></div>
+<p>Interpretacion de los tres resultados:</p>
+<ul>
+<li>El <strong>78,8 %</strong> de los casos esta por debajo de 60.</li>
+<li>El <strong>28,8 %</strong> esta entre el promedio (50) y 60.</li>
+<li>El <strong>21,2 %</strong> esta por encima de 60. Nota que 28,8 % + 21,2 % = 50 %, es decir,
+la mitad derecha de la distribucion.</li>
+</ul>
+<div id="de-la-curva-normal-al-valor-p" class="section level3" number="3.4.1">
+<h3>
+<span class="header-section-number">3.4.1</span> De la curva normal al valor p<a class="anchor" aria-label="anchor" href="#de-la-curva-normal-al-valor-p"><i class="fas fa-link"></i></a>
+</h3>
+<p>El resultado mas importante para la inferencia es el que relaciona una distancia
+de <strong>1,96 desviaciones estandar</strong> con el 95 %. Calculemoslo directamente.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="la-curva-normal-y-los-puntajes-z.html#cb8-1" tabindex="-1"></a><span class="co"># Probabilidad dentro de +/- 1,96 DE (dos colas)</span></span>
+<span id="cb8-2"><a href="la-curva-normal-y-los-puntajes-z.html#cb8-2" tabindex="-1"></a>P_dentro <span class="ot">&lt;-</span> (<span class="fu">pnorm</span>(<span class="fl">1.96</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fl">0.5</span>) <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb8-3"><a href="la-curva-normal-y-los-puntajes-z.html#cb8-3" tabindex="-1"></a>P_dentro</span>
+<span id="cb8-4"><a href="la-curva-normal-y-los-puntajes-z.html#cb8-4" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.9500042</span></span>
+<span id="cb8-5"><a href="la-curva-normal-y-los-puntajes-z.html#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="la-curva-normal-y-los-puntajes-z.html#cb8-6" tabindex="-1"></a><span class="co"># Probabilidad fuera de +/- 1,96 DE = valor p</span></span>
+<span id="cb8-7"><a href="la-curva-normal-y-los-puntajes-z.html#cb8-7" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> P_dentro</span>
+<span id="cb8-8"><a href="la-curva-normal-y-los-puntajes-z.html#cb8-8" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.04999579</span></span></code></pre></div>
+<p>El <strong>95 %</strong> de los casos de una distribucion normal cae dentro de 1,96
+desviaciones estandar de la media, y el <strong>5 %</strong> queda en las colas. Ese 5 % es el
+origen del umbral <span class="math inline">\(p &lt; 0,05\)</span> que usaremos en todos los capitulos de inferencia: un
+resultado cae en las colas (es “extremo”) cuando su puntaje z es mayor que 1,96 o
+menor que -1,96. Este es el mismo 1,96 que aparece en la formula del margen de
+error de la prueba t.</p>
+</div>
+</div>
+<div id="aplicacion-con-la-encuesta-del-ciep" class="section level2" number="3.5">
+<h2>
+<span class="header-section-number">3.5</span> Aplicacion con la encuesta del CIEP<a class="anchor" aria-label="anchor" href="#aplicacion-con-la-encuesta-del-ciep"><i class="fas fa-link"></i></a>
+</h2>
+<p>Apliquemos lo aprendido a una variable real: la <strong>edad</strong> en la encuesta del CIEP
+de noviembre de 2020. En el capitulo 5 vimos que la edad promedio de la muestra es
+40,5 anos con una desviacion estandar de 15,3. ¿Que puntaje z corresponde a una
+persona de 60 anos? ¿Que proporcion del electorado tiene 60 anos o menos?</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="la-curva-normal-y-los-puntajes-z.html#cb9-1" tabindex="-1"></a>edad_media <span class="ot">&lt;-</span> <span class="fu">mean</span>(ciep<span class="sc">$</span>edad, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-2"><a href="la-curva-normal-y-los-puntajes-z.html#cb9-2" tabindex="-1"></a>edad_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(ciep<span class="sc">$</span>edad, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-3"><a href="la-curva-normal-y-los-puntajes-z.html#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="la-curva-normal-y-los-puntajes-z.html#cb9-4" tabindex="-1"></a><span class="co"># Puntaje z de una persona de 60 anos</span></span>
+<span id="cb9-5"><a href="la-curva-normal-y-los-puntajes-z.html#cb9-5" tabindex="-1"></a>z_60 <span class="ot">&lt;-</span> (<span class="dv">60</span> <span class="sc">-</span> edad_media) <span class="sc">/</span> edad_sd</span>
+<span id="cb9-6"><a href="la-curva-normal-y-los-puntajes-z.html#cb9-6" tabindex="-1"></a>z_60</span>
+<span id="cb9-7"><a href="la-curva-normal-y-los-puntajes-z.html#cb9-7" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">1.275269</span></span>
+<span id="cb9-8"><a href="la-curva-normal-y-los-puntajes-z.html#cb9-8" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="la-curva-normal-y-los-puntajes-z.html#cb9-9" tabindex="-1"></a><span class="co"># Proporcion del electorado con 60 anos o menos</span></span>
+<span id="cb9-10"><a href="la-curva-normal-y-los-puntajes-z.html#cb9-10" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> edad_media, <span class="at">sd =</span> edad_sd, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-11"><a href="la-curva-normal-y-los-puntajes-z.html#cb9-11" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.8988929</span></span></code></pre></div>
+<p>Una persona de 60 anos esta a 1,28 desviaciones estandar por encima de la media, y
+cerca del <strong>90 %</strong> del electorado tiene 60 anos o menos. Este tipo de calculo es
+la base de la estandarizacion: comparar observaciones de distribuciones distintas
+llevandolas a una escala comun de puntajes z.</p>
+<blockquote>
+<p><strong>Punto clave.</strong> El puntaje z es una medida relativa: no dice si un valor es
+alto o bajo en abstracto, sino cuantas desviaciones estandar se aleja de la
+media de su propia distribucion. Por eso permite comparar variables medidas en
+escalas distintas.</p>
+</blockquote>
+</div>
+<div id="resumen" class="section level2" number="3.6">
+<h2>
+<span class="header-section-number">3.6</span> Resumen<a class="anchor" aria-label="anchor" href="#resumen"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>La curva normal es simetrica, unimodal y su area total es 1.</li>
+<li>La regla 68-95-99,7 describe la proporcion de casos en torno a la media.</li>
+<li>El puntaje z estandariza cualquier valor: <span class="math inline">\(z=(x-\bar{X})/\sigma\)</span>.</li>
+<li>
+<code><a href="https://rdrr.io/r/stats/Normal.html">pnorm()</a></code> traduce puntajes crudos (o z) en areas bajo la curva, es decir, en
+probabilidades.</li>
+<li>La distancia de 1,96 desviaciones estandar delimita el 95 % central y es la
+base del valor p que usaremos en las pruebas de hipotesis.</li>
+</ul>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="estadistica-descriptiva.html"><span class="header-section-number">2</span> Estadistica descriptiva</a></div>
+<div class="next"><a href="introduccion-a-las-medidas-de-asociacion-la-correlacion.html"><span class="header-section-number">4</span> Introduccion a las medidas de asociacion: la correlacion</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#la-curva-normal-y-los-puntajes-z"><span class="header-section-number">3</span> La curva normal y los puntajes z</a></li>
+<li><a class="nav-link" href="#la-curva-normal"><span class="header-section-number">3.1</span> La curva normal</a></li>
+<li><a class="nav-link" href="#generar-datos-normales-en-r"><span class="header-section-number">3.2</span> Generar datos normales en R</a></li>
+<li>
+<a class="nav-link" href="#puntajes-crudos-y-puntajes-z-z-score"><span class="header-section-number">3.3</span> Puntajes crudos y puntajes z (z-score)</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#ejemplo-resuelto"><span class="header-section-number">3.3.1</span> Ejemplo resuelto</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#el-area-bajo-la-curva-y-la-funcion-pnorm"><span class="header-section-number">3.4</span> El area bajo la curva y la funcion pnorm()</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#de-la-curva-normal-al-valor-p"><span class="header-section-number">3.4.1</span> De la curva normal al valor p</a></li></ul>
+</li>
+<li><a class="nav-link" href="#aplicacion-con-la-encuesta-del-ciep"><span class="header-section-number">3.5</span> Aplicacion con la encuesta del CIEP</a></li>
+<li><a class="nav-link" href="#resumen"><span class="header-section-number">3.6</span> Resumen</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Estadistica aplicada para la ciencia politica</strong>" was written by Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

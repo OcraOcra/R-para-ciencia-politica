@@ -47,11 +47,11 @@ La respuesta mas frecuente es "Muy mala", seguida de "Mala". En 2020, en plena
 pandemia, la percepcion de la economia era marcadamente negativa: mas del 85 % de
 las personas calificaron la situacion economica como mala o muy mala.
 
-**Figura \@ref(fig:figure_1) Percepcion de la situacion economica del pais**
+**Figura \@ref(fig:fig-percepcion) Percepcion de la situacion economica del pais**
 
 <div class="figure">
-<img src="05-chisq_files/figure-html/figure_1-1.png" alt="Percepcion de la situacion economica del pais, 2020" width="672" />
-<p class="caption">(\#fig:figure_1)Percepcion de la situacion economica del pais, 2020</p>
+<img src="05-chisq_files/figure-html/fig-percepcion-1.png" alt="Percepcion de la situacion economica del pais, 2020" width="672" />
+<p class="caption">(\#fig:fig-percepcion)Percepcion de la situacion economica del pais, 2020</p>
 </div>
 
 ## ¿Deberiamos esperar diferencias entre mujeres y hombres?
@@ -199,9 +199,9 @@ no hay vinculo entre $X$ y $Y$.
 ¿Por que existe el estandar de $p < 0,05$? Considera el problema general de la
 inferencia. La expectativa de que $X$ influye en $Y$ podria ser verdadera o falsa
 en la poblacion, y tu muestra podria respaldar o no tu expectativa. La Tabla
-5.5 esquematiza como podria desarrollarse esto.
+8.5 esquematiza como podria desarrollarse esto.
 
-**Tabla 5.5 Errores de Tipo I y Tipo II**
+**Tabla 8.5 Errores de Tipo I y Tipo II**
 
 <img src="images/Error_types.png" alt="" width="90%" />
 
@@ -231,7 +231,7 @@ una muestra que es una decima parte de la original, veria un chi-cuadrado mucho
 menor y un valor p muy por encima de 0,05 (no significativo). La muestra pequena
 llevaria a un error de Tipo II. Los numeros aparecen abajo.
 
-**Tabla 5.6 Genero y nivel educativo: chi-cuadrado de la muestra original y de una muestra pequena**
+**Tabla 8.6 Genero y nivel educativo: chi-cuadrado de la muestra original y de una muestra pequena**
 
 
 ```
@@ -255,6 +255,174 @@ seguro. ¿Cual es una probabilidad aceptable de error en estos contextos? Depend
 de la gravedad de la enfermedad y de la disponibilidad de otros tratamientos. En
 ciencias sociales, una probabilidad del 5 % de error de Tipo I es el estandar.
 Muestras mas grandes minimizan el error de Tipo II.
+
+## El calculo manual del chi-cuadrado
+
+Para entender de donde sale el estadistico, calculemoslo una vez a mano. La
+formula general es:
+
+$$X^2=\sum\frac{(f_o-f_e)^2}{f_e}$$
+
+donde $f_o$ es la frecuencia **observada** en cada casilla y $f_e$ la frecuencia
+**esperada** si los grupos fueran identicos. La frecuencia esperada de cada casilla
+se obtiene con:
+
+$$f_e=\frac{TM_{fila}\cdot TM_{columna}}{N}$$
+
+donde $TM$ es el total marginal (de la fila o de la columna) y $N$ el total de
+casos. Veamos un ejemplo de una tabla 2x2 tomado de Levin ([@levin1999]): se
+clasifican 20 liberales y 20 conservadores como rigidos o no rigidos en sus
+metodos de crianza. Las hipotesis son:
+
+- $H_0$: la frecuencia relativa de liberales y conservadores segun su rigidez es la
+  misma.
+- $H_1$: la frecuencia relativa varia significativamente.
+
+
+``` r
+# Tabla 2x2: filas = liberales / conservadores; columnas = no rigidos / rigidos
+datos <- matrix(c(5, 15, 10, 10), nrow = 2, byrow = TRUE,
+                dimnames = list(Grupo = c("Liberales", "Conservadores"),
+                                Rigidez = c("No rigidos", "Rigidos")))
+datos
+               Rigidez
+Grupo           No rigidos Rigidos
+  Liberales              5      15
+  Conservadores         10      10
+n <- sum(datos)
+```
+
+
+``` r
+# Frecuencias observadas de cada casilla (A, B, C, D)
+fo_A <- datos[1, 1]; fo_B <- datos[1, 2]
+fo_C <- datos[2, 1]; fo_D <- datos[2, 2]
+
+# Totales marginales
+tm_r1 <- fo_A + fo_B; tm_r2 <- fo_C + fo_D
+tm_c1 <- fo_A + fo_C; tm_c2 <- fo_B + fo_D
+
+# Frecuencias esperadas
+fe_A <- tm_r1 * tm_c1 / n; fe_B <- tm_r1 * tm_c2 / n
+fe_C <- tm_r2 * tm_c1 / n; fe_D <- tm_r2 * tm_c2 / n
+
+# Paso 1 y 2: diferencias y sus cuadrados
+d_A <- fo_A - fe_A; d_B <- fo_B - fe_B
+d_C <- fo_C - fe_C; d_D <- fo_D - fe_D
+
+# Paso 3: dividir cada cuadrado entre la frecuencia esperada y sumar
+X2 <- d_A^2 / fe_A + d_B^2 / fe_B + d_C^2 / fe_C + d_D^2 / fe_D
+X2
+[1] 2.666667
+
+# Formula abreviada para tablas 2x2: N(AD - BC)^2 / [(A+B)(C+D)(A+C)(B+D)]
+X2_abrev <- n * (fo_A * fo_D - fo_B * fo_C)^2 /
+  ((fo_A + fo_B) * (fo_C + fo_D) * (fo_A + fo_C) * (fo_B + fo_D))
+X2_abrev
+[1] 2.666667
+
+# Grados de libertad: gl = (filas - 1)(columnas - 1)
+gl <- (nrow(datos) - 1) * (ncol(datos) - 1)
+gl
+[1] 1
+```
+
+El chi-cuadrado experimental es 2,67 con 1 grado de libertad. El valor critico de
+la tabla para 0,05 es 3,84. Como 2,67 < 3,84, **aceptamos $H_0$**: no hay
+diferencias significativas entre liberales y conservadores en su rigidez para
+criar a los hijos.
+
+
+``` r
+# Valor critico de la distribucion chi-cuadrado para 0,05 y 1 gl
+qchisq(0.95, gl)
+[1] 3.841459
+```
+
+## La correccion de Yates
+
+Levin ([@levin1999]) advierte que, cuando las frecuencias **esperadas** de una
+tabla 2x2 son muy pequenas (menos de 10 en alguna casilla), la formula habitual
+puede producir un chi-cuadrado **inflado**. En ese caso se aplica la **correccion
+de Yates** (o correccion de continuidad), que resta 0,5 al valor absoluto de la
+diferencia antes de elevarla al cuadrado:
+
+$$X^2_{Yates}=\sum\frac{(|f_o-f_e|-0,5)^2}{f_e}$$
+
+
+``` r
+yates_A <- (abs(fo_A - fe_A) - 0.5)^2 / fe_A
+yates_B <- (abs(fo_B - fe_B) - 0.5)^2 / fe_B
+yates_C <- (abs(fo_C - fe_C) - 0.5)^2 / fe_C
+yates_D <- (abs(fo_D - fe_D) - 0.5)^2 / fe_D
+X2_yates <- yates_A + yates_B + yates_C + yates_D
+X2_yates
+[1] 1.706667
+```
+
+Con la correccion de Yates, el chi-cuadrado baja de 2,67 a 1,71. La conclusion no
+cambia (1,71 sigue siendo menor que 3,84), pero el estadistico es mas prudente.
+
+### Comprobacion con `chisq.test()`
+
+
+``` r
+# Sin correccion de Yates
+chisq.test(datos, correct = FALSE)
+
+	Pearson's Chi-squared test
+
+data:  datos
+X-squared = 2.6667, df = 1, p-value = 0.1025
+
+# Con correccion de Yates
+chisq.test(datos, correct = TRUE)
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  datos
+X-squared = 1.7067, df = 1, p-value = 0.1914
+```
+
+Ambos resultados coinciden con los calculos manuales. Recuerda: en R, para tablas
+2x2 la funcion aplica la correccion de Yates **por defecto**; si quieres el
+estadistico sin corregir debes indicar `correct = FALSE`.
+
+## Aplicacion con el CIEP: genero y educacion universitaria
+
+Apliquemos una tabla 2x2 a la encuesta. ¿Depende de que una persona tenga educacion
+universitaria su genero? Construimos la tabla con dos categorias por variable.
+
+
+``` r
+uni <- as.numeric(as.numeric(ciep$educarec) == 3)
+tab2x2 <- table(Sexo = ciep$sexo_f, Universitaria = uni)
+tab2x2
+        Universitaria
+Sexo       0   1
+  Mujer  345 164
+  Hombre 276 181
+
+chisq.test(tab2x2, correct = FALSE)
+
+	Pearson's Chi-squared test
+
+data:  tab2x2
+X-squared = 5.7218, df = 1, p-value = 0.01676
+chisq.test(tab2x2, correct = TRUE)
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  tab2x2
+X-squared = 5.4046, df = 1, p-value = 0.02008
+```
+
+El chi-cuadrado es 5,72 sin correccion (p = 0,017) y 5,40 con correccion de Yates
+(p = 0,020). En ambos casos el resultado es significativo: la proporcion de
+hombres con educacion universitaria (181 de 457, es decir 39,6 %) es mayor que la
+de mujeres (164 de 509, es decir 32,2 %). Aqui las frecuencias esperadas superan
+10, de modo que la correccion de Yates no es estrictamente necesaria, pero sirve
+para mostrar la diferencia.
 
 ## Conclusion
 

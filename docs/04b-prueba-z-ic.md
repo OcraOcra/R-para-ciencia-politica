@@ -1,0 +1,417 @@
+# La diferencia de medias paso a paso: prueba z, prueba t e intervalo de confianza
+
+En el capitulo 5 usamos la prueba t como una funcion de R: escribimos
+`t.test(y ~ x, data = ...)` y leimos la salida. Ese es el uso profesional. Pero
+para entender **que hace** la prueba conviene calcularla una vez a mano, paso a
+paso. Este capitulo reproduce el procedimiento manual del curso CP-2007
+([@gomez2025]) y los conceptos de [@levin1999], y luego lo comprueba con las
+funciones de R. El mismo procedimiento sirve para la **prueba z** (muestras
+grandes) y la **prueba t** (muestras pequenas).
+
+## Contrastar diferencias entre dos muestras
+
+Gran parte de la investigacion social consiste en comparar dos grupos: alemanes
+frente a norteamericanos, catolicos frente a protestantes, conservadores frente a
+liberales, hombres frente a mujeres. El proceso para contrastar diferencias entre
+dos muestras implica formular dos hipotesis:
+
+- **Hipotesis nula ($H_0$):** las dos muestras provienen de la misma poblacion, es
+  decir, no hay diferencias reales entre sus medias. Cualquier diferencia observada
+  se debe al **error de muestreo**.
+- **Hipotesis alternativa ($H_1$):** existe una diferencia poblacional real entre
+  las dos muestras.
+
+La logica de la contrastacion es la siguiente. Si la diferencia observada entre las
+medias muestrales es lo bastante grande, resulta dificil explicarla solo por el
+error de muestreo, y entonces rechazamos $H_0$ y aceptamos $H_1$. La pregunta
+operativa es: ¿que tan grande es "lo bastante grande"? La respuesta depende de la
+variabilidad de los datos y del tamano de las muestras.
+
+## Niveles de confianza
+
+Para decidir si una diferencia es estadisticamente significativa establecemos un
+**nivel de confianza** (o nivel de significancia). La convencion en ciencias
+sociales es **0,05**: rechazamos $H_0$ si una diferencia como la observada
+ocurriera por azar solo 5 veces o menos de cada 100. Un nivel mas estricto es
+0,01 (1 de cada 100).
+
+El nivel de 0,05 corresponde a las colas de la distribucion de diferencias de
+medias: las areas que quedan a mas de $\pm 1,96$ desviaciones estandar de una
+diferencia media de cero. Como vimos en el capitulo 3, el 95 % de las diferencias
+muestrales cae entre $-1,96$ y $+1,96$ desviaciones estandar, y solo el 5 % queda
+en las colas (2,5 % + 2,5 %).
+
+Rechazar $H_0$ cuando deberiamos aceptarla se conoce como **error de tipo I** (o
+error alpha). Aceptar $H_0$ cuando deberiamos rechazarla se conoce como **error de
+tipo II** (o error beta). El capitulo 8 profundiza en estos dos errores.
+
+## Procedimiento manual en seis pasos
+
+Levin ([@levin1999]) propone el siguiente procedimiento. Los pasos 1 a 4
+son comunes a la prueba z y a la prueba t; el paso 5 cambia segun el tamano de las
+muestras.
+
+1. **Media de cada muestra.** $\bar{X}_1=\frac{\sum X_1}{N}$ y
+   $\bar{X}_2=\frac{\sum X_2}{N}$.
+2. **Desviacion estandar de cada muestra.**
+   $s_1=\sqrt{\frac{\sum X_1^2}{N}-\bar{X}_1^2}$ y lo mismo para $s_2$.
+3. **Error estandar de cada media.**
+   $\sigma_{\bar{X}1}=\frac{s_1}{\sqrt{N-1}}$ y lo mismo para la muestra 2.
+4. **Error estandar de la diferencia.**
+   $\sigma_{dif}=\sqrt{\sigma_{\bar{X}1}^2+\sigma_{\bar{X}2}^2}$.
+5. **Convertir la diferencia a unidades de error estandar.** Para muestras grandes
+   se obtiene un puntaje **z**; para muestras pequenas, una razon **t**:
+   $$z=\frac{\bar{X}_1-\bar{X}_2}{\sigma_{dif}} \qquad t=\frac{\bar{X}_1-\bar{X}_2}{\sigma_{dif}}$$
+   La formula es la misma; la diferencia esta en como se interpreta. La razon t se
+   evalua con **grados de libertad** $gl=N_1+N_2-2$.
+6. **Comparar con la tabla.** Para muestras grandes, se busca el valor z en la
+   tabla normal (equivale a 1,96 para 0,05 y 2,58 para 0,01). Para muestras
+   pequenas, se compara la t experimental con la t de la tabla t para los grados
+   de libertad correspondientes. Si el valor experimental es mayor, se rechaza
+   $H_0$.
+
+## Ejemplo de prueba z (muestras grandes)
+
+Retomamos un ejemplo clasico sobre **etnocentrismo**. Queremos saber si hay
+diferencias entre hombres y mujeres en una escala de etnocentrismo. Las hipotesis
+son:
+
+- $H_0$: no hay diferencias en etnocentrismo entre hombres y mujeres.
+- $H_1$: si hay diferencias en etnocentrismo entre hombres y mujeres.
+
+Los datos (35 observaciones por grupo) se construyen asi:
+
+
+``` r
+# Escala de etnocentrismo: 35 observaciones por grupo
+hombre <- c(rep(1, 21), rep(2, 7), rep(3, 4), rep(4, 2), 5)
+mujer  <- c(rep(1, 23), rep(2, 8), rep(3, 2), 4, 5)
+
+# Verificacion de las sumas
+c(n_hombre = length(hombre), n_mujer = length(mujer),
+  suma_hombre = sum(hombre), suma_mujer = sum(mujer))
+   n_hombre     n_mujer suma_hombre  suma_mujer 
+         35          35          60          54 
+```
+
+
+``` r
+n_h <- length(hombre); n_m <- length(mujer)
+
+# Paso 1: medias
+media_h <- sum(hombre) / n_h
+media_m <- sum(mujer) / n_m
+dif_medias <- media_h - media_m
+
+# Paso 2: desviaciones estandar (formula de Levin, dividiendo entre N)
+s_h <- sqrt(sum(hombre^2) / n_h - media_h^2)
+s_m <- sqrt(sum(mujer^2) / n_m - media_m^2)
+
+# Paso 3: error estandar de cada media
+error_h <- s_h / sqrt(n_h - 1)
+error_m <- s_m / sqrt(n_m - 1)
+
+# Paso 4: error estandar de la diferencia
+error_dif <- sqrt(error_h^2 + error_m^2)
+
+# Paso 5: puntaje z
+z_punt <- (media_h - media_m) / error_dif
+
+c(dif_medias = dif_medias, s_h = s_h, s_m = s_m,
+  error_dif = error_dif, z = z_punt)
+dif_medias        s_h        s_m  error_dif          z 
+ 0.1714286  1.0575289  0.9363411  0.2422385  0.7076852 
+```
+
+
+``` r
+# Paso 6: area bajo la curva y valor p
+auc <- (pnorm(z_punt, lower.tail = TRUE) - 0.5) * 2
+p_value <- 1 - auc
+c(auc = auc, p_value = p_value)
+      auc   p_value 
+0.5208592 0.4791408 
+```
+
+**Interpretacion.** Con un nivel de confianza del 95 %:
+
+- puntaje z = 0,71;
+- AUC = 0,52 (el area central, donde se confirma $H_0$);
+- valor p = 0,48.
+
+Como el valor p es mayor que 0,05 (y el AUC es menor que 0,95), **mantenemos
+$H_0$**. La diferencia de medias observada (1,71 - 1,54 = 0,17) es compatible con
+el error de muestreo. No hay evidencia de diferencias entre hombres y mujeres en
+etnocentrismo.
+
+### Comprobacion con la funcion `z.test()`
+
+El paquete **BSDA** incluye la funcion `z.test()`, que calcula automaticamente el
+puntaje z y el valor p.
+
+
+``` r
+library(BSDA)
+z.test(x = hombre, sigma.x = sd(hombre),
+       y = mujer,  sigma.y = sd(mujer),
+       conf.level = 0.95)
+
+	Two-sample z-Test
+
+data:  hombre and mujer
+z = 0.70769, p-value = 0.4791
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.3033501  0.6462072
+sample estimates:
+mean of x mean of y 
+ 1.714286  1.542857 
+```
+
+El valor z = 0,7077 y el valor p = 0,4791 coinciden con los calculos manuales.
+
+## Ejemplo de prueba t (muestras pequenas)
+
+Cuando las muestras son pequenas, las premisas de la normalidad no se cumplen de
+la misma forma y la distribucion de las diferencias no es del todo normal. Para
+compensarlo usamos la **razon t**, que se interpreta con los grados de libertad.
+Usemos una muestra de 25 observaciones por grupo.
+
+
+``` r
+# Escala de etnocentrismo: 25 observaciones por grupo
+hombre_t <- c(rep(1, 10), rep(2, 5), rep(3, 3), rep(4, 2), rep(5, 5))
+mujer_t  <- c(rep(1, 18), rep(2, 3), rep(3, 2), 4, 5)
+
+c(n_hombre = length(hombre_t), n_mujer = length(mujer_t),
+  suma_hombre = sum(hombre_t), suma_mujer = sum(mujer_t))
+   n_hombre     n_mujer suma_hombre  suma_mujer 
+         25          25          62          39 
+```
+
+
+``` r
+n_ht <- length(hombre_t); n_mt <- length(mujer_t)
+
+# Pasos 1 y 2: medias y desviaciones estandar
+media_ht <- sum(hombre_t) / n_ht
+media_mt <- sum(mujer_t) / n_mt
+s_ht <- sqrt(sum(hombre_t^2) / n_ht - media_ht^2)
+s_mt <- sqrt(sum(mujer_t^2) / n_mt - media_mt^2)
+
+# Pasos 3 y 4: errores estandar
+error_ht <- s_ht / sqrt(n_ht - 1)
+error_mt <- s_mt / sqrt(n_mt - 1)
+error_dift <- sqrt(error_ht^2 + error_mt^2)
+
+# Paso 5: razon t experimental
+t_exp <- (media_ht - media_mt) / error_dift
+
+# Grados de libertad
+gl <- (n_ht + n_mt) - 2
+
+c(media_h = media_ht, media_m = media_mt, dif = media_ht - media_mt,
+  t_exp = t_exp, gl = gl)
+ media_h  media_m      dif    t_exp       gl 
+ 2.48000  1.56000  0.92000  2.39683 48.00000 
+```
+
+
+``` r
+# Paso 6: valor critico de la tabla t (dos colas, 95 %) y decision
+t_teorica <- qt(0.975, gl)
+c(t_experimental = t_exp, t_teorica = t_teorica, gl = gl)
+t_experimental      t_teorica             gl 
+      2.396830       2.010635      48.000000 
+```
+
+**Interpretacion.** La t experimental (2,40) es mayor que la t teorica de la tabla
+(2,01) para 48 grados de libertad. Por lo tanto, **rechazamos $H_0$** y aceptamos
+$H_1$: si hay diferencias significativas en etnocentrismo entre hombres y mujeres.
+Como el promedio de los hombres (2,48) es mayor que el de las mujeres (1,56),
+concluimos que, con estos datos, los hombres son mas etnocentricos que las mujeres.
+
+### Comprobacion con la funcion `t.test()`
+
+
+``` r
+t.test(hombre_t, mujer_t, var.equal = TRUE)
+
+	Two Sample t-test
+
+data:  hombre_t and mujer_t
+t = 2.3968, df = 48, p-value = 0.02048
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.1482375 1.6917625
+sample estimates:
+mean of x mean of y 
+     2.48      1.56 
+```
+
+El valor t = 2,3968 y los grados de libertad (48) coinciden con el procedimiento
+manual. R usa por defecto la correccion de **Welch** (que no supone varianzas
+iguales y ajusta los grados de libertad); veamos la diferencia:
+
+
+``` r
+t.test(hombre_t, mujer_t)
+
+	Welch Two Sample t-test
+
+data:  hombre_t and mujer_t
+t = 2.3968, df = 42.414, p-value = 0.02102
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.1456031 1.6943969
+sample estimates:
+mean of x mean of y 
+     2.48      1.56 
+```
+
+La conclusion es la misma (p = 0,021 en ambos casos): el resultado es
+estadisticamente significativo.
+
+## El intervalo de confianza de la diferencia de medias
+
+Ademas del valor p, otro indicador util es el **intervalo de confianza (IC)** de la
+diferencia de medias. Como trabajamos con muestras y no con poblaciones completas,
+toda estimacion trae incertidumbre. El IC cuantifica esa incertidumbre: es un rango
+de valores posibles para la diferencia poblacional, calculado a partir de la
+muestra y de un nivel de confianza (tipicamente el 95 %).
+
+La regla de decision es muy intuitiva:
+
+- Si el IC **incluye el cero**, no podemos descartar que la diferencia verdadera
+  sea cero: mantenemos $H_0$.
+- Si el IC **no incluye el cero**, la diferencia probablemente es distinta de cero:
+  rechazamos $H_0$.
+
+La siguiente funcion calcula el IC de la diferencia de medias, usando la
+aproximacion t de Welch cuando las desviaciones estandar poblacionales son
+desconocidas (el caso habitual).
+
+
+``` r
+IntConf_DifMedias <- function(x, y, alpha = 0.05, sigma1 = NULL, sigma2 = NULL) {
+  m1 <- mean(x); m2 <- mean(y)
+  n1 <- length(x); n2 <- length(y)
+  diff_means <- m1 - m2
+
+  if (is.null(sigma1) | is.null(sigma2)) {
+    # Caso t (sigma desconocidas): usamos las desviaciones muestrales
+    s1 <- sd(x); s2 <- sd(y)
+    se <- sqrt(s1^2 / n1 + s2^2 / n2)
+    # Grados de libertad de Welch-Satterthwaite
+    df <- (s1^2 / n1 + s2^2 / n2)^2 /
+      ((s1^2 / n1)^2 / (n1 - 1) + (s2^2 / n2)^2 / (n2 - 1))
+    t_crit <- qt(1 - alpha / 2, df)
+    IC <- c(diff_means - t_crit * se, diff_means + t_crit * se)
+    method <- "t de Student (Welch)"
+  } else {
+    # Caso z (sigma conocidas)
+    se <- sqrt(sigma1^2 / n1 + sigma2^2 / n2)
+    z_crit <- qnorm(1 - alpha / 2)
+    IC <- c(diff_means - z_crit * se, diff_means + z_crit * se)
+    method <- "Z-test (sigma conocidas)"
+  }
+
+  list(diferencia_medias = diff_means, IC = IC,
+       nivel_confianza = 1 - alpha, metodo = method)
+}
+
+# Aplicamos la funcion al ejemplo de etnocentrismo (25 observaciones por grupo)
+IntConf_DifMedias(hombre_t, mujer_t)
+$diferencia_medias
+[1] 0.92
+
+$IC
+[1] 0.1456031 1.6943969
+
+$nivel_confianza
+[1] 0.95
+
+$metodo
+[1] "t de Student (Welch)"
+```
+
+El IC va de 0,146 a 1,694. Como **no incluye el cero**, la diferencia de medias es
+distinta de cero: rechazamos $H_0$. Este resultado coincide con el de la prueba t.
+
+## Aplicacion con la encuesta del CIEP
+
+Apliquemos ahora el mismo tipo de prueba a dos preguntas sustantivas con la
+encuesta del CIEP de noviembre de 2020.
+
+### Voto por el PAC y evaluacion del gobierno
+
+¿Evaluan el gobierno de la misma manera quienes votaron por el PAC y quienes no?
+El PAC encabezo el gobierno desde 2018, asi que esperariamos una evaluacion mejor
+entre quienes lo votaron.
+
+
+``` r
+test_gob <- ciep %>%
+  filter(!is.na(nota_gob), !is.na(votopac_f)) %>%
+  mutate(nota_gob = as.numeric(nota_gob))
+
+t.test(nota_gob ~ votopac_f, data = test_gob)
+
+	Welch Two Sample t-test
+
+data:  nota_gob by votopac_f
+t = -6.5454, df = 795.56, p-value = 1.063e-10
+alternative hypothesis: true difference in means between group No voto PAC and group Voto PAC is not equal to 0
+95 percent confidence interval:
+ -1.6224907 -0.8738423
+sample estimates:
+mean in group No voto PAC    mean in group Voto PAC 
+                 3.442890                  4.691057 
+```
+
+La media de quienes **no** votaron por el PAC fue 3,44 y la de quienes **si**
+votaron fue 4,69: una diferencia de mas de un punto en la escala de 0 a 10. El
+valor t es -6,55 y el valor p es menor que 0,001. El intervalo de confianza de la
+diferencia va de -1,62 a -0,87 y **no incluye el cero**. Concluimos que, en la
+poblacion, quienes votaron por el PAC evaluan mejor al gobierno.
+
+### Genero y apoyo al sistema
+
+¿Apoyan mujeres y hombres por igual al sistema politico costarricense (`b6`)?
+
+
+``` r
+t.test(b6n ~ sexo_f, data = ciep)
+
+	Welch Two Sample t-test
+
+data:  b6n by sexo_f
+t = 1.065, df = 915.78, p-value = 0.2871
+alternative hypothesis: true difference in means between group Mujer and group Hombre is not equal to 0
+95 percent confidence interval:
+ -0.1097527  0.3702331
+sample estimates:
+ mean in group Mujer mean in group Hombre 
+            5.080913             4.950673 
+```
+
+Las medias son 5,08 (mujeres) y 4,95 (hombres), una diferencia de solo 0,13. El
+valor t es 1,07 y el valor p es 0,287, muy por encima de 0,05. El intervalo de
+confianza va de -0,11 a 0,37 e **incluye el cero**. No podemos afirmar que mujeres
+y hombres difieran en su apoyo al sistema: la diferencia observada es compatible
+con el error de muestreo.
+
+> **Punto clave.** La prueba z y la prueba t comparan las medias de dos grupos.
+> Reportamos siempre tres cosas: la **direccion** de la diferencia, su **tamano**
+> (diferencia de medias) y su **significancia** (valor p e intervalo de confianza).
+
+## Resumen
+
+- La prueba z se usa con muestras grandes y la prueba t con muestras pequenas; el
+  calculo manual comparte los primeros cuatro pasos.
+- El valor p indica la probabilidad de observar una diferencia como la encontrada
+  si, en la poblacion, no hubiera diferencia.
+- El intervalo de confianza de la diferencia de medias ofrece la misma informacion
+  de forma intuitiva: si incluye el cero, no hay evidencia de diferencia.
+- En la practica usamos `z.test()` (paquete BSDA) o `t.test()`, pero entender el
+  procedimiento manual ayuda a interpretar la salida.

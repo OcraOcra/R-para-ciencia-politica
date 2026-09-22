@@ -1,0 +1,82 @@
+---
+title: "Solucion 12: correlacion con datos nativos y correlograma"
+author: "Instructor"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+library(corrplot)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+## 1. `mtcars`: matriz de correlacion
+
+```{r}
+cor_mtcars <- cor(mtcars)
+round(cor_mtcars, 2)
+```
+
+**Interpretacion:**
+
+- La correlacion positiva mas alta es entre `cyl` y `disp` (0,90): los autos con
+  mas cilindros tienen mayor cilindrada.
+- La correlacion mas cercana a cero es entre `am` y `carb` (0,06): el tipo de
+  transmision y el numero de carburadores no se relacionan.
+- La correlacion mas fuerte en valor absoluto es `mpg` y `wt` (-0,87): a mayor
+  peso, menor rendimiento de combustible.
+
+## 2. Correlacion negativa: `mpg` y `wt`
+
+```{r}
+library(ggpmisc)
+
+ggplot(mtcars, aes(x = mpg, y = wt)) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm") +
+  stat_poly_eq() +
+  labs(title = "Relacion entre mpg y wt",
+       subtitle = "Linea de regresion",
+       x = "Millas por galon (mpg)", y = "Peso (wt)") +
+  theme_minimal()
+```
+
+**Interpretacion:** la relacion es negativa: los autos mas pesados rinden menos
+millas por galon. Tiene sentido fisico: un auto mas pesado requiere mas energia
+para moverse. El R2 del grafico es el coeficiente de determinacion de la recta de
+regresion e indica que proporcion de la variacion de `wt` explica `mpg`.
+
+## 3. Correlograma de `mtcars`
+
+```{r}
+corrplot(cor_mtcars, method = "square", type = "lower",
+         order = "hclust", tl.col = "black", tl.srt = 45,
+         addCoef.col = TRUE)
+```
+
+**Interpretacion:** las correlaciones positivas se muestran en azul y las
+negativas en rojo; el tamano del cuadrado es proporcional al coeficiente.
+
+## 4. Otros conjuntos de datos
+
+```{r}
+air_tidy <- na.omit(airquality)
+round(cor(air_tidy), 2)
+
+round(cor(USArrests), 2)
+```
+
+**Interpretacion:**
+
+- En `airquality`, la variable mas relacionada con el ozono (`Ozone`) es la
+  temperatura (`Temp`, 0,70), seguida de la velocidad del viento (`Wind`, -0,61).
+- En `USArrests`, `UrbanPop` y `Murder` tienen una correlacion debil (0,07): el
+  grado de urbanizacion no explica por si solo los asesinatos. La correlacion mas
+  fuerte es entre `Murder` y `Assault` (0,80).

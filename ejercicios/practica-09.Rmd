@@ -1,0 +1,103 @@
+---
+title: "Practica 9: la diferencia de medias paso a paso"
+author: "Nombre: ____________________"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+**Objetivo:** calcular a mano la diferencia de medias (prueba z y prueba t),
+comprobarla con las funciones de R y usar el intervalo de confianza.
+
+## 1. Datos de etnocentrismo (35 observaciones por grupo)
+
+```{r}
+hombre <- c(rep(1, 21), rep(2, 7), rep(3, 4), rep(4, 2), 5)
+mujer  <- c(rep(1, 23), rep(2, 8), rep(3, 2), 4, 5)
+
+n_h <- length(hombre)
+n_m <- length(mujer)
+c(n_h, n_m)
+```
+
+## 2. Procedimiento manual
+
+Completa los pasos que faltan.
+
+```{r}
+# Paso 1: medias
+media_h <- sum(hombre) / n_h
+media_m <- sum(mujer) / n_m
+
+# Paso 2: desviaciones estandar
+s_h <- sqrt(sum(hombre^2) / n_h - media_h^2)
+s_m <- sqrt(sum(mujer^2) / n_m - media_m^2)
+
+# Paso 3: error estandar de cada media
+error_h <- s_h / sqrt(n_h - 1)
+error_m <- s_m / sqrt(n_m - 1)
+
+# Paso 4: error estandar de la diferencia
+error_dif <- sqrt(error_h^2 + ___)
+
+# Paso 5: puntaje z
+z_punt <- (media_h - media_m) / ___
+
+# Paso 6: valor p
+auc <- (pnorm(z_punt, lower.tail = TRUE) - 0.5) * 2
+p_value <- 1 - ___
+
+c(z = z_punt, p = p_value)
+```
+
+- ¿Se rechaza o se mantiene la hipotesis nula? Explica.
+
+## 3. Comprobacion con `z.test()`
+
+```{r}
+library(BSDA)
+z.test(x = hombre, sigma.x = sd(hombre),
+       y = mujer,  sigma.y = sd(mujer),
+       conf.level = 0.95)
+```
+
+- ¿Coinciden el puntaje z y el valor p con el calculo manual?
+
+## 4. Intervalo de confianza
+
+El intervalo de confianza de la diferencia de medias es el que aparece en la salida
+de `z.test()`. Escribelo aqui:
+
+- IC = (______ , ______)
+
+- ¿El intervalo incluye el cero? ¿Que implica eso para la hipotesis nula?
+
+## 5. Aplicacion con el CIEP
+
+Compara la nota al gobierno (`nota_gob`) entre quienes votaron y no votaron por el
+PAC.
+
+```{r}
+test <- ciep %>%
+  filter(!is.na(nota_gob), !is.na(votopac)) %>%
+  mutate(
+    nota_gob = as.numeric(nota_gob),
+    Voto = factor(votopac, levels = c(0, 1), labels = c("No voto PAC", "Voto PAC"))
+  )
+
+t.test(nota_gob ~ ___, data = test)
+```
+
+- Reporta las medias de cada grupo, el valor t, el valor p y el intervalo de
+  confianza.
+- ¿La diferencia es estadisticamente significativa? ¿Que concluyes?

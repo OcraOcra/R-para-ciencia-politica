@@ -1,0 +1,81 @@
+---
+title: "Solucion 8: la curva normal y los puntajes z"
+author: "Instructor"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+## 1. Simular una distribucion normal
+
+```{r}
+set.seed(2020)
+datos <- rnorm(10000, mean = 50, sd = 12.5)
+
+mean(datos)
+sd(datos)
+```
+
+**Interpretacion:** los estadisticos muestrales (aproximadamente 50,0 y 12,5) se
+acercan mucho a los parametros de la distribucion porque la muestra es grande (ley
+de los grandes numeros). Con muestras pequenas las diferencias serian mayores.
+
+## 2. Puntajes z
+
+```{r}
+x <- 65
+media <- mean(datos)
+sd_datos <- sd(datos)
+
+z <- (x - media) / sd_datos
+z
+```
+
+**Interpretacion:** un valor de 65 esta aproximadamente 1,2 desviaciones estandar
+por encima de la media.
+
+## 3. Area bajo la curva con `pnorm()`
+
+```{r}
+pnorm(65, mean = media, sd = sd_datos, lower.tail = TRUE)
+pnorm(65, mean = media, sd = sd_datos, lower.tail = FALSE)
+```
+
+**Interpretacion:** cerca del 88,5 % de los casos esta por debajo de 65 y el
+11,5 % por encima. Las dos areas suman 1 (100 %).
+
+## 4. La regla de 1,96
+
+```{r}
+(pnorm(1.96, lower.tail = TRUE) - 0.5) * 2
+```
+
+**Interpretacion:** el 95 % de los casos de una distribucion normal cae dentro de
++/- 1,96 desviaciones estandar. El 5 % restante queda en las colas, que es el
+origen del umbral p < 0,05 de las pruebas de hipotesis.
+
+## 5. Aplicacion con el CIEP
+
+```{r}
+media_edad <- mean(ciep$edad, na.rm = TRUE)
+sd_edad <- sd(ciep$edad, na.rm = TRUE)
+
+z_65 <- (65 - media_edad) / sd_edad
+z_65
+
+pnorm(65, mean = media_edad, sd = sd_edad, lower.tail = TRUE)
+```
+
+**Interpretacion:** una persona de 65 anos esta a 1,60 desviaciones estandar por
+encima de la edad promedio (40,5 anos). Alrededor del 94,5 % del electorado tiene
+65 anos o menos.

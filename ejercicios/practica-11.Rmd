@@ -1,0 +1,83 @@
+---
+title: "Practica 11: regresion desde la simulacion"
+author: "Nombre: ____________________"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+**Objetivo:** simular datos con coeficientes conocidos, estimar modelos con `lm()`
+y visualizar los coeficientes con jtools.
+
+## 1. Crear los datos "como en la naturaleza"
+
+Completa la creacion de la variable dependiente sabiendo que los parametros
+verdaderos son: intercepto 80, beta1 = -0,5 (edad), beta2 = 15 (universidad) y
+beta3 = -2 (ingreso).
+
+```{r}
+set.seed(333)
+
+age <- as.integer(rnorm(100, 45, 15))
+college <- rbinom(100, 1, 0.3)
+income <- 10 * rbeta(100, 2, 8)
+e <- rnorm(100, 0, 2.5)
+
+thermometer <- 80 + age * (-0.5) + college * ___ + income * ___ + e
+
+mayor <- data.frame(thermometer, age, college, income)
+head(mayor)
+```
+
+## 2. Estimar tres modelos
+
+```{r}
+modelo1 <- lm(thermometer ~ age, data = mayor)
+modelo2 <- lm(thermometer ~ age + college, data = mayor)
+modelo3 <- lm(thermometer ~ age + college + ___, data = mayor)
+
+summary(modelo3)
+```
+
+- Compara los coeficientes estimados del modelo 3 con los valores verdaderos
+  (-0,5, 15, -2). ¿Son parecidos?
+
+## 3. Tabla comparada con jtools
+
+```{r}
+library(jtools)
+export_summs(modelo1, modelo2, modelo3,
+             model.names = c("modelo 1", "modelo 2", "modelo 3"),
+             scale = TRUE, statistics = "all")
+```
+
+- ¿Que predictor tiene el mayor efecto estandarizado?
+
+## 4. Visualizar los coeficientes
+
+```{r}
+plot_summs(modelo3, scale = TRUE)
+```
+
+- ¿Cual de los intervalos de confianza no cruza el cero?
+
+## 5. Correlacion como paso previo
+
+```{r}
+library(corrplot)
+M <- cor(mayor)
+round(M, 3)
+corrplot(M, method = "square", type = "lower", addCoef.col = TRUE)
+```
+
+- ¿Las correlaciones anticipan la direccion de los coeficientes del modelo?

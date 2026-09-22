@@ -28,7 +28,7 @@ de asociacion nos ayuda a ser precisos sobre tres cosas:
 - si los efectos en la muestra son **estadisticamente significativos** (¿podria el
   efecto observado deberse al azar o al error de muestreo?).
 
-Cubrimos tamano y direccion en el capitulo 3, asi que el foco de este capitulo es
+Cubrimos tamano y direccion en el capitulo 4, asi que el foco de este capitulo es
 ampliar tu comprension de la **significancia estadistica**. Para ello hablamos de
 inferencia e introducimos el concepto de **distribucion muestral**. Al final del
 capitulo deberias tener una idea de que significa significancia estadistica.
@@ -108,11 +108,11 @@ $$ME = 2*\sigma_{M} = 2*\frac{\sigma}{\sqrt{n}}$$
 Si tienes datos de una sola muestra aleatoria, puedes usar el software para
 calcular la media y la desviacion estandar y, conociendo el tamano de la muestra,
 reportar una estimacion de la media poblacional +/- el margen de error. La Tabla
-4.1 reporta las estadisticas descriptivas de la edad en la encuesta
+5.1 reporta las estadisticas descriptivas de la edad en la encuesta
 del CIEP. La persona encuestada promedio de la muestra tiene 40,5 anos. ¿Que nos
 dice eso sobre la poblacion?
 
-**Tabla 4.1 Estadisticas descriptivas de la edad, encuesta CIEP 2020**
+**Tabla 5.1 Estadisticas descriptivas de la edad, encuesta CIEP 2020**
 
 
 
@@ -159,11 +159,11 @@ Una implicacion: cada observacion nueva mejora las estimaciones, porque el error
 estandar baja al crecer el tamano de la muestra (dividimos entre la raiz cuadrada
 del numero de observaciones). La figura siguiente muestra esta mejora.
 
-**Figura \@ref(fig:figure2) Margen de error si la desviacion estandar muestral es ~ 0,5, para muestras de 100 a 2500**
+**Figura \@ref(fig:fig-margen-error) Margen de error si la desviacion estandar muestral es ~ 0,5, para muestras de 100 a 2500**
 
 <div class="figure">
-<img src="04-ttest_files/figure-html/figure2-1.png" alt="Margen de error segun el tamano de la muestra" width="672" />
-<p class="caption">(\#fig:figure2)Margen de error segun el tamano de la muestra</p>
+<img src="04-ttest_files/figure-html/fig-margen-error-1.png" alt="Margen de error segun el tamano de la muestra" width="672" />
+<p class="caption">(\#fig:fig-margen-error)Margen de error segun el tamano de la muestra</p>
 </div>
 
 Puedes ver que hay una mejora grande al pasar de 500 a 1.000 observaciones, pero
@@ -230,7 +230,7 @@ bajos y algunos valores altos.
 <p class="caption">(\#fig:figure)Distribucion de la nota a los partidos politicos</p>
 </div>
 
-**Tabla 4.2 Estadisticas descriptivas. Nota a los partidos politicos**
+**Tabla 5.2 Estadisticas descriptivas. Nota a los partidos politicos**
 
 
 
@@ -260,7 +260,7 @@ Podriamos esperar que las mujeres evaluen peor a los partidos, dada la persisten
 subrepresentacion femenina en la politica. Podemos contrastar esa expectativa con
 una prueba t.
 
-**Tabla 4.3 Genero y evaluacion de los partidos politicos**
+**Tabla 5.3 Genero y evaluacion de los partidos politicos**
 
 
 ```
@@ -299,9 +299,9 @@ tamano y la direccion: no hay efecto, no hay vinculo entre $X$ y $Y$.
 ¿Tendran quienes votaron por el PAC una evaluacion distinta del gobierno (que el
 PAC encabezo desde 2018) que quienes no votaron por el PAC? Esperariamos que
 quienes votaron por el PAC evaluen mejor al gobierno. Los resultados se reproducen
-en la Tabla 4.4.
+en la Tabla 5.4.
 
-**Tabla 4.4 Voto por el PAC y evaluacion del gobierno**
+**Tabla 5.4 Voto por el PAC y evaluacion del gobierno**
 
 
 ```

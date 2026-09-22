@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capitulo 6 La diferencia de medias paso a paso: prueba z, prueba t e intervalo de confianza | Estadistica aplicada para la ciencia politica</title>
+<meta name="author" content="Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder">
+<meta name="description" content="En el capitulo 5 usamos la prueba t como una funcion de R: escribimos t.test(y ~ x, data = ...) y leimos la salida. Ese es el uso profesional. Pero para entender que hace la prueba conviene...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Capitulo 6 La diferencia de medias paso a paso: prueba z, prueba t e intervalo de confianza | Estadistica aplicada para la ciencia politica">
+<meta property="og:type" content="book">
+<meta property="og:description" content="En el capitulo 5 usamos la prueba t como una funcion de R: escribimos t.test(y ~ x, data = ...) y leimos la salida. Ese es el uso profesional. Pero para entender que hace la prueba conviene...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capitulo 6 La diferencia de medias paso a paso: prueba z, prueba t e intervalo de confianza | Estadistica aplicada para la ciencia politica">
+<meta name="twitter:description" content="En el capitulo 5 usamos la prueba t como una funcion de R: escribimos t.test(y ~ x, data = ...) y leimos la salida. Ese es el uso profesional. Pero para entender que hace la prueba conviene...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 0em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Estadistica aplicada para la ciencia politica</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Sobre este libro</a></li>
+<li><a class="" href="ciencia-de-datos-ciencia-politica-y-politicas-publicas.html"><span class="header-section-number">1</span> Ciencia de datos, ciencia politica y politicas publicas</a></li>
+<li><a class="" href="estadistica-descriptiva.html"><span class="header-section-number">2</span> Estadistica descriptiva</a></li>
+<li><a class="" href="la-curva-normal-y-los-puntajes-z.html"><span class="header-section-number">3</span> La curva normal y los puntajes z</a></li>
+<li><a class="" href="introduccion-a-las-medidas-de-asociacion-la-correlacion.html"><span class="header-section-number">4</span> Introduccion a las medidas de asociacion: la correlacion</a></li>
+<li><a class="" href="medidas-de-asociacion-la-prueba-t.html"><span class="header-section-number">5</span> Medidas de asociacion: la prueba t</a></li>
+<li><a class="active" href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html"><span class="header-section-number">6</span> La diferencia de medias paso a paso: prueba z, prueba t e intervalo de confianza</a></li>
+<li><a class="" href="analisis-de-varianza-prueba-f-anova.html"><span class="header-section-number">7</span> Analisis de varianza (prueba F): ANOVA</a></li>
+<li><a class="" href="medidas-de-asociacion-el-chi-cuadrado.html"><span class="header-section-number">8</span> Medidas de asociacion: el chi-cuadrado</a></li>
+<li><a class="" href="regresion.html"><span class="header-section-number">9</span> Regresion</a></li>
+<li><a class="" href="modelos-estadisticos-con-muchos-predictores.html"><span class="header-section-number">10</span> Modelos estadisticos con muchos predictores</a></li>
+<li><a class="" href="regresion-desde-la-simulacion-y-visualizacion-de-modelos.html"><span class="header-section-number">11</span> Regresion desde la simulacion y visualizacion de modelos</a></li>
+<li><a class="" href="lecturas-recomendadas.html">Lecturas recomendadas</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+<li><a class="" href="sobre-el-autor-original.html">Sobre el autor original</a></li>
+<li><a class="" href="sobre-esta-adaptacion.html">Sobre esta adaptacion</a></li>
+<li><a class="" href="codebook-encuesta-ciep-ucr-noviembre-2020.html"><span class="header-section-number">12</span> Codebook: encuesta CIEP-UCR, noviembre 2020</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza" class="section level1" number="6">
+<h1>
+<span class="header-section-number">Capitulo 6</span> La diferencia de medias paso a paso: prueba z, prueba t e intervalo de confianza<a class="anchor" aria-label="anchor" href="#la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza"><i class="fas fa-link"></i></a>
+</h1>
+<p>En el capitulo 5 usamos la prueba t como una funcion de R: escribimos
+<code>t.test(y ~ x, data = ...)</code> y leimos la salida. Ese es el uso profesional. Pero
+para entender <strong>que hace</strong> la prueba conviene calcularla una vez a mano, paso a
+paso. Este capitulo reproduce el procedimiento manual del curso CP-2007
+(<span class="citation">(<a href="referencias.html#ref-gomez2025">Gomez Campos 2025</a>)</span>) y los conceptos de <span class="citation">(<a href="referencias.html#ref-levin1999">Levin 1999</a>)</span>, y luego lo comprueba con las
+funciones de R. El mismo procedimiento sirve para la <strong>prueba z</strong> (muestras
+grandes) y la <strong>prueba t</strong> (muestras pequenas).</p>
+<div id="contrastar-diferencias-entre-dos-muestras" class="section level2" number="6.1">
+<h2>
+<span class="header-section-number">6.1</span> Contrastar diferencias entre dos muestras<a class="anchor" aria-label="anchor" href="#contrastar-diferencias-entre-dos-muestras"><i class="fas fa-link"></i></a>
+</h2>
+<p>Gran parte de la investigacion social consiste en comparar dos grupos: alemanes
+frente a norteamericanos, catolicos frente a protestantes, conservadores frente a
+liberales, hombres frente a mujeres. El proceso para contrastar diferencias entre
+dos muestras implica formular dos hipotesis:</p>
+<ul>
+<li>
+<strong>Hipotesis nula (<span class="math inline">\(H_0\)</span>):</strong> las dos muestras provienen de la misma poblacion, es
+decir, no hay diferencias reales entre sus medias. Cualquier diferencia observada
+se debe al <strong>error de muestreo</strong>.</li>
+<li>
+<strong>Hipotesis alternativa (<span class="math inline">\(H_1\)</span>):</strong> existe una diferencia poblacional real entre
+las dos muestras.</li>
+</ul>
+<p>La logica de la contrastacion es la siguiente. Si la diferencia observada entre las
+medias muestrales es lo bastante grande, resulta dificil explicarla solo por el
+error de muestreo, y entonces rechazamos <span class="math inline">\(H_0\)</span> y aceptamos <span class="math inline">\(H_1\)</span>. La pregunta
+operativa es: ¿que tan grande es “lo bastante grande”? La respuesta depende de la
+variabilidad de los datos y del tamano de las muestras.</p>
+</div>
+<div id="niveles-de-confianza" class="section level2" number="6.2">
+<h2>
+<span class="header-section-number">6.2</span> Niveles de confianza<a class="anchor" aria-label="anchor" href="#niveles-de-confianza"><i class="fas fa-link"></i></a>
+</h2>
+<p>Para decidir si una diferencia es estadisticamente significativa establecemos un
+<strong>nivel de confianza</strong> (o nivel de significancia). La convencion en ciencias
+sociales es <strong>0,05</strong>: rechazamos <span class="math inline">\(H_0\)</span> si una diferencia como la observada
+ocurriera por azar solo 5 veces o menos de cada 100. Un nivel mas estricto es
+0,01 (1 de cada 100).</p>
+<p>El nivel de 0,05 corresponde a las colas de la distribucion de diferencias de
+medias: las areas que quedan a mas de <span class="math inline">\(\pm 1,96\)</span> desviaciones estandar de una
+diferencia media de cero. Como vimos en el capitulo 3, el 95 % de las diferencias
+muestrales cae entre <span class="math inline">\(-1,96\)</span> y <span class="math inline">\(+1,96\)</span> desviaciones estandar, y solo el 5 % queda
+en las colas (2,5 % + 2,5 %).</p>
+<p>Rechazar <span class="math inline">\(H_0\)</span> cuando deberiamos aceptarla se conoce como <strong>error de tipo I</strong> (o
+error alpha). Aceptar <span class="math inline">\(H_0\)</span> cuando deberiamos rechazarla se conoce como <strong>error de
+tipo II</strong> (o error beta). El capitulo 8 profundiza en estos dos errores.</p>
+</div>
+<div id="procedimiento-manual-en-seis-pasos" class="section level2" number="6.3">
+<h2>
+<span class="header-section-number">6.3</span> Procedimiento manual en seis pasos<a class="anchor" aria-label="anchor" href="#procedimiento-manual-en-seis-pasos"><i class="fas fa-link"></i></a>
+</h2>
+<p>Levin (<span class="citation">(<a href="referencias.html#ref-levin1999">Levin 1999</a>)</span>) propone el siguiente procedimiento. Los pasos 1 a 4
+son comunes a la prueba z y a la prueba t; el paso 5 cambia segun el tamano de las
+muestras.</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Media de cada muestra.</strong> <span class="math inline">\(\bar{X}_1=\frac{\sum X_1}{N}\)</span> y
+<span class="math inline">\(\bar{X}_2=\frac{\sum X_2}{N}\)</span>.</li>
+<li>
+<strong>Desviacion estandar de cada muestra.</strong>
+<span class="math inline">\(s_1=\sqrt{\frac{\sum X_1^2}{N}-\bar{X}_1^2}\)</span> y lo mismo para <span class="math inline">\(s_2\)</span>.</li>
+<li>
+<strong>Error estandar de cada media.</strong>
+<span class="math inline">\(\sigma_{\bar{X}1}=\frac{s_1}{\sqrt{N-1}}\)</span> y lo mismo para la muestra 2.</li>
+<li>
+<strong>Error estandar de la diferencia.</strong>
+<span class="math inline">\(\sigma_{dif}=\sqrt{\sigma_{\bar{X}1}^2+\sigma_{\bar{X}2}^2}\)</span>.</li>
+<li>
+<strong>Convertir la diferencia a unidades de error estandar.</strong> Para muestras grandes
+se obtiene un puntaje <strong>z</strong>; para muestras pequenas, una razon <strong>t</strong>:
+<span class="math display">\[z=\frac{\bar{X}_1-\bar{X}_2}{\sigma_{dif}} \qquad t=\frac{\bar{X}_1-\bar{X}_2}{\sigma_{dif}}\]</span>
+La formula es la misma; la diferencia esta en como se interpreta. La razon t se
+evalua con <strong>grados de libertad</strong> <span class="math inline">\(gl=N_1+N_2-2\)</span>.</li>
+<li>
+<strong>Comparar con la tabla.</strong> Para muestras grandes, se busca el valor z en la
+tabla normal (equivale a 1,96 para 0,05 y 2,58 para 0,01). Para muestras
+pequenas, se compara la t experimental con la t de la tabla t para los grados
+de libertad correspondientes. Si el valor experimental es mayor, se rechaza
+<span class="math inline">\(H_0\)</span>.</li>
+</ol>
+</div>
+<div id="ejemplo-de-prueba-z-muestras-grandes" class="section level2" number="6.4">
+<h2>
+<span class="header-section-number">6.4</span> Ejemplo de prueba z (muestras grandes)<a class="anchor" aria-label="anchor" href="#ejemplo-de-prueba-z-muestras-grandes"><i class="fas fa-link"></i></a>
+</h2>
+<p>Retomamos un ejemplo clasico sobre <strong>etnocentrismo</strong>. Queremos saber si hay
+diferencias entre hombres y mujeres en una escala de etnocentrismo. Las hipotesis
+son:</p>
+<ul>
+<li>
+<span class="math inline">\(H_0\)</span>: no hay diferencias en etnocentrismo entre hombres y mujeres.</li>
+<li>
+<span class="math inline">\(H_1\)</span>: si hay diferencias en etnocentrismo entre hombres y mujeres.</li>
+</ul>
+<p>Los datos (35 observaciones por grupo) se construyen asi:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb15-1" tabindex="-1"></a><span class="co"># Escala de etnocentrismo: 35 observaciones por grupo</span></span>
+<span id="cb15-2"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb15-2" tabindex="-1"></a>hombre <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">21</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">7</span>), <span class="fu">rep</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="dv">4</span>, <span class="dv">2</span>), <span class="dv">5</span>)</span>
+<span id="cb15-3"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb15-3" tabindex="-1"></a>mujer  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">23</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">8</span>), <span class="fu">rep</span>(<span class="dv">3</span>, <span class="dv">2</span>), <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb15-4"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb15-4" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb15-5" tabindex="-1"></a><span class="co"># Verificacion de las sumas</span></span>
+<span id="cb15-6"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb15-6" tabindex="-1"></a><span class="fu">c</span>(<span class="at">n_hombre =</span> <span class="fu">length</span>(hombre), <span class="at">n_mujer =</span> <span class="fu">length</span>(mujer),</span>
+<span id="cb15-7"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb15-7" tabindex="-1"></a>  <span class="at">suma_hombre =</span> <span class="fu">sum</span>(hombre), <span class="at">suma_mujer =</span> <span class="fu">sum</span>(mujer))</span>
+<span id="cb15-8"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb15-8" tabindex="-1"></a>   n_hombre     n_mujer suma_hombre  suma_mujer </span>
+<span id="cb15-9"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb15-9" tabindex="-1"></a>         <span class="dv">35</span>          <span class="dv">35</span>          <span class="dv">60</span>          <span class="dv">54</span> </span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-1" tabindex="-1"></a>n_h <span class="ot">&lt;-</span> <span class="fu">length</span>(hombre); n_m <span class="ot">&lt;-</span> <span class="fu">length</span>(mujer)</span>
+<span id="cb16-2"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-2" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-3" tabindex="-1"></a><span class="co"># Paso 1: medias</span></span>
+<span id="cb16-4"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-4" tabindex="-1"></a>media_h <span class="ot">&lt;-</span> <span class="fu">sum</span>(hombre) <span class="sc">/</span> n_h</span>
+<span id="cb16-5"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-5" tabindex="-1"></a>media_m <span class="ot">&lt;-</span> <span class="fu">sum</span>(mujer) <span class="sc">/</span> n_m</span>
+<span id="cb16-6"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-6" tabindex="-1"></a>dif_medias <span class="ot">&lt;-</span> media_h <span class="sc">-</span> media_m</span>
+<span id="cb16-7"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-7" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-8" tabindex="-1"></a><span class="co"># Paso 2: desviaciones estandar (formula de Levin, dividiendo entre N)</span></span>
+<span id="cb16-9"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-9" tabindex="-1"></a>s_h <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(hombre<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> n_h <span class="sc">-</span> media_h<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb16-10"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-10" tabindex="-1"></a>s_m <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(mujer<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> n_m <span class="sc">-</span> media_m<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb16-11"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-11" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-12" tabindex="-1"></a><span class="co"># Paso 3: error estandar de cada media</span></span>
+<span id="cb16-13"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-13" tabindex="-1"></a>error_h <span class="ot">&lt;-</span> s_h <span class="sc">/</span> <span class="fu">sqrt</span>(n_h <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb16-14"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-14" tabindex="-1"></a>error_m <span class="ot">&lt;-</span> s_m <span class="sc">/</span> <span class="fu">sqrt</span>(n_m <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb16-15"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-15" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-16" tabindex="-1"></a><span class="co"># Paso 4: error estandar de la diferencia</span></span>
+<span id="cb16-17"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-17" tabindex="-1"></a>error_dif <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(error_h<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> error_m<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb16-18"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-18" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-19" tabindex="-1"></a><span class="co"># Paso 5: puntaje z</span></span>
+<span id="cb16-20"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-20" tabindex="-1"></a>z_punt <span class="ot">&lt;-</span> (media_h <span class="sc">-</span> media_m) <span class="sc">/</span> error_dif</span>
+<span id="cb16-21"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-21" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-22" tabindex="-1"></a><span class="fu">c</span>(<span class="at">dif_medias =</span> dif_medias, <span class="at">s_h =</span> s_h, <span class="at">s_m =</span> s_m,</span>
+<span id="cb16-23"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-23" tabindex="-1"></a>  <span class="at">error_dif =</span> error_dif, <span class="at">z =</span> z_punt)</span>
+<span id="cb16-24"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-24" tabindex="-1"></a>dif_medias        s_h        s_m  error_dif          z </span>
+<span id="cb16-25"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb16-25" tabindex="-1"></a> <span class="fl">0.1714286</span>  <span class="fl">1.0575289</span>  <span class="fl">0.9363411</span>  <span class="fl">0.2422385</span>  <span class="fl">0.7076852</span> </span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb17-1" tabindex="-1"></a><span class="co"># Paso 6: area bajo la curva y valor p</span></span>
+<span id="cb17-2"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb17-2" tabindex="-1"></a>auc <span class="ot">&lt;-</span> (<span class="fu">pnorm</span>(z_punt, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fl">0.5</span>) <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb17-3"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb17-3" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> auc</span>
+<span id="cb17-4"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb17-4" tabindex="-1"></a><span class="fu">c</span>(<span class="at">auc =</span> auc, <span class="at">p_value =</span> p_value)</span>
+<span id="cb17-5"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb17-5" tabindex="-1"></a>      auc   p_value </span>
+<span id="cb17-6"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb17-6" tabindex="-1"></a><span class="fl">0.5208592</span> <span class="fl">0.4791408</span> </span></code></pre></div>
+<p><strong>Interpretacion.</strong> Con un nivel de confianza del 95 %:</p>
+<ul>
+<li>puntaje z = 0,71;</li>
+<li>AUC = 0,52 (el area central, donde se confirma <span class="math inline">\(H_0\)</span>);</li>
+<li>valor p = 0,48.</li>
+</ul>
+<p>Como el valor p es mayor que 0,05 (y el AUC es menor que 0,95), <strong>mantenemos
+<span class="math inline">\(H_0\)</span></strong>. La diferencia de medias observada (1,71 - 1,54 = 0,17) es compatible con
+el error de muestreo. No hay evidencia de diferencias entre hombres y mujeres en
+etnocentrismo.</p>
+<div id="comprobacion-con-la-funcion-z.test" class="section level3" number="6.4.1">
+<h3>
+<span class="header-section-number">6.4.1</span> Comprobacion con la funcion <code>z.test()</code><a class="anchor" aria-label="anchor" href="#comprobacion-con-la-funcion-z.test"><i class="fas fa-link"></i></a>
+</h3>
+<p>El paquete <strong>BSDA</strong> incluye la funcion <code>z.test()</code>, que calcula automaticamente el
+puntaje z y el valor p.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb18-1" tabindex="-1"></a><span class="fu">library</span>(BSDA)</span>
+<span id="cb18-2"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb18-2" tabindex="-1"></a><span class="fu">z.test</span>(<span class="at">x =</span> hombre, <span class="at">sigma.x =</span> <span class="fu">sd</span>(hombre),</span>
+<span id="cb18-3"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb18-3" tabindex="-1"></a>       <span class="at">y =</span> mujer,  <span class="at">sigma.y =</span> <span class="fu">sd</span>(mujer),</span>
+<span id="cb18-4"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb18-4" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb18-5"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb18-5" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb18-6" tabindex="-1"></a>    Two<span class="sc">-</span>sample z<span class="sc">-</span>Test</span>
+<span id="cb18-7"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb18-7" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb18-8" tabindex="-1"></a>data<span class="sc">:</span>  hombre and mujer</span>
+<span id="cb18-9"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb18-9" tabindex="-1"></a>z <span class="ot">=</span> <span class="fl">0.70769</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.4791</span></span>
+<span id="cb18-10"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb18-10" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> true difference <span class="cf">in</span> means is not equal to <span class="dv">0</span></span>
+<span id="cb18-11"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb18-11" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb18-12"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb18-12" tabindex="-1"></a> <span class="sc">-</span><span class="fl">0.3033501</span>  <span class="fl">0.6462072</span></span>
+<span id="cb18-13"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb18-13" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
+<span id="cb18-14"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb18-14" tabindex="-1"></a>mean of x mean of y </span>
+<span id="cb18-15"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb18-15" tabindex="-1"></a> <span class="fl">1.714286</span>  <span class="fl">1.542857</span> </span></code></pre></div>
+<p>El valor z = 0,7077 y el valor p = 0,4791 coinciden con los calculos manuales.</p>
+</div>
+</div>
+<div id="ejemplo-de-prueba-t-muestras-pequenas" class="section level2" number="6.5">
+<h2>
+<span class="header-section-number">6.5</span> Ejemplo de prueba t (muestras pequenas)<a class="anchor" aria-label="anchor" href="#ejemplo-de-prueba-t-muestras-pequenas"><i class="fas fa-link"></i></a>
+</h2>
+<p>Cuando las muestras son pequenas, las premisas de la normalidad no se cumplen de
+la misma forma y la distribucion de las diferencias no es del todo normal. Para
+compensarlo usamos la <strong>razon t</strong>, que se interpreta con los grados de libertad.
+Usemos una muestra de 25 observaciones por grupo.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb19-1" tabindex="-1"></a><span class="co"># Escala de etnocentrismo: 25 observaciones por grupo</span></span>
+<span id="cb19-2"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb19-2" tabindex="-1"></a>hombre_t <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">5</span>), <span class="fu">rep</span>(<span class="dv">3</span>, <span class="dv">3</span>), <span class="fu">rep</span>(<span class="dv">4</span>, <span class="dv">2</span>), <span class="fu">rep</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb19-3"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb19-3" tabindex="-1"></a>mujer_t  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">18</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="fu">rep</span>(<span class="dv">3</span>, <span class="dv">2</span>), <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb19-4"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb19-4" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb19-5" tabindex="-1"></a><span class="fu">c</span>(<span class="at">n_hombre =</span> <span class="fu">length</span>(hombre_t), <span class="at">n_mujer =</span> <span class="fu">length</span>(mujer_t),</span>
+<span id="cb19-6"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb19-6" tabindex="-1"></a>  <span class="at">suma_hombre =</span> <span class="fu">sum</span>(hombre_t), <span class="at">suma_mujer =</span> <span class="fu">sum</span>(mujer_t))</span>
+<span id="cb19-7"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb19-7" tabindex="-1"></a>   n_hombre     n_mujer suma_hombre  suma_mujer </span>
+<span id="cb19-8"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb19-8" tabindex="-1"></a>         <span class="dv">25</span>          <span class="dv">25</span>          <span class="dv">62</span>          <span class="dv">39</span> </span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-1" tabindex="-1"></a>n_ht <span class="ot">&lt;-</span> <span class="fu">length</span>(hombre_t); n_mt <span class="ot">&lt;-</span> <span class="fu">length</span>(mujer_t)</span>
+<span id="cb20-2"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-3" tabindex="-1"></a><span class="co"># Pasos 1 y 2: medias y desviaciones estandar</span></span>
+<span id="cb20-4"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-4" tabindex="-1"></a>media_ht <span class="ot">&lt;-</span> <span class="fu">sum</span>(hombre_t) <span class="sc">/</span> n_ht</span>
+<span id="cb20-5"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-5" tabindex="-1"></a>media_mt <span class="ot">&lt;-</span> <span class="fu">sum</span>(mujer_t) <span class="sc">/</span> n_mt</span>
+<span id="cb20-6"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-6" tabindex="-1"></a>s_ht <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(hombre_t<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> n_ht <span class="sc">-</span> media_ht<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb20-7"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-7" tabindex="-1"></a>s_mt <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(mujer_t<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> n_mt <span class="sc">-</span> media_mt<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb20-8"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-8" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-9" tabindex="-1"></a><span class="co"># Pasos 3 y 4: errores estandar</span></span>
+<span id="cb20-10"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-10" tabindex="-1"></a>error_ht <span class="ot">&lt;-</span> s_ht <span class="sc">/</span> <span class="fu">sqrt</span>(n_ht <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb20-11"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-11" tabindex="-1"></a>error_mt <span class="ot">&lt;-</span> s_mt <span class="sc">/</span> <span class="fu">sqrt</span>(n_mt <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb20-12"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-12" tabindex="-1"></a>error_dift <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(error_ht<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> error_mt<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb20-13"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-13" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-14" tabindex="-1"></a><span class="co"># Paso 5: razon t experimental</span></span>
+<span id="cb20-15"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-15" tabindex="-1"></a>t_exp <span class="ot">&lt;-</span> (media_ht <span class="sc">-</span> media_mt) <span class="sc">/</span> error_dift</span>
+<span id="cb20-16"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-16" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-17" tabindex="-1"></a><span class="co"># Grados de libertad</span></span>
+<span id="cb20-18"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-18" tabindex="-1"></a>gl <span class="ot">&lt;-</span> (n_ht <span class="sc">+</span> n_mt) <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="cb20-19"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-19" tabindex="-1"></a></span>
+<span id="cb20-20"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-20" tabindex="-1"></a><span class="fu">c</span>(<span class="at">media_h =</span> media_ht, <span class="at">media_m =</span> media_mt, <span class="at">dif =</span> media_ht <span class="sc">-</span> media_mt,</span>
+<span id="cb20-21"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-21" tabindex="-1"></a>  <span class="at">t_exp =</span> t_exp, <span class="at">gl =</span> gl)</span>
+<span id="cb20-22"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-22" tabindex="-1"></a> media_h  media_m      dif    t_exp       gl </span>
+<span id="cb20-23"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb20-23" tabindex="-1"></a> <span class="fl">2.48000</span>  <span class="fl">1.56000</span>  <span class="fl">0.92000</span>  <span class="fl">2.39683</span> <span class="fl">48.00000</span> </span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb21-1" tabindex="-1"></a><span class="co"># Paso 6: valor critico de la tabla t (dos colas, 95 %) y decision</span></span>
+<span id="cb21-2"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb21-2" tabindex="-1"></a>t_teorica <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, gl)</span>
+<span id="cb21-3"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb21-3" tabindex="-1"></a><span class="fu">c</span>(<span class="at">t_experimental =</span> t_exp, <span class="at">t_teorica =</span> t_teorica, <span class="at">gl =</span> gl)</span>
+<span id="cb21-4"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb21-4" tabindex="-1"></a>t_experimental      t_teorica             gl </span>
+<span id="cb21-5"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb21-5" tabindex="-1"></a>      <span class="fl">2.396830</span>       <span class="fl">2.010635</span>      <span class="fl">48.000000</span> </span></code></pre></div>
+<p><strong>Interpretacion.</strong> La t experimental (2,40) es mayor que la t teorica de la tabla
+(2,01) para 48 grados de libertad. Por lo tanto, <strong>rechazamos <span class="math inline">\(H_0\)</span></strong> y aceptamos
+<span class="math inline">\(H_1\)</span>: si hay diferencias significativas en etnocentrismo entre hombres y mujeres.
+Como el promedio de los hombres (2,48) es mayor que el de las mujeres (1,56),
+concluimos que, con estos datos, los hombres son mas etnocentricos que las mujeres.</p>
+<div id="comprobacion-con-la-funcion-t.test" class="section level3" number="6.5.1">
+<h3>
+<span class="header-section-number">6.5.1</span> Comprobacion con la funcion <code>t.test()</code><a class="anchor" aria-label="anchor" href="#comprobacion-con-la-funcion-t.test"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb22-1" tabindex="-1"></a><span class="fu">t.test</span>(hombre_t, mujer_t, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-2"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb22-3" tabindex="-1"></a>    Two Sample t<span class="sc">-</span>test</span>
+<span id="cb22-4"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb22-4" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb22-5" tabindex="-1"></a>data<span class="sc">:</span>  hombre_t and mujer_t</span>
+<span id="cb22-6"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb22-6" tabindex="-1"></a>t <span class="ot">=</span> <span class="fl">2.3968</span>, df <span class="ot">=</span> <span class="dv">48</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.02048</span></span>
+<span id="cb22-7"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb22-7" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> true difference <span class="cf">in</span> means is not equal to <span class="dv">0</span></span>
+<span id="cb22-8"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb22-8" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb22-9"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb22-9" tabindex="-1"></a> <span class="fl">0.1482375</span> <span class="fl">1.6917625</span></span>
+<span id="cb22-10"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb22-10" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
+<span id="cb22-11"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb22-11" tabindex="-1"></a>mean of x mean of y </span>
+<span id="cb22-12"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb22-12" tabindex="-1"></a>     <span class="fl">2.48</span>      <span class="fl">1.56</span> </span></code></pre></div>
+<p>El valor t = 2,3968 y los grados de libertad (48) coinciden con el procedimiento
+manual. R usa por defecto la correccion de <strong>Welch</strong> (que no supone varianzas
+iguales y ajusta los grados de libertad); veamos la diferencia:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb23-1" tabindex="-1"></a><span class="fu">t.test</span>(hombre_t, mujer_t)</span>
+<span id="cb23-2"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb23-2" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb23-3" tabindex="-1"></a>    Welch Two Sample t<span class="sc">-</span>test</span>
+<span id="cb23-4"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb23-4" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb23-5" tabindex="-1"></a>data<span class="sc">:</span>  hombre_t and mujer_t</span>
+<span id="cb23-6"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb23-6" tabindex="-1"></a>t <span class="ot">=</span> <span class="fl">2.3968</span>, df <span class="ot">=</span> <span class="fl">42.414</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.02102</span></span>
+<span id="cb23-7"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb23-7" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> true difference <span class="cf">in</span> means is not equal to <span class="dv">0</span></span>
+<span id="cb23-8"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb23-8" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb23-9"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb23-9" tabindex="-1"></a> <span class="fl">0.1456031</span> <span class="fl">1.6943969</span></span>
+<span id="cb23-10"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb23-10" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
+<span id="cb23-11"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb23-11" tabindex="-1"></a>mean of x mean of y </span>
+<span id="cb23-12"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb23-12" tabindex="-1"></a>     <span class="fl">2.48</span>      <span class="fl">1.56</span> </span></code></pre></div>
+<p>La conclusion es la misma (p = 0,021 en ambos casos): el resultado es
+estadisticamente significativo.</p>
+</div>
+</div>
+<div id="el-intervalo-de-confianza-de-la-diferencia-de-medias" class="section level2" number="6.6">
+<h2>
+<span class="header-section-number">6.6</span> El intervalo de confianza de la diferencia de medias<a class="anchor" aria-label="anchor" href="#el-intervalo-de-confianza-de-la-diferencia-de-medias"><i class="fas fa-link"></i></a>
+</h2>
+<p>Ademas del valor p, otro indicador util es el <strong>intervalo de confianza (IC)</strong> de la
+diferencia de medias. Como trabajamos con muestras y no con poblaciones completas,
+toda estimacion trae incertidumbre. El IC cuantifica esa incertidumbre: es un rango
+de valores posibles para la diferencia poblacional, calculado a partir de la
+muestra y de un nivel de confianza (tipicamente el 95 %).</p>
+<p>La regla de decision es muy intuitiva:</p>
+<ul>
+<li>Si el IC <strong>incluye el cero</strong>, no podemos descartar que la diferencia verdadera
+sea cero: mantenemos <span class="math inline">\(H_0\)</span>.</li>
+<li>Si el IC <strong>no incluye el cero</strong>, la diferencia probablemente es distinta de cero:
+rechazamos <span class="math inline">\(H_0\)</span>.</li>
+</ul>
+<p>La siguiente funcion calcula el IC de la diferencia de medias, usando la
+aproximacion t de Welch cuando las desviaciones estandar poblacionales son
+desconocidas (el caso habitual).</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-1" tabindex="-1"></a>IntConf_DifMedias <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">sigma1 =</span> <span class="cn">NULL</span>, <span class="at">sigma2 =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb24-2"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-2" tabindex="-1"></a>  m1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(x); m2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)</span>
+<span id="cb24-3"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-3" tabindex="-1"></a>  n1 <span class="ot">&lt;-</span> <span class="fu">length</span>(x); n2 <span class="ot">&lt;-</span> <span class="fu">length</span>(y)</span>
+<span id="cb24-4"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-4" tabindex="-1"></a>  diff_means <span class="ot">&lt;-</span> m1 <span class="sc">-</span> m2</span>
+<span id="cb24-5"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-5" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-6" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(sigma1) <span class="sc">|</span> <span class="fu">is.null</span>(sigma2)) {</span>
+<span id="cb24-7"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-7" tabindex="-1"></a>    <span class="co"># Caso t (sigma desconocidas): usamos las desviaciones muestrales</span></span>
+<span id="cb24-8"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-8" tabindex="-1"></a>    s1 <span class="ot">&lt;-</span> <span class="fu">sd</span>(x); s2 <span class="ot">&lt;-</span> <span class="fu">sd</span>(y)</span>
+<span id="cb24-9"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-9" tabindex="-1"></a>    se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(s1<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n1 <span class="sc">+</span> s2<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n2)</span>
+<span id="cb24-10"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-10" tabindex="-1"></a>    <span class="co"># Grados de libertad de Welch-Satterthwaite</span></span>
+<span id="cb24-11"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-11" tabindex="-1"></a>    df <span class="ot">&lt;-</span> (s1<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n1 <span class="sc">+</span> s2<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n2)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span></span>
+<span id="cb24-12"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-12" tabindex="-1"></a>      ((s1<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n1)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (n1 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> (s2<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n2)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (n2 <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb24-13"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-13" tabindex="-1"></a>    t_crit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>, df)</span>
+<span id="cb24-14"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-14" tabindex="-1"></a>    IC <span class="ot">&lt;-</span> <span class="fu">c</span>(diff_means <span class="sc">-</span> t_crit <span class="sc">*</span> se, diff_means <span class="sc">+</span> t_crit <span class="sc">*</span> se)</span>
+<span id="cb24-15"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-15" tabindex="-1"></a>    method <span class="ot">&lt;-</span> <span class="st">"t de Student (Welch)"</span></span>
+<span id="cb24-16"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-16" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb24-17"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-17" tabindex="-1"></a>    <span class="co"># Caso z (sigma conocidas)</span></span>
+<span id="cb24-18"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-18" tabindex="-1"></a>    se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sigma1<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n1 <span class="sc">+</span> sigma2<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n2)</span>
+<span id="cb24-19"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-19" tabindex="-1"></a>    z_crit <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb24-20"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-20" tabindex="-1"></a>    IC <span class="ot">&lt;-</span> <span class="fu">c</span>(diff_means <span class="sc">-</span> z_crit <span class="sc">*</span> se, diff_means <span class="sc">+</span> z_crit <span class="sc">*</span> se)</span>
+<span id="cb24-21"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-21" tabindex="-1"></a>    method <span class="ot">&lt;-</span> <span class="st">"Z-test (sigma conocidas)"</span></span>
+<span id="cb24-22"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-22" tabindex="-1"></a>  }</span>
+<span id="cb24-23"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-23" tabindex="-1"></a></span>
+<span id="cb24-24"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-24" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">diferencia_medias =</span> diff_means, <span class="at">IC =</span> IC,</span>
+<span id="cb24-25"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-25" tabindex="-1"></a>       <span class="at">nivel_confianza =</span> <span class="dv">1</span> <span class="sc">-</span> alpha, <span class="at">metodo =</span> method)</span>
+<span id="cb24-26"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-26" tabindex="-1"></a>}</span>
+<span id="cb24-27"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-27" tabindex="-1"></a></span>
+<span id="cb24-28"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-28" tabindex="-1"></a><span class="co"># Aplicamos la funcion al ejemplo de etnocentrismo (25 observaciones por grupo)</span></span>
+<span id="cb24-29"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-29" tabindex="-1"></a><span class="fu">IntConf_DifMedias</span>(hombre_t, mujer_t)</span>
+<span id="cb24-30"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-30" tabindex="-1"></a><span class="sc">$</span>diferencia_medias</span>
+<span id="cb24-31"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-31" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.92</span></span>
+<span id="cb24-32"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-32" tabindex="-1"></a></span>
+<span id="cb24-33"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-33" tabindex="-1"></a><span class="sc">$</span>IC</span>
+<span id="cb24-34"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-34" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.1456031</span> <span class="fl">1.6943969</span></span>
+<span id="cb24-35"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-35" tabindex="-1"></a></span>
+<span id="cb24-36"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-36" tabindex="-1"></a><span class="sc">$</span>nivel_confianza</span>
+<span id="cb24-37"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-37" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.95</span></span>
+<span id="cb24-38"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-38" tabindex="-1"></a></span>
+<span id="cb24-39"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-39" tabindex="-1"></a><span class="sc">$</span>metodo</span>
+<span id="cb24-40"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb24-40" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"t de Student (Welch)"</span></span></code></pre></div>
+<p>El IC va de 0,146 a 1,694. Como <strong>no incluye el cero</strong>, la diferencia de medias es
+distinta de cero: rechazamos <span class="math inline">\(H_0\)</span>. Este resultado coincide con el de la prueba t.</p>
+</div>
+<div id="aplicacion-con-la-encuesta-del-ciep-1" class="section level2" number="6.7">
+<h2>
+<span class="header-section-number">6.7</span> Aplicacion con la encuesta del CIEP<a class="anchor" aria-label="anchor" href="#aplicacion-con-la-encuesta-del-ciep-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>Apliquemos ahora el mismo tipo de prueba a dos preguntas sustantivas con la
+encuesta del CIEP de noviembre de 2020.</p>
+<div id="voto-por-el-pac-y-evaluacion-del-gobierno-1" class="section level3" number="6.7.1">
+<h3>
+<span class="header-section-number">6.7.1</span> Voto por el PAC y evaluacion del gobierno<a class="anchor" aria-label="anchor" href="#voto-por-el-pac-y-evaluacion-del-gobierno-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>¿Evaluan el gobierno de la misma manera quienes votaron por el PAC y quienes no?
+El PAC encabezo el gobierno desde 2018, asi que esperariamos una evaluacion mejor
+entre quienes lo votaron.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-1" tabindex="-1"></a>test_gob <span class="ot">&lt;-</span> ciep <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(nota_gob), <span class="sc">!</span><span class="fu">is.na</span>(votopac_f)) <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nota_gob =</span> <span class="fu">as.numeric</span>(nota_gob))</span>
+<span id="cb25-4"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-4" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-5" tabindex="-1"></a><span class="fu">t.test</span>(nota_gob <span class="sc">~</span> votopac_f, <span class="at">data =</span> test_gob)</span>
+<span id="cb25-6"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-6" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-7" tabindex="-1"></a>    Welch Two Sample t<span class="sc">-</span>test</span>
+<span id="cb25-8"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-8" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-9" tabindex="-1"></a>data<span class="sc">:</span>  nota_gob by votopac_f</span>
+<span id="cb25-10"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-10" tabindex="-1"></a>t <span class="ot">=</span> <span class="sc">-</span><span class="fl">6.5454</span>, df <span class="ot">=</span> <span class="fl">795.56</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">1.063e-10</span></span>
+<span id="cb25-11"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-11" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> true difference <span class="cf">in</span> means between group No voto PAC and group Voto PAC is not equal to <span class="dv">0</span></span>
+<span id="cb25-12"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-12" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb25-13"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-13" tabindex="-1"></a> <span class="sc">-</span><span class="fl">1.6224907</span> <span class="sc">-</span><span class="fl">0.8738423</span></span>
+<span id="cb25-14"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-14" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
+<span id="cb25-15"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-15" tabindex="-1"></a>mean <span class="cf">in</span> group No voto PAC    mean <span class="cf">in</span> group Voto PAC </span>
+<span id="cb25-16"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb25-16" tabindex="-1"></a>                 <span class="fl">3.442890</span>                  <span class="fl">4.691057</span> </span></code></pre></div>
+<p>La media de quienes <strong>no</strong> votaron por el PAC fue 3,44 y la de quienes <strong>si</strong>
+votaron fue 4,69: una diferencia de mas de un punto en la escala de 0 a 10. El
+valor t es -6,55 y el valor p es menor que 0,001. El intervalo de confianza de la
+diferencia va de -1,62 a -0,87 y <strong>no incluye el cero</strong>. Concluimos que, en la
+poblacion, quienes votaron por el PAC evaluan mejor al gobierno.</p>
+</div>
+<div id="genero-y-apoyo-al-sistema" class="section level3" number="6.7.2">
+<h3>
+<span class="header-section-number">6.7.2</span> Genero y apoyo al sistema<a class="anchor" aria-label="anchor" href="#genero-y-apoyo-al-sistema"><i class="fas fa-link"></i></a>
+</h3>
+<p>¿Apoyan mujeres y hombres por igual al sistema politico costarricense (<code>b6</code>)?</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb26-1" tabindex="-1"></a><span class="fu">t.test</span>(b6n <span class="sc">~</span> sexo_f, <span class="at">data =</span> ciep)</span>
+<span id="cb26-2"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb26-2" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb26-3" tabindex="-1"></a>    Welch Two Sample t<span class="sc">-</span>test</span>
+<span id="cb26-4"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb26-4" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb26-5" tabindex="-1"></a>data<span class="sc">:</span>  b6n by sexo_f</span>
+<span id="cb26-6"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb26-6" tabindex="-1"></a>t <span class="ot">=</span> <span class="fl">1.065</span>, df <span class="ot">=</span> <span class="fl">915.78</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.2871</span></span>
+<span id="cb26-7"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb26-7" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> true difference <span class="cf">in</span> means between group Mujer and group Hombre is not equal to <span class="dv">0</span></span>
+<span id="cb26-8"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb26-8" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb26-9"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb26-9" tabindex="-1"></a> <span class="sc">-</span><span class="fl">0.1097527</span>  <span class="fl">0.3702331</span></span>
+<span id="cb26-10"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb26-10" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
+<span id="cb26-11"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb26-11" tabindex="-1"></a> mean <span class="cf">in</span> group Mujer mean <span class="cf">in</span> group Hombre </span>
+<span id="cb26-12"><a href="la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza.html#cb26-12" tabindex="-1"></a>            <span class="fl">5.080913</span>             <span class="fl">4.950673</span> </span></code></pre></div>
+<p>Las medias son 5,08 (mujeres) y 4,95 (hombres), una diferencia de solo 0,13. El
+valor t es 1,07 y el valor p es 0,287, muy por encima de 0,05. El intervalo de
+confianza va de -0,11 a 0,37 e <strong>incluye el cero</strong>. No podemos afirmar que mujeres
+y hombres difieran en su apoyo al sistema: la diferencia observada es compatible
+con el error de muestreo.</p>
+<blockquote>
+<p><strong>Punto clave.</strong> La prueba z y la prueba t comparan las medias de dos grupos.
+Reportamos siempre tres cosas: la <strong>direccion</strong> de la diferencia, su <strong>tamano</strong>
+(diferencia de medias) y su <strong>significancia</strong> (valor p e intervalo de confianza).</p>
+</blockquote>
+</div>
+</div>
+<div id="resumen-1" class="section level2" number="6.8">
+<h2>
+<span class="header-section-number">6.8</span> Resumen<a class="anchor" aria-label="anchor" href="#resumen-1"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>La prueba z se usa con muestras grandes y la prueba t con muestras pequenas; el
+calculo manual comparte los primeros cuatro pasos.</li>
+<li>El valor p indica la probabilidad de observar una diferencia como la encontrada
+si, en la poblacion, no hubiera diferencia.</li>
+<li>El intervalo de confianza de la diferencia de medias ofrece la misma informacion
+de forma intuitiva: si incluye el cero, no hay evidencia de diferencia.</li>
+<li>En la practica usamos <code>z.test()</code> (paquete BSDA) o <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code>, pero entender el
+procedimiento manual ayuda a interpretar la salida.</li>
+</ul>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="medidas-de-asociacion-la-prueba-t.html"><span class="header-section-number">5</span> Medidas de asociacion: la prueba t</a></div>
+<div class="next"><a href="analisis-de-varianza-prueba-f-anova.html"><span class="header-section-number">7</span> Analisis de varianza (prueba F): ANOVA</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#la-diferencia-de-medias-paso-a-paso-prueba-z-prueba-t-e-intervalo-de-confianza"><span class="header-section-number">6</span> La diferencia de medias paso a paso: prueba z, prueba t e intervalo de confianza</a></li>
+<li><a class="nav-link" href="#contrastar-diferencias-entre-dos-muestras"><span class="header-section-number">6.1</span> Contrastar diferencias entre dos muestras</a></li>
+<li><a class="nav-link" href="#niveles-de-confianza"><span class="header-section-number">6.2</span> Niveles de confianza</a></li>
+<li><a class="nav-link" href="#procedimiento-manual-en-seis-pasos"><span class="header-section-number">6.3</span> Procedimiento manual en seis pasos</a></li>
+<li>
+<a class="nav-link" href="#ejemplo-de-prueba-z-muestras-grandes"><span class="header-section-number">6.4</span> Ejemplo de prueba z (muestras grandes)</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#comprobacion-con-la-funcion-z.test"><span class="header-section-number">6.4.1</span> Comprobacion con la funcion z.test()</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#ejemplo-de-prueba-t-muestras-pequenas"><span class="header-section-number">6.5</span> Ejemplo de prueba t (muestras pequenas)</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#comprobacion-con-la-funcion-t.test"><span class="header-section-number">6.5.1</span> Comprobacion con la funcion t.test()</a></li></ul>
+</li>
+<li><a class="nav-link" href="#el-intervalo-de-confianza-de-la-diferencia-de-medias"><span class="header-section-number">6.6</span> El intervalo de confianza de la diferencia de medias</a></li>
+<li>
+<a class="nav-link" href="#aplicacion-con-la-encuesta-del-ciep-1"><span class="header-section-number">6.7</span> Aplicacion con la encuesta del CIEP</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#voto-por-el-pac-y-evaluacion-del-gobierno-1"><span class="header-section-number">6.7.1</span> Voto por el PAC y evaluacion del gobierno</a></li>
+<li><a class="nav-link" href="#genero-y-apoyo-al-sistema"><span class="header-section-number">6.7.2</span> Genero y apoyo al sistema</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#resumen-1"><span class="header-section-number">6.8</span> Resumen</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Estadistica aplicada para la ciencia politica</strong>" was written by Adaptacion de Marco Artavia Pacheco, basada en la obra de J. K. Corder. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

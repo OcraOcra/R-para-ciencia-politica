@@ -250,10 +250,10 @@ ambos. Tambien consideramos un modelo mas amplio para ver como se usan los
 coeficientes estandarizados.
 
 Los modelos de una sola variable que predicen la nota al gobierno se reproducen en
-la Tabla 7.3. La primera columna reporta el vinculo con el apoyo al
+la Tabla 10.3. La primera columna reporta el vinculo con el apoyo al
 sistema; la segunda, el vinculo con el voto por el PAC.
 
-**Tabla 7.3 Dos modelos bivariados que predicen la nota al gobierno**
+**Tabla 10.3 Dos modelos bivariados que predicen la nota al gobierno**
 
 
 <table style="text-align:center"><tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="2">Nota al gobierno</td></tr>
@@ -281,7 +281,7 @@ explica el apoyo al sistema es mayor. Para resolver la incertidumbre sobre cual
 variable importa mas, podemos contrastar el vinculo en un solo modelo
 multivariado.
 
-**Tabla 7.4 Un modelo multivariado que predice la nota al gobierno, con apoyo al sistema y voto por el PAC**
+**Tabla 10.4 Un modelo multivariado que predice la nota al gobierno, con apoyo al sistema y voto por el PAC**
 
 
 <table style="text-align:center"><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td>Nota al gobierno</td></tr>
@@ -311,11 +311,11 @@ efecto mas poderoso: su coeficiente estandarizado es 0,37, mas lejos de cero que
 el del voto (0,19). Los coeficientes sin estandarizar refuerzan esta conclusion.
 
 Podriamos usar una estrategia similar para evaluar una serie de variables. La
-Tabla 7.5 reporta los coeficientes de un modelo complejo: apoyo al
+Tabla 10.5 reporta los coeficientes de un modelo complejo: apoyo al
 sistema, percepcion economica, educacion, genero, edad, voto por el PAC y
 provincia.
 
-**Tabla 7.5 Un modelo multivariado que predice la nota al gobierno, con varios predictores**
+**Tabla 10.5 Un modelo multivariado que predice la nota al gobierno, con varios predictores**
 
 
 <table style="text-align:center"><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td>Nota al gobierno</td></tr>

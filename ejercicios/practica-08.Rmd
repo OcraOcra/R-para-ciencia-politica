@@ -1,0 +1,89 @@
+---
+title: "Practica 8: la curva normal y los puntajes z"
+author: "Nombre: ____________________"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r, include=FALSE}
+library(haven)
+library(tidyverse)
+ciep <- read_dta("data/CIEPnoviembre2020.dta")
+```
+
+**Objetivo:** generar datos normales, calcular puntajes z y usar `pnorm()` para
+obtener areas bajo la curva (probabilidades).
+
+## 1. Simular una distribucion normal
+
+Genera 10.000 observaciones de una normal con media 50 y desviacion estandar 12,5.
+
+```{r}
+set.seed(2020)
+datos <- ___(10000, mean = 50, sd = 12.5)
+
+mean(datos)
+sd(datos)
+```
+
+- ¿Los estadisticos muestrales se acercan a 50 y 12,5? ¿Por que?
+
+## 2. Puntajes z
+
+Calcula el puntaje z del valor $x = 65$ con la formula $z = (x - media)/sd$.
+
+```{r}
+x <- 65
+media <- mean(datos)
+sd_datos <- sd(datos)
+
+z <- (x - ___) / ___
+z
+```
+
+- Interpreta el puntaje z en una frase.
+
+## 3. Area bajo la curva con `pnorm()`
+
+```{r}
+# Area acumulada hasta x = 65
+pnorm(65, mean = media, sd = sd_datos, lower.tail = ___)
+
+# Area posterior a x = 65
+pnorm(65, mean = media, sd = sd_datos, lower.tail = ___)
+```
+
+- ¿Que porcentaje de los casos esta por debajo de 65?
+- Comprueba que las dos areas suman 1.
+
+## 4. La regla de 1,96
+
+```{r}
+# Area dentro de +/- 1,96 desviaciones estandar
+(pnorm(1.96, lower.tail = TRUE) - 0.5) * 2
+```
+
+- ¿Que significa el resultado para el umbral de significancia de 0,05?
+
+## 5. Aplicacion con el CIEP
+
+Estandariza la variable **edad** de la encuesta.
+
+```{r}
+media_edad <- mean(ciep$edad, na.rm = TRUE)
+sd_edad <- sd(ciep$edad, na.rm = TRUE)
+
+z_65 <- (65 - media_edad) / ___
+z_65
+
+# Proporcion con 65 anos o menos
+pnorm(65, mean = media_edad, sd = sd_edad, lower.tail = TRUE)
+```
+
+- ¿Una persona de 65 anos esta por encima o por debajo del promedio?
+- ¿Que proporcion del electorado tiene 65 anos o menos?
